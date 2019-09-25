@@ -1,14 +1,26 @@
 package proyectoUniversidad;
 
-// import javax.swing.*;
+//import javax.swing.JFrame;
+
+import javax.swing.*;
 /**
  * Creacion de ventana
  *
  *
  */
-public class App {
-    public static void main( String[] args )
+public class App extends JFrame {
+    /**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+	public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        App aplicacion = new App();
+        aplicacion.crearVentana();
+    }
+    public void crearVentana(){
+        this.setSize(400,400);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
