@@ -1,11 +1,12 @@
 package proyectoUniversidad;
 
+// import javax.swing.*;
 /**
- * Hello world!
+ * Creacion de ventana
+ *
  *
  */
-public class App 
-{
+public class App {
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
