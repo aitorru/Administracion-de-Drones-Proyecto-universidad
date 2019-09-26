@@ -19,12 +19,13 @@ public class App extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public static void main( String[] args ) {
         App aplicacion = new App();
-        //aplicacion.crearVentana();
-        File sourceFile = new File("directory-source/text1.txt");
-		File destinationFile = new File("directory-destination/test1.txt");
+        aplicacion.crearVentana();
+        File sourceFile = new File("text1.txt");
+		File destinationFile = new File("test1.txt");
 
         try {
-			FileUtils.moveFile(sourceFile, destinationFile);
+            FileUtils.moveFile(sourceFile, destinationFile);
+            System.out.println("Movido");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
