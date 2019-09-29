@@ -1,10 +1,7 @@
 mvnCommands
-drones\target\drones-1.0-SNAPSHOT-jar-with-dependencies.jar
-drones\target\drones-1.0-SNAPSHOT.jar
-drones\target\archive-tmp
-drones\target\generated-sources
-drones\target\maven-archiver\pom.properties
-drones\target\maven-status
-drones\target\maven-status\maven-compiler-plugin\compile\default-compile\createdFiles.lst
-drones\target\maven-status\maven-compiler-plugin\compile\default-compile\inputFiles.lst
 .vscode
+drones/target/drones-1.0-SNAPSHOT-jar-with-dependencies.jar
+drones/target/drones-1.0-SNAPSHOT.jar
+drones/target/maven-archiver/pom.properties
+drones/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+drones/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
