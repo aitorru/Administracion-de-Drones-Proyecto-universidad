@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 
 import java.awt.*;
+import com.google.gson.*;
 
 /**
  * Creacion de ventana
