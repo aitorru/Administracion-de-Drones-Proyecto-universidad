@@ -64,5 +64,20 @@
       <artifactId>json</artifactId>
       <version>20190722</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.google/gson -->
+    <dependency>
+      <groupId>com.google</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.1.0</version>
+    </dependency>
   </dependencies>
+
+
+  <repositories>
+    <repository>
+      <id>jabylon-repo</id>
+      <name>jabylon custom repo</name>
+      <url>http://www.jabylon.org/maven/</url>
+    </repository>
+  </repositories>
 </project>
