@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 
 import java.awt.*;
-import com.google.gson.*;
 
 /**
  * Creacion de ventana
@@ -20,13 +19,17 @@ public class App extends JFrame{
     private static final long serialVersionUID = 1L;
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
+        /**
+         * SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 App a = new App();
                 a.crearVentana();
             }
         });
+         */
+        JsonCreator s = new JsonCreator();
+        s.guardarAJson("hola");
     }
     public App(){
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 
