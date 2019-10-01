@@ -1,22 +1,18 @@
 package com.AdministracionDrones;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.rmi.server.RemoteStub;
 import java.util.HashMap;
-import java.util.Scanner;
 
-import com.google.gson.*;
 import org.json.simple.*;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class JsonCreator {
-    private Gson gson = new Gson();
     private JSONObject JsonEntry = new JSONObject();
+    private static JSONArray ListaDeVuelos = new JSONArray();
 
-    public void guardarAJson(HashMap<String, String> DatosEntrada) {
+    public void guardarJson(int ID, HashMap<String, String> DatosEntrada) {
         /*
          * HELP Entrada --------------------------------------------------------------
          * HashMap<String, String> capitalCities = new HashMap<String, String>();
@@ -33,36 +29,19 @@ public class JsonCreator {
             JsonEntry.put(i, DatosEntrada.get(i));
         }
         try {
-            File f = new File("rutas.json");
-            Scanner fileReader = new Scanner(f);
-            if (f.exists()) {
-                String buffer = "";
-                while (fileReader.hasNext()) {
-                    buffer = buffer + " " + fileReader.nextLine();
-                }
-                JSONParser parser = new JSONParser();
-                System.out.println(parser.parse(buffer));
-                JSONObject entradaEscrita = (JSONObject) parser.parse(buffer);
-                for (String s : entradaEscrita.keySet()){
-
-                }
-                FileWriter ArchivoRutasEscritor = new FileWriter("rutas.json");
-                ArchivoRutasEscritor.write(JsonEntry.toJSONString());
-                ArchivoRutasEscritor.close();
-            }
-            fileReader.close();
+            JSONObject nuevoVuelo = new JSONObject();
+            nuevoVuelo.put(ID, JsonEntry);
+            ListaDeVuelos.add(nuevoVuelo);
             FileWriter ArchivoRutasEscritor = new FileWriter("rutas.json");
-            ArchivoRutasEscritor.write(JsonEntry.toJSONString());
+            ArchivoRutasEscritor.write(ListaDeVuelos.toJSONString());
             ArchivoRutasEscritor.close();
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
-
-        
+    }
+    public String leerJsonListaDeVuelos(String key){
+        return ListaDeVuelos.get(key);
     }
 }
