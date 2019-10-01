@@ -10,6 +10,7 @@ import java.util.Scanner;
 import com.google.gson.*;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class JsonCreator {
     private Gson gson = new Gson();
@@ -17,32 +18,34 @@ public class JsonCreator {
 
     public void guardarAJson(HashMap<String, String> DatosEntrada) {
         /*
-        * HELP
-        Entrada --------------------------------------------------------------
-        HashMap<String, String> capitalCities = new HashMap<String, String>();
-        capitalCities.put("England", "London");
-        capitalCities.put("Germany", "Berlin");
-        capitalCities.put("Norway", "Oslo");
-        capitalCities.put("USA", "Washington DC");
-        Salida ---------------------------------------------------------------
-        {"USA":"Washington DC","Norway":"Oslo","England":"London","Germany":"Berlin"}
-        En archivo rutas.json
-
-        Los datos se mantienen y se escriben los nuevos
-        */
+         * HELP Entrada --------------------------------------------------------------
+         * HashMap<String, String> capitalCities = new HashMap<String, String>();
+         * capitalCities.put("England", "London"); capitalCities.put("Germany",
+         * "Berlin"); capitalCities.put("Norway", "Oslo"); capitalCities.put("USA",
+         * "Washington DC"); Salida
+         * ---------------------------------------------------------------
+         * {"USA":"Washington DC","Norway":"Oslo","England":"London","Germany":"Berlin"}
+         * En archivo rutas.json
+         * 
+         * Los datos se mantienen y se escriben los nuevos
+         */
         for (String i : DatosEntrada.keySet()) {
             JsonEntry.put(i, DatosEntrada.get(i));
         }
         try {
             File f = new File("rutas.json");
             Scanner fileReader = new Scanner(f);
-            if (f.exists()){
+            if (f.exists()) {
                 String buffer = "";
-                while(fileReader.hasNext()){
-                    buffer = buffer + " " + fileReader.nextLine(); 
+                while (fileReader.hasNext()) {
+                    buffer = buffer + " " + fileReader.nextLine();
                 }
                 JSONParser parser = new JSONParser();
-                System.out.println(parser.parse());
+                System.out.println(parser.parse(buffer));
+                JSONObject entradaEscrita = (JSONObject) parser.parse(buffer);
+                for (String s : entradaEscrita.keySet()){
+
+                }
                 FileWriter ArchivoRutasEscritor = new FileWriter("rutas.json");
                 ArchivoRutasEscritor.write(JsonEntry.toJSONString());
                 ArchivoRutasEscritor.close();
@@ -51,8 +54,11 @@ public class JsonCreator {
             FileWriter ArchivoRutasEscritor = new FileWriter("rutas.json");
             ArchivoRutasEscritor.write(JsonEntry.toJSONString());
             ArchivoRutasEscritor.close();
-            
+
         } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
