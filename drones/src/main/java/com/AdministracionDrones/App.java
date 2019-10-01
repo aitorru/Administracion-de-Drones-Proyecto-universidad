@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 
 import java.awt.*;
+import java.util.HashMap;
 
 /**
  * Creacion de ventana
@@ -29,7 +30,12 @@ public class App extends JFrame{
         });
          */
         JsonCreator s = new JsonCreator();
-        s.guardarAJson("hola");
+        HashMap<String, String> capitalCities = new HashMap<String, String>();
+        capitalCities.put("England", "London");
+        capitalCities.put("Germany", "Berlin");
+        capitalCities.put("Norway", "Oslo");
+        capitalCities.put("USA", "Washington DC");
+        s.guardarAJson(capitalCities);
     }
     public App(){
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 

@@ -5,3 +5,5 @@ drones/target/maven-archiver/pom.properties
 drones/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 drones/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 .vscode/settings.json
+rutas.json
+.vscode/launch.json
