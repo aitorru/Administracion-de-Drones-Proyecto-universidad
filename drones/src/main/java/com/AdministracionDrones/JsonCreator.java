@@ -1,18 +1,60 @@
 package com.AdministracionDrones;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.rmi.server.RemoteStub;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class JsonCreator {
     private JSONObject JsonEntry = new JSONObject();
     private static JSONArray ListaDeVuelos = new JSONArray();
 
-    public void guardarJson(int ID, HashMap<String, String> DatosEntrada) {
+    public JsonCreator() {
+        JSONParser jsonParser = new JSONParser();
+        try (FileReader reader = new FileReader("rutas.json")) {
+            // Read JSON file
+            Object obj = jsonParser.parse(reader);
+
+            JSONArray Lista_Vuelos = (JSONArray) obj;
+            ListaDeVuelos = Lista_Vuelos;
+
+            // Iterate over employee array
+            // Lista_Vuelos.forEach( emp -> parseEmployeeObject( (JSONObject) emp ) );
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void parseEmployeeObject(JSONObject employee) {
+        // Get employee object within list
+        JSONObject employeeObject = (JSONObject) employee.get("employee");
+
+        // Get employee first name
+        String firstName = (String) employeeObject.get("firstName");
+        System.out.println(firstName);
+
+        // Get employee last name
+        String lastName = (String) employeeObject.get("lastName");
+        System.out.println(lastName);
+
+        // Get employee website name
+        String website = (String) employeeObject.get("website");
+        System.out.println(website);
+    }
+
+    public void guardarJson(String ID, HashMap<String, String> DatosEntrada) {
         /*
          * HELP Entrada --------------------------------------------------------------
          * HashMap<String, String> capitalCities = new HashMap<String, String>();
@@ -41,7 +83,22 @@ public class JsonCreator {
             e.printStackTrace();
         }
     }
-    public String leerJsonListaDeVuelos(String key){
-        return ListaDeVuelos.get(key);
-    }
-}
+
+    public String leerJsonID(String key){
+        JSONObject obj=new JSONObject();
+        Iterator<String> it=obj.keys();
+        while(it.hasNext()){
+        String keys=it.next();
+        JSONObject innerJson=new JSONObject(obj.toString());
+        JSONArray innerArray=innerJson.getJSONArray(keys);
+        for(int i=0;i<innerArray.length();i++){
+        JSONObject innInnerObj=innerArray.getJSONObject(i);
+        Iterator<String> InnerIterator=innInnerObj.keys();
+        while(InnerIterator.hasNext()){
+        System.out.println("InnInnerObject value is :"+innInnerObj.get(InnerIterator.next()));
+
+
+        }
+        }
+            }
+}}
