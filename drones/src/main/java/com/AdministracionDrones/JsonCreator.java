@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import org.json.simple.*;
@@ -74,6 +73,7 @@ public class JsonCreator {
             JSONObject nuevoVuelo = new JSONObject();
             nuevoVuelo.put(ID, JsonEntry);
             ListaDeVuelos.add(nuevoVuelo);
+            System.out.println(ListaDeVuelos.toJSONString());
             FileWriter ArchivoRutasEscritor = new FileWriter("rutas.json");
             ArchivoRutasEscritor.write(ListaDeVuelos.toJSONString());
             ArchivoRutasEscritor.close();
@@ -85,20 +85,15 @@ public class JsonCreator {
     }
 
     public String leerJsonID(String key){
-        JSONObject obj=new JSONObject();
-        Iterator<String> it=obj.keys();
-        while(it.hasNext()){
-        String keys=it.next();
-        JSONObject innerJson=new JSONObject(obj.toString());
-        JSONArray innerArray=innerJson.getJSONArray(keys);
-        for(int i=0;i<innerArray.length();i++){
-        JSONObject innInnerObj=innerArray.getJSONObject(i);
-        Iterator<String> InnerIterator=innInnerObj.keys();
-        while(InnerIterator.hasNext()){
-        System.out.println("InnInnerObject value is :"+innInnerObj.get(InnerIterator.next()));
-
-
-        }
-        }
-            }
-}}
+        JSONObject objetoTMP = new JSONObject();
+        objetoTMP.put("LISTA DE VUELOS", ListaDeVuelos);
+        String vueloID = (String) objetoTMP.get(key);
+        return vueloID;
+    }
+    public String leerJsonID(int key){
+        JSONObject objetoTMP = new JSONObject();
+        objetoTMP.put("LISTA DE VUELOS", ListaDeVuelos);
+        String vueloID = (String) objetoTMP.get(key);
+        return vueloID;
+    }
+}
