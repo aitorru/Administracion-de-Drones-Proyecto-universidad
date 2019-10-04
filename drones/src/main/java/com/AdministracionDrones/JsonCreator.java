@@ -5,8 +5,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
-
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -34,23 +32,6 @@ public class JsonCreator {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-    }
-
-    private static void parseEmployeeObject(JSONObject employee) {
-        // Get employee object within list
-        JSONObject employeeObject = (JSONObject) employee.get("employee");
-
-        // Get employee first name
-        String firstName = (String) employeeObject.get("firstName");
-        System.out.println(firstName);
-
-        // Get employee last name
-        String lastName = (String) employeeObject.get("lastName");
-        System.out.println(lastName);
-
-        // Get employee website name
-        String website = (String) employeeObject.get("website");
-        System.out.println(website);
     }
 
     public void guardarJson(String ID, HashMap<String, String> DatosEntrada) {
@@ -84,16 +65,25 @@ public class JsonCreator {
         }
     }
 
-    public String leerJsonID(String key){
+    public Object leerJsonID(String key){
         JSONObject objetoTMP = new JSONObject();
         objetoTMP.put("LISTA DE VUELOS", ListaDeVuelos);
-        String vueloID = (String) objetoTMP.get(key);
+        System.out.println(objetoTMP.toJSONString());
+        Object vueloID = objetoTMP.get(key);
         return vueloID;
     }
-    public String leerJsonID(int key){
-        JSONObject objetoTMP = new JSONObject();
-        objetoTMP.put("LISTA DE VUELOS", ListaDeVuelos);
-        String vueloID = (String) objetoTMP.get(key);
+    public Object leerJsonID(Object obj, String key){
+        JSONParser jsonParser = new JSONParser();
+        JSONArray arrayJson = new JSONArray();
+        try {
+            arrayJson = (JSONArray) jsonParser.parse(obj.toString()));
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        arrayJson.forEach(action);
+        Object vueloID;
         return vueloID;
+        
     }
 }
