@@ -18,7 +18,6 @@ public class App extends JFrame{
      *
      */
     private static final long serialVersionUID = 1L;
-
     public static void main(String[] args) {
         /**
          * SwingUtilities.invokeLater(new Runnable() {
@@ -36,8 +35,8 @@ public class App extends JFrame{
         capitalCities.put("Norway", "Oslo");
         capitalCities.put("USA", "Washington DC");
         //s.guardarJson("2",capitalCities);
-        System.out.println(s.leerJsonID("LISTA DE VUELOS").toString());
-        System.out.println(s.leerJsonID(s.leerJsonID("LISTA DE VUELOS"), "0").toString());
+        System.out.println("1" + s.leerJsonID("LISTA DE VUELOS").toString());
+        System.out.println(s.leerJsonID(s.leerJsonID("LISTA DE VUELOS"), "1"));
 
     }
     public App(){
