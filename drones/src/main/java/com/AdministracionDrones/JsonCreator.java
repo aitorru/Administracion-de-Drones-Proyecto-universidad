@@ -12,6 +12,7 @@ import org.json.simple.parser.ParseException;
 public class JsonCreator {
     private JSONObject JsonEntry = new JSONObject();
     private static JSONArray ListaDeVuelos = new JSONArray();
+    private String textoTemp;
 
     public JsonCreator() {
         JSONParser jsonParser = new JSONParser();
@@ -76,14 +77,18 @@ public class JsonCreator {
         JSONParser jsonParser = new JSONParser();
         JSONArray arrayJson = new JSONArray();
         try {
-            arrayJson = (JSONArray) jsonParser.parse(obj.toString()));
+            arrayJson = (JSONArray) jsonParser.parse(obj.toString());
         } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        arrayJson.forEach(action);
-        Object vueloID;
+        arrayJson.forEach(ID -> IterateOverArray((JSONObject) ID, key));
+        Object vueloID = textoTemp;
         return vueloID;
         
+    }
+    public void IterateOverArray(JSONObject vuelo, String key){
+        textoTemp = (String) vuelo.get(key);
+
     }
 }
