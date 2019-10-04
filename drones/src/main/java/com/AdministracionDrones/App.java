@@ -35,8 +35,10 @@ public class App extends JFrame{
         capitalCities.put("Germany", "Berlin");
         capitalCities.put("Norway", "Oslo");
         capitalCities.put("USA", "Washington DC");
-        s.guardarJson("3",capitalCities);
-        //System.out.println(s.leerJsonID("LISTA DE VUELOS"));
+        //s.guardarJson("2",capitalCities);
+        System.out.println(s.leerJsonID("LISTA DE VUELOS").toString());
+        System.out.println(s.leerJsonID(s.leerJsonID("LISTA DE VUELOS"), "0").toString());
+
     }
     public App(){
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 
