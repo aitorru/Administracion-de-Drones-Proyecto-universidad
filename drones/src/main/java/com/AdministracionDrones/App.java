@@ -35,8 +35,9 @@ public class App extends JFrame{
         capitalCities.put("Norway", "Oslo");
         capitalCities.put("USA", "Washington DC");
         //s.guardarJson("2",capitalCities);
-        System.out.println("1" + s.leerJsonID("LISTA DE VUELOS").toString());
-        System.out.println(s.leerJsonID(s.leerJsonID("LISTA DE VUELOS"), "1"));
+        //System.out.println("1" + s.leerJsonID("LISTA DE VUELOS").toString());
+        //System.out.println(s.leerJsonID(s.leerJsonID("LISTA DE VUELOS"), "1"));
+        s.leerJSON();
 
     }
     public App(){

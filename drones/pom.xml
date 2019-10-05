@@ -76,9 +76,13 @@
       <artifactId>json-simple</artifactId>
       <version>1.1.1</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.python/jython -->
+    <dependency>
+      <groupId>org.python</groupId>
+      <artifactId>jython</artifactId>
+      <version>2.7.0</version>
+    </dependency>
   </dependencies>
-
-
   <repositories>
     <repository>
       <id>jabylon-repo</id>
@@ -86,4 +90,5 @@
       <url>http://www.jabylon.org/maven/</url>
     </repository>
   </repositories>
+
 </project>

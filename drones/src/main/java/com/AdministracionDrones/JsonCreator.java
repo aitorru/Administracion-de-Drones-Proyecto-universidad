@@ -4,10 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Properties;
+
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.python.util.*;
 
 public class JsonCreator {
     private JSONObject JsonEntry = new JSONObject();
@@ -90,5 +94,22 @@ public class JsonCreator {
     public void IterateOverArray(JSONObject vuelo, String key){
         textoTemp = (String) vuelo.get(key);
 
+    }
+    public void leerJSON(){
+        Properties props = new Properties();
+        // props.put("python.home","path to the Lib folder");
+        props.put("python.console.encoding", "UTF-8"); // Used to prevent: console:
+        // Failed to install '': java.nio.charset.UnsupportedCharsetException: cp0.
+        props.put("python.security.respectJavaAccessibility", "false"); //don't
+        // respect java accessibility, so that we can access protected members on
+        // subclasses
+        props.put("python.import.site", "false");
+        Properties preprops = System.getProperties();
+        PythonInterpreter.initialize(preprops, props, new String[0]);
+        PythonInterpreter pyInterp = new PythonInterpreter();
+        pyInterp.exec("print('Hello Python World!')");
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("jsonDecoder.py");
+        pyInterp.execfile(is);
+        pyInterp.close();
     }
 }
