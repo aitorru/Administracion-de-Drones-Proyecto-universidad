@@ -8,3 +8,12 @@ drones/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFi
 rutas.json
 .vscode/launch.json
 AdministracionDronesVSCode.code-workspace
+drones/.settings/org.eclipse.core.resources.prefs
+drones/redhat.ico
+drones/target/configEXE.cfg.xml
+drones/target/configEXE.xml
+drones/redhat-icon-4.png
+drones/redhat-icon-4.ico
+drones/target/Administrador.exe
+drones/.classpath
+drones/.settings/org.eclipse.core.resources.prefs
