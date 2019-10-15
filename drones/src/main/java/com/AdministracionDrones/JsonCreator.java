@@ -12,6 +12,7 @@ import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.python.util.*;
+import org.python.modules._json.*;
 
 public class JsonCreator {
     private JSONObject JsonEntry = new JSONObject();
@@ -107,8 +108,9 @@ public class JsonCreator {
         Properties preprops = System.getProperties();
         PythonInterpreter.initialize(preprops, props, new String[0]);
         PythonInterpreter pyInterp = new PythonInterpreter();
-        pyInterp.exec("print('Hello Python World!')");
+        InputStream es = this.getClass().getClassLoader().getResourceAsStream("ez_setup.py");
         InputStream is = this.getClass().getClassLoader().getResourceAsStream("jsonDecoder.py");
+        //pyInterp.execfile(es, "jsonsimple");
         pyInterp.execfile(is);
         pyInterp.close();
     }
