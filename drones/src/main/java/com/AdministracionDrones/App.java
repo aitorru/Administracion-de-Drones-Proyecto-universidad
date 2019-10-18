@@ -28,7 +28,7 @@ public class App extends JFrame{
             }
         });
          */
-        JsonCreator s = new JsonCreator();
+        BackEndAdmin s = new BackEndAdmin();
         HashMap<String, String> capitalCities = new HashMap<String, String>();
         capitalCities.put("England", "London");
         capitalCities.put("Germany", "Berlin");
@@ -37,7 +37,7 @@ public class App extends JFrame{
         //s.guardarJson("1",capitalCities);
         //System.out.println("1" + s.leerJsonID("LISTA DE VUELOS").toString());
         //System.out.println(s.leerJsonID(s.leerJsonID("LISTA DE VUELOS"), "1"));
-        s.leerJSON();
+        //s.leerJSON();
 
     }
     public App(){
