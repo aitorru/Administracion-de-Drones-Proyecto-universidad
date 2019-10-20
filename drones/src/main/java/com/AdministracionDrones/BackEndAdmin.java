@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -30,32 +31,31 @@ public class BackEndAdmin {
         PythonInterpreter pyInterp = new PythonInterpreter();
         pyInterp.exec("f = file('dronesDataBase.db', 'w')");
         pyInterp.close();
-        ejecutarBD();
+        try {
+            ejecutarBD();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
-    public void ejecutarBD() {
+    private void ejecutarBD() throws SQLException {
         String url = "jdbc:sqlite:dronesDataBase.db";
-        try (Connection conn = DriverManager.getConnection(url)) {
-            if (conn != null) {
-                connGlobal = conn;
-                DatabaseMetaData meta = connGlobal.getMetaData();
-                metaGlobal = meta;
-                Statement stmt = connGlobal.createStatement();
-                stmtGlobal = stmt;
-                System.out.println("The driver name is " + meta.getDriverName());
-                System.out.println("A new database has been created.");
-                String datosEntrada = "CREATE TABLE IF NOT EXISTS drones (\n" + "id INTEGER PRIMARY KEY NOT NULL, \n"
-                        + "idUsuario INTEGER NOT NULL, \n " // ID de prpietario del DRON
-                        + "coordenadasX INTEGER NOT NULL, \n" + "coordenadasY INTEGER NOT NULL, \n"
-                        + "horaSalida INTEGER NOT NULL, \n" + "horaLlegada INTEGER NOT NULL, \n"
-                        + "ciudadSalida text NOT NULL, \n" + "ciudadLlgada text NOT NULL, \n"
-                        + "cargaDescripcion text\n" + ");";
-                stmtGlobal.execute(datosEntrada);
-                System.out.println("Created");
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        connGlobal = DriverManager.getConnection(url);
+        if (connGlobal != null) {
+            metaGlobal = connGlobal.getMetaData();
+            stmtGlobal = connGlobal.createStatement();
+            System.out.println("The driver name is " + metaGlobal.getDriverName());
+            System.out.println("A new database has been created.");
+            String datosEntrada = "CREATE TABLE IF NOT EXISTS dron (\n" + "id INTEGER PRIMARY KEY NOT NULL, \n"
+                    + "idUsuario INTEGER NOT NULL, \n " // ID de prpietario del DRON
+                    + "coordenadasX INTEGER NOT NULL, \n" + "coordenadasY INTEGER NOT NULL, \n"
+                    + "horaSalida INTEGER NOT NULL, \n" + "horaLlegada INTEGER NOT NULL, \n"
+                    + "ciudadSalida text NOT NULL, \n" + "ciudadLlegada text NOT NULL, \n"
+                    + "cargaDescripcion text\n" + ");";
+            stmtGlobal.execute(datosEntrada);
+            stmtGlobal.close();
+            System.out.println("Created");
         }
     }
 
@@ -72,7 +72,7 @@ public class BackEndAdmin {
          * 
          * Los datos se mantienen y se escriben los nuevos
          */
-        String sql = "INSERT INTO dron(idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlgada, cargaDescripcion) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO dron(idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion) VALUES(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement pstmt = connGlobal.prepareStatement(sql);
             pstmt.setInt(1, Integer.valueOf(DatosEntrada.get("idUsuario")));
@@ -81,9 +81,10 @@ public class BackEndAdmin {
             pstmt.setInt(4, Integer.valueOf(DatosEntrada.get("horaSalida")));
             pstmt.setInt(5, Integer.valueOf(DatosEntrada.get("horaLlegada")));
             pstmt.setString(6, DatosEntrada.get("ciudadSalida"));
-            pstmt.setString(7, DatosEntrada.get("ciudadLlgada"));
+            pstmt.setString(7, DatosEntrada.get("ciudadLlegada"));
             pstmt.setString(8, DatosEntrada.get("cargaDescripcion"));
             pstmt.executeUpdate();
+            pstmt.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -93,26 +94,29 @@ public class BackEndAdmin {
 
     }
 
-    public HashMap<String, String> leerBD() {
-        String sql = "SELECT id idUsuario coordenadasX coordenadasY horaSalida horaLlegada ciudadSalida ciudadLlgada cargaDescripcion FROM dron";
-        HashMap<String, String> mapaTemporal = null;
+    public ArrayList<HashMap<String,String>> leerBD() {
+        String sql = "SELECT id, idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion FROM dron";
+        ArrayList<HashMap<String,String>> listaDeHashMaps = new ArrayList<HashMap<String,String>>();
         try {
             ResultSet rs = stmtGlobal.executeQuery(sql);
-            mapaTemporal = new HashMap<String, String>();
-            mapaTemporal.put("id", Integer.toString(rs.getInt("id")));
-            mapaTemporal.put("idUsuario", Integer.toString(rs.getInt("idUsuario")));
-            mapaTemporal.put("coordenadasX", Integer.toString(rs.getInt("coordenadasX")));
-            mapaTemporal.put("coordenadasY", Integer.toString(rs.getInt("coordenadasY")));
-            mapaTemporal.put("horaSalida", Integer.toString(rs.getInt("horaSalida")));
-            mapaTemporal.put("ciudadSalida", rs.getString("ciudadSalida"));
-            mapaTemporal.put("ciudadLlgada", rs.getString("ciudadLlgada"));
-            mapaTemporal.put("cargaDescripcion", rs.getString("cargaDescripcion"));
+            while(rs.next()){
+                HashMap<String, String> mapaTemporal = new HashMap<String, String>();
+                mapaTemporal.put("id", Integer.toString(rs.getInt("id")));
+                mapaTemporal.put("idUsuario", Integer.toString(rs.getInt("idUsuario")));
+                mapaTemporal.put("coordenadasX", Integer.toString(rs.getInt("coordenadasX")));
+                mapaTemporal.put("coordenadasY", Integer.toString(rs.getInt("coordenadasY")));
+                mapaTemporal.put("horaSalida", Integer.toString(rs.getInt("horaSalida")));
+                mapaTemporal.put("ciudadSalida", rs.getString("ciudadSalida"));
+                mapaTemporal.put("ciudadLlgada", rs.getString("ciudadLlegada"));
+                mapaTemporal.put("cargaDescripcion", rs.getString("cargaDescripcion"));
+                listaDeHashMaps.add(mapaTemporal);
+            }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        if (mapaTemporal != null) {
-            return mapaTemporal;
+        if (listaDeHashMaps != null) {
+            return listaDeHashMaps;
         } else {
             return null;
         }

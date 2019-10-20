@@ -30,10 +30,28 @@ public class App extends JFrame{
          */
         BackEndAdmin s = new BackEndAdmin();
         HashMap<String, String> capitalCities = new HashMap<String, String>();
-        capitalCities.put("England", "London");
-        capitalCities.put("Germany", "Berlin");
-        capitalCities.put("Norway", "Oslo");
-        capitalCities.put("USA", "Washington DC");
+        capitalCities.put("idUsuario", "1314");
+        capitalCities.put("coordenadasX", "100");
+        capitalCities.put("coordenadasY", "100");
+        capitalCities.put("horaSalida", "1000");
+        capitalCities.put("horaLlegada", "1100");
+        capitalCities.put("ciudadSalida", "Madrid");
+        capitalCities.put("ciudadLlegada", "Bilbao");
+        capitalCities.put("cargaDescripcion", "Baterias");
+        HashMap<String, String> ejemplo = new HashMap<String, String>();
+        ejemplo.put("idUsuario", "1315");
+        ejemplo.put("coordenadasX", "200");
+        ejemplo.put("coordenadasY", "100");
+        ejemplo.put("horaSalida", "1040");
+        ejemplo.put("horaLlegada", "1107");
+        ejemplo.put("ciudadSalida", "Madrid");
+        ejemplo.put("ciudadLlegada", "Barcelona");
+        ejemplo.put("cargaDescripcion", "Baterias");
+
+        // idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlgada, cargaDescripcion
+        s.guardarBD(capitalCities);
+        s.guardarBD(ejemplo);
+        System.out.println(s.leerBD().toString());
         //s.guardarJson("1",capitalCities);
         //System.out.println("1" + s.leerJsonID("LISTA DE VUELOS").toString());
         //System.out.println(s.leerJsonID(s.leerJsonID("LISTA DE VUELOS"), "1"));
