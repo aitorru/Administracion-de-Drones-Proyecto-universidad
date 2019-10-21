@@ -60,18 +60,6 @@ public class BackEndAdmin {
     }
 
     public void guardarBD(HashMap<String, String> DatosEntrada) {
-        /*
-         * HELP Entrada --------------------------------------------------------------
-         * HashMap<String, String> capitalCities = new HashMap<String, String>();
-         * capitalCities.put("England", "London"); capitalCities.put("Germany",
-         * "Berlin"); capitalCities.put("Norway", "Oslo"); capitalCities.put("USA",
-         * "Washington DC"); Salida
-         * ---------------------------------------------------------------
-         * {"USA":"Washington DC","Norway":"Oslo","England":"London","Germany":"Berlin"}
-         * En tabla de base de datos
-         * 
-         * Los datos se mantienen y se escriben los nuevos
-         */
         String sql = "INSERT INTO dron(idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion) VALUES(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement pstmt = connGlobal.prepareStatement(sql);
@@ -89,9 +77,6 @@ public class BackEndAdmin {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-
-
     }
 
     public ArrayList<HashMap<String,String>> leerBD() {
