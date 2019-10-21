@@ -118,17 +118,17 @@ La lectura hace return de un arraylist de todos los HM. ASi siendo facil la lect
     }
 ```
 
-- [] Modificar de BD
-- [] Eliminar Datos de BD
+- [ ] Modificar de BD
+- [ ] Eliminar Datos de BD
 
 ## Ventana de login
-- [] Investigación
+- [ ] Investigación
 
 
 ## Ventana para administrar
-- [] Investigación
+- [ ] Investigación
 
 
 ## Ventana de mapa
-- [] Investigación
+- [ ] Investigación
 
