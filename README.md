@@ -18,7 +18,6 @@ En la parte derecha de la interfaz hay una serie de desplegables para establecer
 
 ## Manejo de BD
 
-@aitorru
 > Aitor Ruiz
 
 - [x] Creacion de tabla automatica si no existe
@@ -62,7 +61,6 @@ Uso de python rapido para crear el archivo si no existe.
 Los elemetos que componen la tabla son
 **id, idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion**
 
-@aitorru
 > Aitor Ruiz
 
 - [x] Lectura de BD
@@ -98,7 +96,6 @@ public ArrayList<HashMap<String,String>> leerBD() {
 
 La lectura hace return de un arraylist de todos los HM. ASi siendo facil la lectura.
 
-@aitorru
 > Aitor Ruiz
 
 - [x] Escritura de BD
@@ -130,12 +127,10 @@ La lectura hace return de un arraylist de todos los HM. ASi siendo facil la lect
 
 ## Ventana de login
 
-@JonIbarreche
 > Jon Ibarreche
 
 - [ ] Investigación
 
-@aitorru
 > Aitor Ruiz
 
 - [X] Creacion de metodo de criptografia para acceso a pantalla
@@ -192,7 +187,6 @@ public static void setKey(String myKey)
 
 ## Ventana para administrar
 
-@JonIbarreche
 > Jon Ibarreche
 
 - [ ] Investigación
@@ -200,7 +194,43 @@ public static void setKey(String myKey)
 
 ## Ventana de mapa
 
-@ssc1999
 > Sergio Salgado
 
 - [ ] Investigación
+
+## Autores
+
+* **Aitor Ruiz** - *Trabajo inicial, bases de datos, criptografia y coordinacion* - [Aitor Ruiz](https://github.com/aitorru)
+* **Sergio Salgado** - *Creacion de mapa 2D* - [Sergio Salgado](https://github.com/ssc1999)
+* **Jon Ibarreche** - *Creacion de Login y apartado de usuario* - [Jon ibarreche](https://github.com/JonIbarreche)
+
+## Creado con
+
+```maven
+<dependencies>
+    [jython](https://mvnrepository.com/artifact/org.python/jython)
+    <dependency>
+      <groupId>org.python</groupId>
+      <artifactId>jython</artifactId>
+      <version>2.7.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>1.21</version>
+    </dependency>
+    [SQLite](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc)
+    <dependency>
+      <groupId>org.xerial</groupId>
+      <artifactId>sqlite-jdbc</artifactId>
+      <version>3.28.0</version>
+    </dependency>
+    [JUnit](https://mvnrepository.com/artifact/junit/junit)
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+</dependencies>
+```
