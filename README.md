@@ -206,11 +206,9 @@ public static void setKey(String myKey)
 
 ## Creado con
 
-```
-<dependencies>
-```
 [jython](https://mvnrepository.com/artifact/org.python/jython)
 ```
+<dependencies>
     <dependency>
       <groupId>org.python</groupId>
       <artifactId>jython</artifactId>
