@@ -16,3 +16,4 @@ drones/redhat-icon-4.ico
 drones/target/Administrador.exe
 drones/.classpath
 drones/.settings/org.eclipse.core.resources.prefs
+/classes/

@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,7 +58,8 @@ public class TestAnimation {
         private int xPos, yPos;
 
         public TestPane() throws IOException {
-            img = ImageIO.read(new File("/Users/shane/Dropbox/MegaTokyo/thumnails/2.jpg"));
+        	InputStream in = getClass().getResourceAsStream("foto dron.png");
+        	img = ImageIO.read(in);
             Random rnd = new Random();
             do {
                 xDelta = rnd.nextInt(4);
