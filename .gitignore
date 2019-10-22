@@ -5,7 +5,6 @@ drones/target/maven-archiver/pom.properties
 drones/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 drones/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 .vscode/settings.json
-rutas.json
 .vscode/launch.json
 AdministracionDronesVSCode.code-workspace
 drones/.settings/org.eclipse.core.resources.prefs
@@ -17,3 +16,4 @@ drones/redhat-icon-4.ico
 drones/target/Administrador.exe
 drones/.classpath
 drones/.settings/org.eclipse.core.resources.prefs
+rutas.json
