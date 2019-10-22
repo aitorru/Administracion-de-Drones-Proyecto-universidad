@@ -1,11 +1,18 @@
 package com.AdministracionDrones;
  
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
-import org.python.util.*;
 
-import java.sql.*;
+import org.python.util.PythonInterpreter;
 
 public class BackEndAdmin {
     private String textoTemp;
@@ -22,7 +29,8 @@ public class BackEndAdmin {
         Properties preprops = System.getProperties();
         PythonInterpreter.initialize(preprops, props, new String[0]);
         PythonInterpreter pyInterp = new PythonInterpreter();
-        pyInterp.exec("f = file('dronesDataBase.db', 'w')");
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeArchivos.py");
+        pyInterp.execfile(is);
         pyInterp.close();
         try {
             ejecutarBD();

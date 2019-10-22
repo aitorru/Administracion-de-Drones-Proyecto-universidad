@@ -7,18 +7,16 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.Timer;
 
 public class TestAnimation {
 
@@ -58,7 +56,7 @@ public class TestAnimation {
         private int xPos, yPos;
 
         public TestPane() throws IOException {
-        	InputStream in = getClass().getResourceAsStream("foto dron.png");
+        	InputStream in = this.getClass().getClassLoader().getResourceAsStream("foto dron.png");
         	img = ImageIO.read(in);
             Random rnd = new Random();
             do {

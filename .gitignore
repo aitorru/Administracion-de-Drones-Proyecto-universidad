@@ -17,3 +17,6 @@ drones/target/Administrador.exe
 drones/.classpath
 drones/.settings/org.eclipse.core.resources.prefs
 rutas.json
+drones/target/cachedir
+drones/target/cachedir/packages
+drones/target/classes/com

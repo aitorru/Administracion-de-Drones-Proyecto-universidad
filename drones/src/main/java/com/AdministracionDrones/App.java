@@ -49,13 +49,10 @@ public class App extends JFrame{
         ejemplo.put("cargaDescripcion", "Baterias");
 
         // idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlgada, cargaDescripcion
-        s.guardarBD(capitalCities);
-        s.guardarBD(ejemplo);
-        System.out.println(s.leerBD().toString());
-        //s.guardarJson("1",capitalCities);
-        //System.out.println("1" + s.leerJsonID("LISTA DE VUELOS").toString());
-        //System.out.println(s.leerJsonID(s.leerJsonID("LISTA DE VUELOS"), "1"));
-        //s.leerJSON();
+        //s.guardarBD(capitalCities);
+        //s.guardarBD(ejemplo);
+        //System.out.println(s.leerBD().toString());
+        userDB u = new userDB();
 
     }
     public App(){
