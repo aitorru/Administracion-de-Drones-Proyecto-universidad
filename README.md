@@ -17,13 +17,6 @@ En la parte derecha de la interfaz hay una serie de desplegables para establecer
 
 ```java
 public BackEndAdmin() {
-        // KIND OF LAZY BUT EFFECTIVE
-        Properties props = new Properties();
-        props.put("python.console.encoding", "UTF-8");
-        props.put("python.security.respectJavaAccessibility", "false");
-        props.put("python.import.site", "false");
-        Properties preprops = System.getProperties();
-        PythonInterpreter.initialize(preprops, props, new String[0]);
         PythonInterpreter pyInterp = new PythonInterpreter();
         pyInterp.exec("f = file('dronesDataBase.db', 'w')");
         pyInterp.close();
