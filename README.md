@@ -206,26 +206,27 @@ public static void setKey(String myKey)
 
 ## Creado con
 
-```maven
+```
 <dependencies>
-    [jython](https://mvnrepository.com/artifact/org.python/jython)
+```
+[jython](https://mvnrepository.com/artifact/org.python/jython)
+```
     <dependency>
       <groupId>org.python</groupId>
       <artifactId>jython</artifactId>
       <version>2.7.0</version>
     </dependency>
-    <dependency>
-      <groupId>org.yaml</groupId>
-      <artifactId>snakeyaml</artifactId>
-      <version>1.21</version>
-    </dependency>
-    [SQLite](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc)
+```
+[SQLite](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc)
+```
     <dependency>
       <groupId>org.xerial</groupId>
       <artifactId>sqlite-jdbc</artifactId>
       <version>3.28.0</version>
     </dependency>
-    [JUnit](https://mvnrepository.com/artifact/junit/junit)
+```
+[JUnit](https://mvnrepository.com/artifact/junit/junit)
+```
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
