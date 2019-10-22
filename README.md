@@ -1,17 +1,25 @@
-# Administracion-de-Drones-Proyecto-universidad ![alt text](https://travis-ci.com/aitorru/Administracion-de-Drones-Proyecto-universidad.svg?token=RrKbwC6VUpYoEbmNPvjQ&branch=master)
+# Administracion-de-Drones-Proyecto-universidad ![alt text](https://travis-ci.com/aitorru/Administracion-de-Drones-Proyecto-universidad.svg?token=RrKbwC6VUpYoEbmNPvjQ&branch=master) :fire:
+
 Proyecto para administrar una red de drones de reparto a nivel de España.
+
 ## Mapa (Parte izquierda)
+
 ![Alt text](mapa.PNG?raw=true "Title")
 Usando una imagen de OpenStreetMaps vamos a hacer una simulacion de donde estan los drones en este momento.
 ![Alt text](14466.png?raw=true "Title")
 
 Con un modelo de un dron basico lo moveremos por el mapa simulando el paso del tiempo
+
 ## Administracion (Parte derecha)
+
 En la parte derecha de la interfaz hay una serie de desplegables para establecer una ruta
 
 # Roadmap de proyecto
 
 ## Manejo de BD
+
+@aitorru
+> Aitor Ruiz
 
 - [x] Creacion de tabla automatica si no existe
 
@@ -52,7 +60,10 @@ public BackEndAdmin() {
 Uso de python rapido para crear el archivo si no existe.
 
 Los elemetos que componen la tabla son
-> id, idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion
+**id, idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion**
+
+@aitorru
+> Aitor Ruiz
 
 - [x] Lectura de BD
 
@@ -87,6 +98,9 @@ public ArrayList<HashMap<String,String>> leerBD() {
 
 La lectura hace return de un arraylist de todos los HM. ASi siendo facil la lectura.
 
+@aitorru
+> Aitor Ruiz
+
 - [x] Escritura de BD
 
 ```java
@@ -115,13 +129,78 @@ La lectura hace return de un arraylist de todos los HM. ASi siendo facil la lect
 - [ ] Eliminar Datos de BD
 
 ## Ventana de login
+
+@JonIbarreche
+> Jon Ibarreche
+
 - [ ] Investigación
 
+@aitorru
+> Aitor Ruiz
+
+- [X] Creacion de metodo de criptografia para acceso a pantalla
+
+```java
+public static void setKey(String myKey)
+    {
+        MessageDigest sha = null;
+        try {
+            key = myKey.getBytes("UTF-8");
+            sha = MessageDigest.getInstance("SHA-1");
+            key = sha.digest(key);
+            key = Arrays.copyOf(key, 16);
+            secretKey = new SecretKeySpec(key, "AES");
+        }
+        catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+    public String StringToCrypto(String strToEncrypt, String pass){
+        try
+        {
+            setKey(pass);
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error while encrypting: " + e.toString());
+        }
+        return null;
+    }
+    public String CryptoToString(String strToDecrypt, String pass){
+        try
+        {
+            setKey(pass);
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error while decrypting: " + e.toString());
+        }
+        return null;
+    }
+```
+
+> La pass debe de ser siempre la misma para conseguir el mismo resultado.
 
 ## Ventana para administrar
+
+@JonIbarreche
+> Jon Ibarreche
+
 - [ ] Investigación
 
 
 ## Ventana de mapa
-- [ ] Investigación
 
+@ssc1999
+> Sergio Salgado
+
+- [ ] Investigación
