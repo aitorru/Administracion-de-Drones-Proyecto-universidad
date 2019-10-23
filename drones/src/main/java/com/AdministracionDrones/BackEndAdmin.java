@@ -19,7 +19,7 @@ public class BackEndAdmin {
     private Connection connGlobal;
     private DatabaseMetaData metaGlobal;
     private Statement stmtGlobal;
-
+    
     public BackEndAdmin() {
         // KIND OF LAZY BUT EFFECTIVE
         Properties props = new Properties();
@@ -101,10 +101,65 @@ public class BackEndAdmin {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        if (listaDeHashMaps != null) {
-            return listaDeHashMaps;
-        } else {
-            return null;
+        return listaDeHashMaps;
+    }
+    public void UpdateCoordenadasX(int coordenadasX, int id){
+        String sql = "UPDATE dron SET coordenadasX = ? WHERE id = ?";
+        try {
+            PreparedStatement psmt = connGlobal.prepareStatement(sql);
+            psmt.setInt(1, coordenadasX);
+            psmt.setInt(2, id);
+            psmt.executeUpdate();
+            psmt.close();
+            
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+    }
+    public void UpdateCoordenadasY(int coordenadasY, int id){
+        String sql = "UPDATE dron SET coordenadasY = ? WHERE id = ?";
+        try {
+            PreparedStatement psmt = connGlobal.prepareStatement(sql);
+            psmt.setInt(1, coordenadasY);
+            psmt.setInt(2, id);
+            psmt.executeUpdate();
+            psmt.close();
+            
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+    }
+    public void UpdateDatos(int id, int idUsuario, int coordenadasX, int coordenadasY, int horaSalida, int horaLlegada, String ciudadSalida, String ciudadLlegada, String cargaDescripcion){
+        String sql = "UPDATE dron SET idUsuario = ?, coordenadasX = ?, coordenadasY = ?, horaSalida = ?, horaLlegada = ?, ciudadSalida = ?, ciudadLlegada = ?, cargaDescripcion = ? WHERE id = ?";
+        try {
+            PreparedStatement psmt = connGlobal.prepareStatement(sql);
+            psmt.setInt(1, idUsuario);
+            psmt.setInt(2, coordenadasX);
+            psmt.setInt(3, coordenadasY);
+            psmt.setInt(4, horaSalida);
+            psmt.setInt(5, horaLlegada);
+            psmt.setString(6, ciudadSalida);
+            psmt.setString(7, ciudadLlegada);
+            psmt.setString(8, cargaDescripcion);
+            psmt.setInt(9, id);
+            psmt.executeUpdate();
+            psmt.close();
+
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+    }
+    public void eliminarDatos(int id){
+        String sql = "DELETE FROM dron WHERE id = ?";
+        try {
+            PreparedStatement psmt = connGlobal.prepareStatement(sql);
+            psmt.setInt(1, id);
+            psmt.executeQuery();
+            psmt.close();
+        } catch (Exception e) {
+            //TODO: handle exception
         }
     }
 }

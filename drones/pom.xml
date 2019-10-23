@@ -43,6 +43,19 @@
             </descriptorRefs>
           </configuration>
         </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.21.0</version>
+          <configuration>
+              <includes>
+                  <include>App.java</include>
+                  <include>BackEndAdmin.java</include>
+                  <include>crypto.java</include>
+                  <include>TestAnimation.java</include>
+                  <include>userDB.java</include>
+              </includes>
+          </configuration>
+      </plugin>
     </plugins>
   </build>
   

@@ -20,3 +20,6 @@ rutas.json
 drones/target/cachedir
 drones/target/cachedir/packages
 drones/target/classes/com
+drones/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+drones/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+drones/target/test-classes/com/AdministracionDronesTester/tester.class
