@@ -1,4 +1,4 @@
-package login;
+package com.AdministracionDrones;
 
 public class panel_control extends javax.swing.JFrame {
 

@@ -106,7 +106,7 @@ public class login extends javax.swing.JFrame {
         String paswd = jPasswordField1.getText();
         
         if(usuario.isEmpty() || paswd.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Algún campo esta vacio");
+            JOptionPane.showMessageDialog(null, "Algï¿½n campo esta vacio");
             
         }else{
              if(usuario.equals("admin") && paswd.equals("1234")){
@@ -116,7 +116,7 @@ public class login extends javax.swing.JFrame {
                  this.dispose();
                  
              }else{
-                 JOptionPane.showConfirmDialog(null,"Su usuario o contraseña es incorrecto");
+                 JOptionPane.showConfirmDialog(null,"Su usuario o contraseï¿½a es incorrecto");
              }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
