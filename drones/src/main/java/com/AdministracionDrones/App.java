@@ -19,15 +19,12 @@ public class App extends JFrame{
      */
     private static final long serialVersionUID = 1L;
     public static void main(String[] args) {
-        /**
-         * SwingUtilities.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                App a = new App();
-                a.crearVentana();
+                login a = new login();
             }
         });
-         */
         BackEndAdmin s = new BackEndAdmin();
         HashMap<String, String> capitalCities = new HashMap<String, String>();
         capitalCities.put("idUsuario", "1314");
@@ -54,23 +51,5 @@ public class App extends JFrame{
         //System.out.println(s.leerBD().toString());
         userDB u = new userDB();
 
-    }
-    public App(){
-        this.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 
-        100));
-        this.setSize(400,400);
-        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-        this.setVisible(true);
-
-    }
-    public void crearVentana(){
-        PanelMapa = new JPanel();
-        PanelMapa.setPreferredSize(new Dimension(30, 100));
-        PanelUsuario = new JPanel();
-        PanelMapa.setBackground(new Color(1));
-
-        this.getContentPane().add(PanelMapa);
-        this.getContentPane().add(PanelUsuario);
-        this.pack();
     }
 }
