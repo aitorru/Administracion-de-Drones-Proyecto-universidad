@@ -18,5 +18,19 @@ public class userDB{
 			e.printStackTrace();
 		}
     }
+    public void crearTabla(){
+      String sql = "CREATE TABLE IF NOT EXISTS usuarios(\n" +
+      "id INTEGER PRIMARY KEY NOT NULL" +
+      "user TEXT, \n" +
+      "password TEXT\n);";
+      try {
+        PreparedStatement pstmt = connGlobal.prepareStatement(sql);
+        pstmt.executeUpdate();
+        pstmt.close();
+
+      } catch(Exception e) {
+
+      }
+    }
 
 }
