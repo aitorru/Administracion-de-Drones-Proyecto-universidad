@@ -3,13 +3,16 @@ package com.AdministracionDrones;
 public class panel_control extends javax.swing.JFrame {
 
     /**
+     *
+     */
+    private static final long serialVersionUID = -6832354065185389329L;
+
+    /**
      * Creates new form panel_control
      */
     public panel_control() {
         initComponents();
     }
-
-    @SuppressWarnings("unchecked")
 
     private void initComponents() {
 

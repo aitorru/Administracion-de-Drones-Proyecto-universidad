@@ -50,6 +50,11 @@ public class TestAnimation {
 
     public class TestPane extends JPanel {
 
+        /**
+         *
+         */
+        private static final long serialVersionUID = -1326295307616948724L;
+
         private BufferedImage img;
 
         private int xDelta, yDelta;

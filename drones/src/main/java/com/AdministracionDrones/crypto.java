@@ -5,9 +5,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import javax.crypto.Cipher;
-import javax.crypto.NoSuchPaddingException;
-
 public class crypto {
     public static byte[] getSHA(String input) throws NoSuchAlgorithmException {  
         // Static getInstance method is called with hashing SHA  

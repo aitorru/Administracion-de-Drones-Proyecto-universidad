@@ -15,7 +15,6 @@ import java.util.Properties;
 import org.python.util.PythonInterpreter;
 
 public class BackEndAdmin {
-    private String textoTemp;
     private Connection connGlobal;
     private DatabaseMetaData metaGlobal;
     private Statement stmtGlobal;
