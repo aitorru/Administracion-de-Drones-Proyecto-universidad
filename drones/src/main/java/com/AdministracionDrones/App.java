@@ -1,10 +1,10 @@
 package com.AdministracionDrones;
 
-import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
-
-import java.awt.*;
 import java.util.HashMap;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  * Creacion de ventana
@@ -22,7 +22,7 @@ public class App extends JFrame{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                login a = new login();
+                //login a = new login();
             }
         });
         BackEndAdmin s = new BackEndAdmin();
@@ -49,7 +49,10 @@ public class App extends JFrame{
         //s.guardarBD(capitalCities);
         //s.guardarBD(ejemplo);
         //System.out.println(s.leerBD().toString());
+        crypto c = new crypto();
+        //System.out.println(c.StringToCrypto("root"));
         userDB u = new userDB();
+        System.out.println(u.leerBD().toString());
 
     }
 }
