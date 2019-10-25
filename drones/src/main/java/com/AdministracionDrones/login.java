@@ -1,6 +1,9 @@
 package com.AdministracionDrones;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.JOptionPane;
 
 public class login extends javax.swing.JFrame {
@@ -108,6 +111,17 @@ public class login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String usuario = jTextField1.getText();
         String paswd = jPasswordField1.getPassword().toString();
+        userDB u = new userDB();
+        crypto c = new crypto();
+        ArrayList<HashMap<String, String>> listaUsuarios = u.leerBD();
+        for(int i = 0; i < listaUsuarios.size();i++){
+            HashMap<String, String> temp = listaUsuarios.get(i);
+            if (temp.get("user").equals(usuario)){
+                if(temp.get("password").equals(c.StringToCrypto(paswd))){
+                    temp.get("idUsuario");
+                }
+            }
+        }
         
         if(usuario.isEmpty() || paswd.isEmpty()){
             JOptionPane.showMessageDialog(null, "Alg�n campo esta vacio");
