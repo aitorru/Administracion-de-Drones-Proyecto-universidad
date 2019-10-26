@@ -122,8 +122,76 @@ La lectura hace return de un arraylist de todos los HM. ASi siendo facil la lect
     }
 ```
 
-- [ ] Modificar de BD
-- [ ] Eliminar Datos de BD
+- [X] Modificar de BD
+
+```java
+public void UpdateCoordenadasX(int coordenadasX, int id){
+        String sql = "UPDATE dron SET coordenadasX = ? WHERE id = ?";
+        try {
+            PreparedStatement psmt = connGlobal.prepareStatement(sql);
+            psmt.setInt(1, coordenadasX);
+            psmt.setInt(2, id);
+            psmt.executeUpdate();
+            psmt.close();
+            
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+    }
+    public void UpdateCoordenadasY(int coordenadasY, int id){
+        String sql = "UPDATE dron SET coordenadasY = ? WHERE id = ?";
+        try {
+            PreparedStatement psmt = connGlobal.prepareStatement(sql);
+            psmt.setInt(1, coordenadasY);
+            psmt.setInt(2, id);
+            psmt.executeUpdate();
+            psmt.close();
+            
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+    }
+    public void UpdateDatos(int id, int idUsuario, int coordenadasX, int coordenadasY, int horaSalida, int horaLlegada, String ciudadSalida, String ciudadLlegada, String cargaDescripcion){
+        String sql = "UPDATE dron SET idUsuario = ?, coordenadasX = ?, coordenadasY = ?, horaSalida = ?, horaLlegada = ?, ciudadSalida = ?, ciudadLlegada = ?, cargaDescripcion = ? WHERE id = ?";
+        try {
+            PreparedStatement psmt = connGlobal.prepareStatement(sql);
+            psmt.setInt(1, idUsuario);
+            psmt.setInt(2, coordenadasX);
+            psmt.setInt(3, coordenadasY);
+            psmt.setInt(4, horaSalida);
+            psmt.setInt(5, horaLlegada);
+            psmt.setString(6, ciudadSalida);
+            psmt.setString(7, ciudadLlegada);
+            psmt.setString(8, cargaDescripcion);
+            psmt.setInt(9, id);
+            psmt.executeUpdate();
+            psmt.close();
+
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+    }
+```
+
+> Se han creado metodos para hacer la actualizacion de coordenadas rapidamente
+
+- [X] Eliminar Datos de BD
+
+```java
+public void eliminarDatos(int id){
+        String sql = "DELETE FROM dron WHERE id = ?";
+        try {
+            PreparedStatement psmt = connGlobal.prepareStatement(sql);
+            psmt.setInt(1, id);
+            psmt.executeQuery();
+            psmt.close();
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+    }
+```
 
 ## Ventana de login
 
@@ -136,54 +204,44 @@ La lectura hace return de un arraylist de todos los HM. ASi siendo facil la lect
 - [X] Creacion de metodo de criptografia para acceso a pantalla
 
 ```java
-public static void setKey(String myKey)
-    {
-        MessageDigest sha = null;
+public static byte[] getSHA(String input) throws NoSuchAlgorithmException {    
+        MessageDigest md = MessageDigest.getInstance("SHA-256");  
+        return md.digest(input.getBytes(StandardCharsets.UTF_8));  
+    } 
+    
+    public static String toHexString(byte[] hash) {  
+        BigInteger number = new BigInteger(1, hash);    
+        StringBuilder hexString = new StringBuilder(number.toString(16));  
+        while (hexString.length() < 32){  
+            hexString.insert(0, '0');  
+        }  
+        return hexString.toString();  
+    }
+    public String StringToCrypto(String strToCrypt){
         try {
-            key = myKey.getBytes("UTF-8");
-            sha = MessageDigest.getInstance("SHA-1");
-            key = sha.digest(key);
-            key = Arrays.copyOf(key, 16);
-            secretKey = new SecretKeySpec(key, "AES");
-        }
-        catch (NoSuchAlgorithmException e) {
+            return toHexString(getSHA(strToCrypt));
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-        }
-        catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-    }
-    public String StringToCrypto(String strToEncrypt, String pass){
-        try
-        {
-            setKey(pass);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
-        }
-        catch (Exception e)
-        {
-            System.out.println("Error while encrypting: " + e.toString());
-        }
-        return null;
-    }
-    public String CryptoToString(String strToDecrypt, String pass){
-        try
-        {
-            setKey(pass);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
-        }
-        catch (Exception e)
-        {
-            System.out.println("Error while decrypting: " + e.toString());
         }
         return null;
     }
 ```
 
-> La pass debe de ser siempre la misma para conseguir el mismo resultado.
+- [X] Ejemplo para lectura de datos rapid
+
+```java
+        userDB u = new userDB();
+        crypto c = new crypto();
+        ArrayList<HashMap<String, String>> listaUsuarios = u.leerBD();
+        for(int i = 0; i < listaUsuarios.size();i++){
+            HashMap<String, String> temp = listaUsuarios.get(i);
+            if (temp.get("user").equals(usuario)){
+                if(temp.get("password").equals(c.StringToCrypto(paswd))){
+                    temp.get("idUsuario");
+                }
+            }
+        }
+```
 
 ## Ventana para administrar
 
@@ -204,9 +262,9 @@ public static void setKey(String myKey)
 * **Sergio Salgado** - *Creacion de mapa 2D* - [Sergio Salgado](https://github.com/ssc1999)
 * **Jon Ibarreche** - *Creacion de Login y apartado de usuario* - [Jon ibarreche](https://github.com/JonIbarreche)
 
-## Creado con
+## Creado con // Dependencies
 
-[jython](https://mvnrepository.com/artifact/org.python/jython)
+[Jython](https://mvnrepository.com/artifact/org.python/jython)
 ```
 <dependencies>
     <dependency>
