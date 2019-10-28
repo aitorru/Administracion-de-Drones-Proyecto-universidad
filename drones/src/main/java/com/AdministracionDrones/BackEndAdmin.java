@@ -24,7 +24,7 @@ public class BackEndAdmin {
         Properties props = new Properties();
         props.put("python.console.encoding", "UTF-8");
         props.put("python.security.respectJavaAccessibility", "false");
-        props.put("python.import.site", "false");
+        props.put("python.import.site", "true");
         Properties preprops = System.getProperties();
         PythonInterpreter.initialize(preprops, props, new String[0]);
         PythonInterpreter pyInterp = new PythonInterpreter();

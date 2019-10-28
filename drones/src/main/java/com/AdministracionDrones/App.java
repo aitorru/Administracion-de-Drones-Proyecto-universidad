@@ -23,6 +23,7 @@ public class App extends JFrame{
                 //login a = new login();
             }
         });
+        BackEndAdmin b = new BackEndAdmin();
         crypto c = new crypto();
         System.out.println(c.StringToCrypto("root"));
         userDB u = new userDB();
