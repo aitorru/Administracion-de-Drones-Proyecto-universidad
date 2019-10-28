@@ -24,39 +24,41 @@ public class BackEndAdmin {
         Properties props = new Properties();
         props.put("python.console.encoding", "UTF-8");
         props.put("python.security.respectJavaAccessibility", "false");
-        props.put("python.import.site", "true");
+        props.put("python.import.site", "false");
         Properties preprops = System.getProperties();
         PythonInterpreter.initialize(preprops, props, new String[0]);
         PythonInterpreter pyInterp = new PythonInterpreter();
         InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeArchivos.py");
         pyInterp.execfile(is);
         pyInterp.close();
+        ejecutarBD();
+    }
+
+    public boolean ejecutarBD() {
+        String url = "jdbc:sqlite:dronesDataBase.db";
         try {
-            ejecutarBD();
+            connGlobal = DriverManager.getConnection(url);
+            if (connGlobal != null) {
+                metaGlobal = connGlobal.getMetaData();
+                stmtGlobal = connGlobal.createStatement();
+                System.out.println("The driver name is " + metaGlobal.getDriverName());
+                System.out.println("A new database has been created.");
+                String datosEntrada = "CREATE TABLE IF NOT EXISTS dron (\n" + "id INTEGER PRIMARY KEY NOT NULL, \n"
+                        + "idUsuario INTEGER NOT NULL, \n " // ID de prpietario del DRON
+                        + "coordenadasX INTEGER NOT NULL, \n" + "coordenadasY INTEGER NOT NULL, \n"
+                        + "horaSalida INTEGER NOT NULL, \n" + "horaLlegada INTEGER NOT NULL, \n"
+                        + "ciudadSalida text NOT NULL, \n" + "ciudadLlegada text NOT NULL, \n"
+                        + "cargaDescripcion text\n" + ");";
+                stmtGlobal.execute(datosEntrada);
+                stmtGlobal.close();
+                System.out.println("Created");
+                return true;
+            }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
-
-    private void ejecutarBD() throws SQLException {
-        String url = "jdbc:sqlite:dronesDataBase.db";
-        connGlobal = DriverManager.getConnection(url);
-        if (connGlobal != null) {
-            metaGlobal = connGlobal.getMetaData();
-            stmtGlobal = connGlobal.createStatement();
-            System.out.println("The driver name is " + metaGlobal.getDriverName());
-            System.out.println("A new database has been created.");
-            String datosEntrada = "CREATE TABLE IF NOT EXISTS dron (\n" + "id INTEGER PRIMARY KEY NOT NULL, \n"
-                    + "idUsuario INTEGER NOT NULL, \n " // ID de prpietario del DRON
-                    + "coordenadasX INTEGER NOT NULL, \n" + "coordenadasY INTEGER NOT NULL, \n"
-                    + "horaSalida INTEGER NOT NULL, \n" + "horaLlegada INTEGER NOT NULL, \n"
-                    + "ciudadSalida text NOT NULL, \n" + "ciudadLlegada text NOT NULL, \n"
-                    + "cargaDescripcion text\n" + ");";
-            stmtGlobal.execute(datosEntrada);
-            stmtGlobal.close();
-            System.out.println("Created");
-        }
+        return false;
     }
 
     public void guardarBD(HashMap<String, String> DatosEntrada) {

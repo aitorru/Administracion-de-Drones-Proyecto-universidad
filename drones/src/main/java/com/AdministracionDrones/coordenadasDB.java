@@ -39,7 +39,7 @@ public class coordenadasDB {
     }
 
     public ArrayList<HashMap<String, String>> leerBD() {
-        String sql = "SELECT id, coordenadasX, coordenadasY FROM usuarios";
+        String sql = "SELECT id, coordenadasX, coordenadasY FROM ciudades";
         ArrayList<HashMap<String, String>> listaDeHashMaps = new ArrayList<HashMap<String, String>>();
         try {
             Statement pstmt = connGlobal.createStatement();
