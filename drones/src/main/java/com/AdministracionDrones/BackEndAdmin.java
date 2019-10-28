@@ -97,6 +97,7 @@ public class BackEndAdmin {
                 mapaTemporal.put("ciudadLlgada", rs.getString("ciudadLlegada"));
                 mapaTemporal.put("cargaDescripcion", rs.getString("cargaDescripcion"));
                 listaDeHashMaps.add(mapaTemporal);
+                rs.close();
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block

@@ -1,4 +1,4 @@
-# Administracion-de-Drones-Proyecto-universidad ![alt text](https://travis-ci.com/aitorru/Administracion-de-Drones-Proyecto-universidad.svg?token=RrKbwC6VUpYoEbmNPvjQ&branch=master) :fire:
+# Administracion-de-Drones-Proyecto-universidad ![alt text](https://travis-ci.com/aitorru/Administracion-de-Drones-Proyecto-universidad.svg?token=RrKbwC6VUpYoEbmNPvjQ&branch=master) ![GitHub All Releases](https://img.shields.io/github/downloads/aitorru/Administracion-de-Drones-Proyecto-universidad/total) :fire:
 
 Proyecto para administrar una red de drones de reparto a nivel de España.
 
