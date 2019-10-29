@@ -1,4 +1,4 @@
-package com.AdministracionDrones;
+0package com.AdministracionDrones;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -103,7 +103,7 @@ public class login extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
 
 		} else {
-			if (usuario.equals("administrador") && paswd.equals("1234")) {
+			if (usuario.equals("admin") && paswd.equals("1234")) {
 				JOptionPane.showMessageDialog(null, "Bienvenido");
 				panel_control pc = new panel_control();
 				pc.setVisible(true);
