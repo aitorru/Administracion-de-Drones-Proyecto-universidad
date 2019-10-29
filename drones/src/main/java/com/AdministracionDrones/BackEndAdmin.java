@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import org.python.util.PythonInterpreter;
+import org.python.modules.*;
 
 public class BackEndAdmin {
     private Connection connGlobal;

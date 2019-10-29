@@ -1,4 +1,4 @@
-0package com.AdministracionDrones;
+package com.AdministracionDrones;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -110,7 +110,7 @@ public class login extends javax.swing.JFrame {
 				this.dispose();
 
 			} else {
-				JOptionPane.showConfirmDialog(null, "Su usuario o contraseña es incorrecto");
+				JOptionPane.showConfirmDialog(null, "Su usuario o contraseï¿½a es incorrecto");
 			}
 		}
 	}
