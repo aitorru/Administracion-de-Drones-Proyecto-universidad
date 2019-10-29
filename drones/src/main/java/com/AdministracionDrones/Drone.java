@@ -1,9 +1,11 @@
+package com.AdministracionDrones;
 
-public class Drone extends Vector {
+public class Drone {
 
 	private Vector position;
 	private Vector start;
 	private Vector target;
+	private Vector end;
 	private Vector direction;
 
 	private float speed;
@@ -16,7 +18,8 @@ public class Drone extends Vector {
 
 	    // Initialize start as a new Vector with the same x and y coordinates as position
 	    this.start = new Vector(position.x, position.y);
-	    this.target = target;
+		this.target = target;
+		this.speed = speed;
 
 	    distance = Vector.distance(start, end);
 	    direction = Vector.direction(end.x - start.x, end.y - start.y);

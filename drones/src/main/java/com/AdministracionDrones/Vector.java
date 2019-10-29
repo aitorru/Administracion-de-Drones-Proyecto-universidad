@@ -1,3 +1,5 @@
+package com.AdministracionDrones;
+
 import static java.lang.Math.sqrt;
 
 public class Vector {
@@ -11,7 +13,7 @@ public class Vector {
 	    }
 
 	    public static float length(float x, float y) {
-	        return Math.sqrt(x * x + y * y);
+	        return (float) Math.sqrt(x * x + y * y);
 	    }
 
 	    public static float distance(Vector first, Vector second) {
