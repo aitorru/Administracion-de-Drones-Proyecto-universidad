@@ -1,6 +1,4 @@
 package com.AdministracionDrones;
-
-import static java.lang.Math.sqrt;
 public class Vector {
 	
 		public float x;
