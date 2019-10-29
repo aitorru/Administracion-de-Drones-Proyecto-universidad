@@ -1,8 +1,8 @@
+import static java.lang.Math.sqrt;
 
 public class Vector {
-
-
-	 public float x;
+	
+		public float x;
 	    public float y;
 
 	    public Vector(float x, float y) {
@@ -19,6 +19,7 @@ public class Vector {
 	    }
 
 	    public static Vector direction(float x, float y) {
-	        return new Vector(x / length(x, y), y / length(x, y));
-	    }
+	        return new Vector(x / Vector.length(x, y), y / length(x, y));
+	    
 	}
+}

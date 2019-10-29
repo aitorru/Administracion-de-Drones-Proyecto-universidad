@@ -10,9 +10,8 @@ public class Drone extends Vector {
 
 	private float distance;
 
-	...
 
-	public Drone(Vector position, Vector target, float speed, ...) {
+	public Drone(Vector position, Vector target, float speed) {
 	    this.position = position;
 
 	    // Initialize start as a new Vector with the same x and y coordinates as position
@@ -22,7 +21,7 @@ public class Drone extends Vector {
 	    distance = Vector.distance(start, end);
 	    direction = Vector.direction(end.x - start.x, end.y - start.y);
 
-	    ...
+	    
 	}
 
 	public void tick() {
@@ -33,7 +32,8 @@ public class Drone extends Vector {
 	        // The ship has reached the target
 	    }
 
-	    ...
+	    
 	}
-	
+
+}
 
