@@ -12,7 +12,7 @@ public class App{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                //login a = new login();
+                new login().setVisible(true);
                 // GUI Launcher
             }
         });

@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - panel_control",
+            "request": "launch",
+            "mainClass": "com.AdministracionDrones.panel_control",
+            "projectName": "drones"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - login",
+            "request": "launch",
+            "mainClass": "com.AdministracionDrones.login",
+            "projectName": "drones"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - App",
             "request": "launch",
             "mainClass": "com.AdministracionDrones.App",

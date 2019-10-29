@@ -9,6 +9,22 @@ public class login extends javax.swing.JFrame {
 	private static final long serialVersionUID = 8155885392826282088L;
 
 	public login() {
+		try {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (ClassNotFoundException ex) {
+			java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		} catch (InstantiationException ex) {
+			java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		} catch (IllegalAccessException ex) {
+			java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+			java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		}
 		initComponents();
 	}
 
@@ -86,53 +102,38 @@ public class login extends javax.swing.JFrame {
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		String usuario = jTextField1.getText();
-		String paswd = jPasswordField1.getPassword().toString();
+		char[] paswdCH = jPasswordField1.getPassword();
+		String paswd = "";
+		for (int i = 0; i < paswdCH.length; i++){
+			paswd = paswd + paswdCH[i];
+		}
 		userDB u = new userDB();
 		crypto c = new crypto();
-		ArrayList<HashMap<String, String>> listaUsuarios = u.leerBD();
-		for (int i = 0; i < listaUsuarios.size(); i++) {
-			HashMap<String, String> temp = listaUsuarios.get(i);
-			if (temp.get("user").equals(usuario)) {
-				if (temp.get("password").equals(c.StringToCrypto(paswd))) {
-					temp.get("idUsuario");
-				}
-			}
-		}
 
 		if (usuario.isEmpty() || paswd.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
 
 		} else {
-			if (usuario.equals("admin") && paswd.equals("1234")) {
-				JOptionPane.showMessageDialog(null, "Bienvenido");
-				panel_control pc = new panel_control();
-				pc.setVisible(true);
-				this.dispose();
-
-			} else {
-				JOptionPane.showConfirmDialog(null, "Su usuario o contrase�a es incorrecto");
+			ArrayList<HashMap<String, String>> listaUsuarios = u.leerBD();
+			for (int i = 0; i < listaUsuarios.size(); i++) {
+				HashMap<String, String> temp = listaUsuarios.get(i);
+				if (temp.get("user").equals(usuario)) {
+					//Creado login con base de datos.
+					if (temp.get("password").equals(c.StringToCrypto(paswd))) {
+						// temp.get("idUsuario"); // Recogida de id de usuario para muestra especifia de drones
+						JOptionPane.showMessageDialog(null, "Bienvenido");
+						panel_control pc = new panel_control();
+						pc.setVisible(true);
+						this.dispose();
+					} else {
+						JOptionPane.showConfirmDialog(null, "Su usuario o contraseña es incorrecto");
+					}
+				}
 			}
 		}
 	}
 
 	public static void main(String args[]) {
-
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
