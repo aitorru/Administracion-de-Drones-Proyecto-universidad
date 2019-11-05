@@ -1,6 +1,8 @@
 package com.AdministracionDrones;
 
-import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -15,9 +17,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import org.python.util.PythonInterpreter;
-
-import org.python.core.PyObject;
-import org.python.core.PyString;
+import org.json.JSONObject;
 
 public class BackEndAdmin {
     private Connection connGlobal;
@@ -30,6 +30,11 @@ public class BackEndAdmin {
 
     public BackEndAdmin() {
         // KIND OF LAZY BUT EFFECTIVE
+        JustSomeTesting();
+        // ejecutarBD();
+    }
+
+    private HashMap<String,String> leerArchivo(int NumeroEntrada) {
         Properties props = new Properties();
         props.put("python.console.encoding", "UTF-8");
         props.put("python.security.respectJavaAccessibility", "false");
@@ -40,20 +45,45 @@ public class BackEndAdmin {
         InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeArchivos.py");
         pyInterp.execfile(is);
         pyInterp.close();
-        JustSomeTesting();
-        // ejecutarBD();
-    }
-
-    public String leerArchivo() {
-        PythonInterpreter pyInterp = new PythonInterpreter();
-        InputStream is = this.getClass().getClassLoader().getResourceAsStream("jsonLoader.py");
-        pyInterp.execfile(is);
-        pyInterp.close();
+        try {
+            File f = new File("dronLoader.json");
+            BufferedReader br = new BufferedReader(new FileReader(f));
+            String resultado = ""; 
+            String st;
+            while ((st = br.readLine()) != null){
+                resultado = resultado + st;
+            } 
+            JSONObject obj = new JSONObject(resultado);
+            br.close();
+            HashMap<String,String> MapaSalida = new HashMap<String,String>();
+            try {
+                MapaSalida.put("idUsuario", obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("idUsuario"));
+                MapaSalida.put("horaSalida", obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("horaSalida"));
+                MapaSalida.put("ciudadSalida", obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("ciudadSalida"));
+                MapaSalida.put("ciudadLlegada", obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("ciudadLlegada"));
+                MapaSalida.put("cargaDescripcion", obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("cargaDescripcion"));
+            } catch (Exception e) {
+                //Si no existe el numero debe dar error, lo cual no significa que falle.
+                return null;
+            }
+            return MapaSalida;
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return null;
+    }
+    public ArrayList<HashMap<String,String>> cargarArchivoBaseDeDatos(){
+        ArrayList<HashMap<String,String>> ListaParaDB = new ArrayList<HashMap<String,String>>();
+        for (int i = 1; leerArchivo(i) != null; i++){
+            ListaParaDB.add(leerArchivo(i));
+            
+        }
+        return ListaParaDB;
     }
 
     public void JustSomeTesting() {
-        
+        System.out.println(cargarArchivoBaseDeDatos().toString());
     }
     public boolean ejecutarBD() {
         String url = "jdbc:sqlite:dronesDataBase.db";
@@ -66,7 +96,7 @@ public class BackEndAdmin {
                 System.out.println("A new database has been created.");
                 String datosEntrada = "CREATE TABLE IF NOT EXISTS dron (\n" + "id INTEGER PRIMARY KEY NOT NULL, \n"
                         + "idUsuario INTEGER NOT NULL, \n " // ID de prpietario del DRON
-                        + "coordenadasX INTEGER NOT NULL, \n" + "coordenadasY INTEGER NOT NULL, \n"
+                        + "coordenadasX INTEGER, \n" + "coordenadasY INTEGER, \n"
                         + "horaSalida INTEGER NOT NULL, \n" + "horaLlegada INTEGER NOT NULL, \n"
                         + "ciudadSalida text NOT NULL, \n" + "ciudadLlegada text NOT NULL, \n"
                         + "cargaDescripcion text\n" + ");";
@@ -115,7 +145,7 @@ public class BackEndAdmin {
                 mapaTemporal.put("coordenadasY", Integer.toString(rs.getInt("coordenadasY")));
                 mapaTemporal.put("horaSalida", Integer.toString(rs.getInt("horaSalida")));
                 mapaTemporal.put("ciudadSalida", rs.getString("ciudadSalida"));
-                mapaTemporal.put("ciudadLlgada", rs.getString("ciudadLlegada"));
+                mapaTemporal.put("ciudadLlegada", rs.getString("ciudadLlegada"));
                 mapaTemporal.put("cargaDescripcion", rs.getString("cargaDescripcion"));
                 listaDeHashMaps.add(mapaTemporal);
                 rs.close();

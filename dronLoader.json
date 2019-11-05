@@ -1,0 +1,10 @@
+{
+    "1" :{
+      "idUsuario" : "1234",
+      "horaSalida" : "1000",
+      "horaLlegada" : "1100",
+      "ciudadSalida" : "Bilbao",
+      "ciudadLlegada" : "Madrid",
+      "cargaDescripcion" : "Baterias"
+    }
+  }
