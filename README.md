@@ -207,8 +207,7 @@ public void eliminarDatos(int id){
 public static byte[] getSHA(String input) throws NoSuchAlgorithmException {    
         MessageDigest md = MessageDigest.getInstance("SHA-256");  
         return md.digest(input.getBytes(StandardCharsets.UTF_8));  
-    } 
-    
+    }
     public static String toHexString(byte[] hash) {  
         BigInteger number = new BigInteger(1, hash);    
         StringBuilder hexString = new StringBuilder(number.toString(16));  
@@ -279,6 +278,14 @@ public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
       <groupId>org.xerial</groupId>
       <artifactId>sqlite-jdbc</artifactId>
       <version>3.28.0</version>
+    </dependency>
+```
+[JSON](https://mvnrepository.com/artifact/org.json/json)
+```
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20190722</version>
     </dependency>
 ```
 [JUnit](https://mvnrepository.com/artifact/junit/junit)
