@@ -31,7 +31,7 @@ public class tester {
         System.out.println(d.leerBD().toString());
         expected = "[{password=4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2, idUsuario=1111, id=1, user=root}]";
         assertEquals(expected, d.leerBD().toString());
-        BackEndAdmin b = new BackEndAdmin();
+        //BackEndAdmin b = new BackEndAdmin();
         //assertTrue(b.ejecutarBD());
     }
     @Test

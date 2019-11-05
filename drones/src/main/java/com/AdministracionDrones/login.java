@@ -126,7 +126,7 @@ public class login extends javax.swing.JFrame {
 						pc.setVisible(true);
 						this.dispose();
 					} else {
-						JOptionPane.showConfirmDialog(null, "Su usuario o contraseña es incorrecto");
+						JOptionPane.showConfirmDialog(null, "Su usuario o contraseï¿½a es incorrecto");
 					}
 				}
 			}
@@ -145,7 +145,6 @@ public class login extends javax.swing.JFrame {
 	// Variables 
 	private javax.swing.JButton jButton1;
 	private javax.swing.JButton jButton2;
-	private javax.swing.JButton jButton3;
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel2;
 	private javax.swing.JPanel jPanel1;
