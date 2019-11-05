@@ -1,5 +1,7 @@
 package com.AdministracionDrones;
- 
+
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -14,11 +16,18 @@ import java.util.Properties;
 
 import org.python.util.PythonInterpreter;
 
+import org.python.core.PyObject;
+import org.python.core.PyString;
+
 public class BackEndAdmin {
     private Connection connGlobal;
     private DatabaseMetaData metaGlobal;
     private Statement stmtGlobal;
-    
+
+    public static void main(String[] args) {
+        new BackEndAdmin();
+    }
+
     public BackEndAdmin() {
         // KIND OF LAZY BUT EFFECTIVE
         Properties props = new Properties();
@@ -31,9 +40,21 @@ public class BackEndAdmin {
         InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeArchivos.py");
         pyInterp.execfile(is);
         pyInterp.close();
-        ejecutarBD();
+        JustSomeTesting();
+        // ejecutarBD();
     }
 
+    public String leerArchivo() {
+        PythonInterpreter pyInterp = new PythonInterpreter();
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("jsonLoader.py");
+        pyInterp.execfile(is);
+        pyInterp.close();
+        return null;
+    }
+
+    public void JustSomeTesting() {
+        
+    }
     public boolean ejecutarBD() {
         String url = "jdbc:sqlite:dronesDataBase.db";
         try {
