@@ -133,7 +133,7 @@ public void UpdateCoordenadasX(int coordenadasX, int id){
             psmt.setInt(2, id);
             psmt.executeUpdate();
             psmt.close();
-            
+
         } catch (Exception e) {
             //TODO: handle exception
             e.printStackTrace();
@@ -147,7 +147,7 @@ public void UpdateCoordenadasX(int coordenadasX, int id){
             psmt.setInt(2, id);
             psmt.executeUpdate();
             psmt.close();
-            
+
         } catch (Exception e) {
             //TODO: handle exception
             e.printStackTrace();
@@ -204,12 +204,12 @@ public void eliminarDatos(int id){
 - [X] Creacion de metodo de criptografia para acceso a pantalla
 
 ```java
-public static byte[] getSHA(String input) throws NoSuchAlgorithmException {    
+public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");  
         return md.digest(input.getBytes(StandardCharsets.UTF_8));  
     }
     public static String toHexString(byte[] hash) {  
-        BigInteger number = new BigInteger(1, hash);    
+        BigInteger number = new BigInteger(1, hash);
         StringBuilder hexString = new StringBuilder(number.toString(16));  
         while (hexString.length() < 32){  
             hexString.insert(0, '0');  
@@ -248,7 +248,6 @@ public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
 
 - [ ] Investigación
 
-
 ## Ventana de mapa
 
 > Sergio Salgado
@@ -261,10 +260,93 @@ public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
 * **Sergio Salgado** - *Creacion de mapa 2D* - [Sergio Salgado](https://github.com/ssc1999)
 * **Jon Ibarreche** - *Creacion de Login y apartado de usuario* - [Jon ibarreche](https://github.com/JonIbarreche)
 
+## Build // Ejecutar
+
+### Windows
+
+### EXE
+
+Puedes simplemente descargar el [exe](https://github.com/aitorru/Administracion-de-Drones-Proyecto-universidad/releases/download/0.2/Administrador.exe)
+
+### JAR
+
+Tambien puedes descargar el [jar](https://github.com/aitorru/Administracion-de-Drones-Proyecto-universidad/releases/download/0.2/drones-0.2-SNAPSHOT-jar-with-dependencies.jar) directamente y ejecutarlo con
+
+```bash
+java -jar drones-*.*-SNAPSHOT-jar-with-dependencies.jar
+```
+
+### Maven
+
+Si estas interesado puedes crear el jar desde el proyecto.
+
+```bash
+git clone https://github.com/aitorru/Administracion-de-Drones-Proyecto-universidad.git
+```
+
+Ahora hay que navegar a Administracion-de-Drones-Proyecto-universidad/drones
+
+```bash
+cd Administracion-de-Drones-Proyecto-universidad/drones
+```
+
+Y falta con ejecutar lo siguiente
+
+```bash
+mvn package
+```
+
+Los Jar resultantes estan en Administracion-de-Drones-Proyecto-universidad/drones/target
+
+```bash
+cd target
+```
+
+## LINUX & MAC
+
+### JAR
+
+Actualmente solo esta disponible en windows de instalador, por lo cual hay que usar el [Jar](https://github.com/aitorru/Administracion-de-Drones-Proyecto-universidad/releases/download/0.2/drones-0.2-SNAPSHOT-jar-with-dependencies.jar)
+
+Ejecutalo con
+
+```bash
+java -jar drones-*.*-SNAPSHOT-jar-with-dependencies.jar
+```
+
+
+### Maven
+
+Si estas interesado puedes crear el jar desde el proyecto.
+
+```bash
+git clone https://github.com/aitorru/Administracion-de-Drones-Proyecto-universidad.git
+```
+
+Ahora hay que navegar a Administracion-de-Drones-Proyecto-universidad/drones
+
+```bash
+cd Administracion-de-Drones-Proyecto-universidad/drones
+```
+
+Y falta con ejecutar lo siguiente
+
+```bash
+mvn package
+```
+
+Los Jar resultantes estan en Administracion-de-Drones-Proyecto-universidad/drones/target
+
+```bash
+cd target
+```
+
+
 ## Creado con // Dependencies
 
 [Jython](https://mvnrepository.com/artifact/org.python/jython)
-```
+
+```xml
 <dependencies>
     <dependency>
       <groupId>org.python</groupId>
@@ -272,24 +354,30 @@ public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
       <version>2.7.0</version>
     </dependency>
 ```
+
 [SQLite](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc)
-```
+
+```xml
     <dependency>
       <groupId>org.xerial</groupId>
       <artifactId>sqlite-jdbc</artifactId>
       <version>3.28.0</version>
     </dependency>
 ```
+
 [JSON](https://mvnrepository.com/artifact/org.json/json)
-```
+
+```xml
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
       <version>20190722</version>
     </dependency>
 ```
+
 [JUnit](https://mvnrepository.com/artifact/junit/junit)
-```
+
+```xml
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
