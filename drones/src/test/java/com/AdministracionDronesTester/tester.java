@@ -25,7 +25,7 @@ public class tester {
         String expected;
         coordenadasDB c = new coordenadasDB();
         System.out.println(c.leerBD().toString());
-        expected = "[]";
+        expected = "[{coordenadasY=100, ciudad=Bilbao, coordenadasX=100, id=1}, {coordenadasY=200, ciudad=Madrid, coordenadasX=200, id=2}]";
         assertEquals(expected, c.leerBD().toString());
         userDB d = new userDB();
         System.out.println(d.leerBD().toString());
