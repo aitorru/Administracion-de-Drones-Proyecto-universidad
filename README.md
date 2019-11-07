@@ -314,7 +314,6 @@ Ejecutalo con
 java -jar drones-*.*-SNAPSHOT-jar-with-dependencies.jar
 ```
 
-
 ### Maven
 
 Si estas interesado puedes crear el jar desde el proyecto.
@@ -340,7 +339,6 @@ Los Jar resultantes estan en Administracion-de-Drones-Proyecto-universidad/drone
 ```bash
 cd target
 ```
-
 
 ## Creado con // Dependencies
 

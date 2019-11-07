@@ -17,7 +17,10 @@ public class coordenadasDB {
 		try {
 			connGlobal = DriverManager.getConnection(url);
 			System.out.println("Connexion establecida");
-			crearTabla();
+			if(leerBD()==null){
+				crearTabla();
+				System.out.println("Programa corriendo sin coordenadas, la funcionalidad es limitada");
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -25,13 +28,13 @@ public class coordenadasDB {
 	}
 
 	private void crearTabla() {
-		String sql = "CREATE TABLE IF NOT EXISTS ciudades(\n" + "id INTEGER PRIMARY KEY NOT NULL,\n"
+		String sql = "CREATE TABLE IF NOT EXISTS ciudades(\n" + "id INTEGER PRIMARY KEY NOT NULL,\n" + "ciudad text NOT NULL,\n"
 				+ "coordenadasX INTEGER, \n" + "coordenadasY INTEGER\n);";
 		try {
 			PreparedStatement pstmt = connGlobal.prepareStatement(sql);
 			pstmt.executeUpdate();
 			pstmt.close();
-			System.out.println("Tabla de usuario creada.");
+			System.out.println("Tabla de coordenadas creada.");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,7 +42,7 @@ public class coordenadasDB {
 	}
 
 	public ArrayList<HashMap<String, String>> leerBD() {
-		String sql = "SELECT id, coordenadasX, coordenadasY FROM ciudades";
+		String sql = "SELECT id, ciudad, coordenadasX, coordenadasY FROM ciudades";
 		ArrayList<HashMap<String, String>> listaDeHashMaps = new ArrayList<HashMap<String, String>>();
 		try {
 			Statement pstmt = connGlobal.createStatement();
@@ -47,14 +50,15 @@ public class coordenadasDB {
 			while (rs.next()) {
 				HashMap<String, String> mapaTemporal = new HashMap<String, String>();
 				mapaTemporal.put("id", Integer.toString(rs.getInt("id")));
-				mapaTemporal.put("idUsuario", Integer.toString(rs.getInt("idUsuario")));
-				mapaTemporal.put("user", rs.getString("user"));
-				mapaTemporal.put("password", rs.getString("password"));
+				mapaTemporal.put("ciudad", rs.getString("ciudad"));
+				mapaTemporal.put("coordenadasX", Integer.toString(rs.getInt("coordenadasX")));
+				mapaTemporal.put("coordenadasY", Integer.toString(rs.getInt("coordenadasX")));
 				listaDeHashMaps.add(mapaTemporal);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 		return listaDeHashMaps;
 	}

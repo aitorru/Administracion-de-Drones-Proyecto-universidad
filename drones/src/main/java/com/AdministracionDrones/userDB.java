@@ -17,7 +17,9 @@ public class userDB {
     try {
       connGlobal = DriverManager.getConnection(url);
       System.out.println("Connexion establecida");
-      crearTabla();
+      if(leerBD() == null){
+        crearTabla();
+      }
     } catch (SQLException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -55,6 +57,7 @@ public class userDB {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return null;
         }
         return listaDeHashMaps;
     }

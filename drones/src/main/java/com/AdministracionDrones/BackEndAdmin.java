@@ -20,21 +20,38 @@ import org.python.util.PythonInterpreter;
 import org.json.JSONObject;
 
 public class BackEndAdmin {
-    private Connection connGlobal;
-    private DatabaseMetaData metaGlobal;
-    private Statement stmtGlobal;
+    private static Connection connGlobal;
+    private static DatabaseMetaData metaGlobal;
+    private static Statement stmtGlobal;
 
     public static void main(String[] args) {
-        new BackEndAdmin();
+        BackEndAdmin b = new BackEndAdmin();
+        b.cargarDatosAutomatico();
+        for (int i = 0; i < b.cargarDatosAutomatico().size(); i++) {
+            b.guardarBD(b.cargarDatosAutomatico().get(i));
+        }
+        
     }
 
     public BackEndAdmin() {
+        String url = "jdbc:sqlite:dronesDataBase.sqlite";
+        try {
+            connGlobal = DriverManager.getConnection(url);
+            metaGlobal = connGlobal.getMetaData();
+            stmtGlobal = connGlobal.createStatement();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if (leerBD() == null){
+            ejecutarBD();
+        }
         // KIND OF LAZY BUT EFFECTIVE
-        JustSomeTesting();
+        //cargarDatosAutomatico();
         // ejecutarBD();
     }
 
-    private HashMap<String,String> leerArchivo(int NumeroEntrada) {
+    private HashMap<String, String> leerArchivo(int NumeroEntrada) {
         Properties props = new Properties();
         props.put("python.console.encoding", "UTF-8");
         props.put("python.security.respectJavaAccessibility", "false");
@@ -48,22 +65,28 @@ public class BackEndAdmin {
         try {
             File f = new File("dronLoader.json");
             BufferedReader br = new BufferedReader(new FileReader(f));
-            String resultado = ""; 
+            String resultado = "";
             String st;
-            while ((st = br.readLine()) != null){
+            while ((st = br.readLine()) != null) {
                 resultado = resultado + st;
-            } 
+            }
             JSONObject obj = new JSONObject(resultado);
             br.close();
-            HashMap<String,String> MapaSalida = new HashMap<String,String>();
+            HashMap<String, String> MapaSalida = new HashMap<String, String>();
             try {
                 MapaSalida.put("idUsuario", obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("idUsuario"));
-                MapaSalida.put("horaSalida", obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("horaSalida"));
-                MapaSalida.put("ciudadSalida", obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("ciudadSalida"));
-                MapaSalida.put("ciudadLlegada", obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("ciudadLlegada"));
-                MapaSalida.put("cargaDescripcion", obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("cargaDescripcion"));
+                MapaSalida.put("horaSalida",
+                        obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("horaSalida"));
+                MapaSalida.put("horaLlegada",
+                        obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("horaLlegada"));
+                MapaSalida.put("ciudadSalida",
+                        obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("ciudadSalida"));
+                MapaSalida.put("ciudadLlegada",
+                        obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("ciudadLlegada"));
+                MapaSalida.put("cargaDescripcion",
+                        obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("cargaDescripcion"));
             } catch (Exception e) {
-                //Si no existe el numero debe dar error, lo cual no significa que falle.
+                // Si no existe el numero debe dar error, lo cual no significa que falle.
                 return null;
             }
             return MapaSalida;
@@ -73,18 +96,42 @@ public class BackEndAdmin {
         }
         return null;
     }
-    public ArrayList<HashMap<String,String>> cargarArchivoBaseDeDatos(){
-        ArrayList<HashMap<String,String>> ListaParaDB = new ArrayList<HashMap<String,String>>();
-        for (int i = 1; leerArchivo(i) != null; i++){
+
+    public ArrayList<HashMap<String, String>> cargarArchivoParaBaseDeDatos() {
+        ArrayList<HashMap<String, String>> ListaParaDB = new ArrayList<HashMap<String, String>>();
+        for (int i = 1; leerArchivo(i) != null; i++) {
             ListaParaDB.add(leerArchivo(i));
-            
+
         }
         return ListaParaDB;
     }
 
-    public void JustSomeTesting() {
-        System.out.println(cargarArchivoBaseDeDatos().toString());
+    public ArrayList<HashMap<String, String>> cargarDatosAutomatico() {
+        ArrayList<HashMap<String, String>> paraGuardar = cargarArchivoParaBaseDeDatos();
+        String coordenadaX = "";
+        String coordenadaY = "";
+        for (int i = 0; i < paraGuardar.size();) {
+            HashMap<String, String> hashMapJson = paraGuardar.get(i);
+            coordenadasDB c = new coordenadasDB();
+            for (int ii = 0; i < c.leerBD().size(); i++) {
+                HashMap<String, String> hashMapCoordenadas = c.leerBD().get(ii);
+                String ciudad1 = hashMapCoordenadas.get("ciudad");
+                String ciudad2 = hashMapJson.get("ciudadSalida");
+                // hashMapCoordenadas.get("ciudadSalida").equals(hashMapJson.get("ciudad"))
+                if (ciudad1.equals(ciudad2)) {
+                    coordenadaX = hashMapCoordenadas.get("coordenadasX");
+                    coordenadaY = hashMapCoordenadas.get("coordenadasY");
+                }
+            }
+            hashMapJson.put("coordenadasX", coordenadaX);
+            hashMapJson.put("coordenadasY", coordenadaY);
+            return paraGuardar;
+            // TODO cambiar el nombre del objeto para hacerlo adecuado
+            // guardarBD(hashMapJson);
+        }
+        return paraGuardar;
     }
+
     public boolean ejecutarBD() {
         String url = "jdbc:sqlite:dronesDataBase.db";
         try {
@@ -96,10 +143,9 @@ public class BackEndAdmin {
                 System.out.println("A new database has been created.");
                 String datosEntrada = "CREATE TABLE IF NOT EXISTS dron (\n" + "id INTEGER PRIMARY KEY NOT NULL, \n"
                         + "idUsuario INTEGER NOT NULL, \n " // ID de prpietario del DRON
-                        + "coordenadasX INTEGER, \n" + "coordenadasY INTEGER, \n"
-                        + "horaSalida INTEGER NOT NULL, \n" + "horaLlegada INTEGER NOT NULL, \n"
-                        + "ciudadSalida text NOT NULL, \n" + "ciudadLlegada text NOT NULL, \n"
-                        + "cargaDescripcion text\n" + ");";
+                        + "coordenadasX INTEGER, \n" + "coordenadasY INTEGER, \n" + "horaSalida INTEGER NOT NULL, \n"
+                        + "horaLlegada INTEGER NOT NULL, \n" + "ciudadSalida text NOT NULL, \n"
+                        + "ciudadLlegada text NOT NULL, \n" + "cargaDescripcion text\n" + ");";
                 stmtGlobal.execute(datosEntrada);
                 stmtGlobal.close();
                 System.out.println("Created");
@@ -113,8 +159,10 @@ public class BackEndAdmin {
     }
 
     public void guardarBD(HashMap<String, String> DatosEntrada) {
-        String sql = "INSERT INTO dron(idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO dron (idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
         try {
+            String url = "jdbc:sqlite:dronesDataBase.sqlite";
+            connGlobal = DriverManager.getConnection(url);
             PreparedStatement pstmt = connGlobal.prepareStatement(sql);
             pstmt.setInt(1, Integer.valueOf(DatosEntrada.get("idUsuario")));
             pstmt.setInt(2, Integer.valueOf(DatosEntrada.get("coordenadasX")));
@@ -132,18 +180,19 @@ public class BackEndAdmin {
         }
     }
 
-    public ArrayList<HashMap<String,String>> leerBD() {
+    public ArrayList<HashMap<String, String>> leerBD() {
         String sql = "SELECT id, idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion FROM dron";
-        ArrayList<HashMap<String,String>> listaDeHashMaps = new ArrayList<HashMap<String,String>>();
+        ArrayList<HashMap<String, String>> listaDeHashMaps = new ArrayList<HashMap<String, String>>();
         try {
             ResultSet rs = stmtGlobal.executeQuery(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 HashMap<String, String> mapaTemporal = new HashMap<String, String>();
                 mapaTemporal.put("id", Integer.toString(rs.getInt("id")));
                 mapaTemporal.put("idUsuario", Integer.toString(rs.getInt("idUsuario")));
                 mapaTemporal.put("coordenadasX", Integer.toString(rs.getInt("coordenadasX")));
                 mapaTemporal.put("coordenadasY", Integer.toString(rs.getInt("coordenadasY")));
                 mapaTemporal.put("horaSalida", Integer.toString(rs.getInt("horaSalida")));
+                mapaTemporal.put("horaLlegada", Integer.toString(rs.getInt("horaLlegada")));
                 mapaTemporal.put("ciudadSalida", rs.getString("ciudadSalida"));
                 mapaTemporal.put("ciudadLlegada", rs.getString("ciudadLlegada"));
                 mapaTemporal.put("cargaDescripcion", rs.getString("cargaDescripcion"));
@@ -153,10 +202,12 @@ public class BackEndAdmin {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return null;
         }
         return listaDeHashMaps;
     }
-    public void UpdateCoordenadasX(int coordenadasX, int id){
+
+    public void UpdateCoordenadasX(int coordenadasX, int id) {
         String sql = "UPDATE dron SET coordenadasX = ? WHERE id = ?";
         try {
             PreparedStatement psmt = connGlobal.prepareStatement(sql);
@@ -164,13 +215,14 @@ public class BackEndAdmin {
             psmt.setInt(2, id);
             psmt.executeUpdate();
             psmt.close();
-            
+
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
             e.printStackTrace();
         }
     }
-    public void UpdateCoordenadasY(int coordenadasY, int id){
+
+    public void UpdateCoordenadasY(int coordenadasY, int id) {
         String sql = "UPDATE dron SET coordenadasY = ? WHERE id = ?";
         try {
             PreparedStatement psmt = connGlobal.prepareStatement(sql);
@@ -178,13 +230,15 @@ public class BackEndAdmin {
             psmt.setInt(2, id);
             psmt.executeUpdate();
             psmt.close();
-            
+
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
             e.printStackTrace();
         }
     }
-    public void UpdateDatos(int id, int idUsuario, int coordenadasX, int coordenadasY, int horaSalida, int horaLlegada, String ciudadSalida, String ciudadLlegada, String cargaDescripcion){
+
+    public void UpdateDatos(int id, int idUsuario, int coordenadasX, int coordenadasY, int horaSalida, int horaLlegada,
+            String ciudadSalida, String ciudadLlegada, String cargaDescripcion) {
         String sql = "UPDATE dron SET idUsuario = ?, coordenadasX = ?, coordenadasY = ?, horaSalida = ?, horaLlegada = ?, ciudadSalida = ?, ciudadLlegada = ?, cargaDescripcion = ? WHERE id = ?";
         try {
             PreparedStatement psmt = connGlobal.prepareStatement(sql);
@@ -201,10 +255,11 @@ public class BackEndAdmin {
             psmt.close();
 
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
         }
     }
-    public void eliminarDatos(int id){
+
+    public void eliminarDatos(int id) {
         String sql = "DELETE FROM dron WHERE id = ?";
         try {
             PreparedStatement psmt = connGlobal.prepareStatement(sql);
@@ -212,7 +267,7 @@ public class BackEndAdmin {
             psmt.executeQuery();
             psmt.close();
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
         }
     }
 }
