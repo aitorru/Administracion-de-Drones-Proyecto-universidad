@@ -13,7 +13,7 @@ public class coordenadasDB {
 	private Connection connGlobal;
 
 	public coordenadasDB() {
-		String url = "jdbc:sqlite::resource:coordenadasDB.db";
+		String url = "jdbc:sqlite::resource:coordenadasDB.sqlite";
 		try {
 			connGlobal = DriverManager.getConnection(url);
 			System.out.println("Connexion establecida");

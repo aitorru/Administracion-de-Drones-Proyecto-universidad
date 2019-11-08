@@ -13,7 +13,7 @@ public class userDB {
   private Connection connGlobal;
 
   public userDB() {
-    String url = "jdbc:sqlite::resource:userDB.db";
+    String url = "jdbc:sqlite::resource:userDB.sqlite";
     try {
       connGlobal = DriverManager.getConnection(url);
       System.out.println("Connexion establecida");
