@@ -46,12 +46,12 @@ public class tester {
 
     @Test
     public void assertFile(){
-        File f = new File("..\\dronesDataBase.db");
+        File f = new File("..\\dronesDataBase.sqlite");
         if (f.exists()){
             assertTrue(f.exists());
             System.out.println("Existe");
         } else {
-            File ultimoRecurso = new File("dronesDataBase.db");
+            File ultimoRecurso = new File("dronesDataBase.sqlite");
             System.out.println("Existe");
             assertTrue(ultimoRecurso.exists());
         }

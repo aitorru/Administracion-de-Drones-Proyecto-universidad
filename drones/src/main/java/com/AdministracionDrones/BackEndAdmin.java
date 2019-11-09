@@ -26,10 +26,7 @@ public class BackEndAdmin {
 
     public static void main(String[] args) {
         BackEndAdmin b = new BackEndAdmin();
-        b.cargarDatosAutomatico();
-        for (int i = 0; i < b.cargarDatosAutomatico().size(); i++) {
-            b.guardarBD(b.cargarDatosAutomatico().get(i));
-        }
+        b.exportarASql();
         
     }
 
@@ -133,7 +130,7 @@ public class BackEndAdmin {
     }
 
     public boolean ejecutarBD() {
-        String url = "jdbc:sqlite:dronesDataBase.db";
+        String url = "jdbc:sqlite:dronesDataBase.sqlite";
         try {
             connGlobal = DriverManager.getConnection(url);
             if (connGlobal != null) {
@@ -161,8 +158,6 @@ public class BackEndAdmin {
     public void guardarBD(HashMap<String, String> DatosEntrada) {
         String sql = "INSERT INTO dron (idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
         try {
-            String url = "jdbc:sqlite:dronesDataBase.sqlite";
-            connGlobal = DriverManager.getConnection(url);
             PreparedStatement pstmt = connGlobal.prepareStatement(sql);
             pstmt.setInt(1, Integer.valueOf(DatosEntrada.get("idUsuario")));
             pstmt.setInt(2, Integer.valueOf(DatosEntrada.get("coordenadasX")));
@@ -201,7 +196,7 @@ public class BackEndAdmin {
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }
         return listaDeHashMaps;
@@ -268,6 +263,16 @@ public class BackEndAdmin {
             psmt.close();
         } catch (Exception e) {
             // TODO: handle exception
+        }
+    }
+
+    public void exportarASql(){
+        try {
+            //connGlobal.createStatement().executeUpdate("BACKUP DATABASE dron TO DISK = 'dronesDataBase_FallBack.bak'; ");
+            connGlobal.createStatement().executeUpdate("backup");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 }
