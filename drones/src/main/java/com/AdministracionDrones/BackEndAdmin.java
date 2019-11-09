@@ -19,6 +19,10 @@ import java.util.Properties;
 import org.python.util.PythonInterpreter;
 import org.json.JSONObject;
 
+/**
+ * @author Aitor Ruiz
+ */
+
 public class BackEndAdmin {
     private static Connection connGlobal;
     private static DatabaseMetaData metaGlobal;

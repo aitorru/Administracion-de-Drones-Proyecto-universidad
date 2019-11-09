@@ -5,7 +5,17 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author Aitor Ruiz
+ */
+
 public class crypto {
+    /**
+     * getSHA es un metodo en el que te devuelve el Strign que le has pasado convertido en SHA  
+     * @param input
+     * @return byte[]
+     * @throws NoSuchAlgorithmException
+     */
     public static byte[] getSHA(String input) throws NoSuchAlgorithmException {  
         // Static getInstance method is called with hashing SHA  
         MessageDigest md = MessageDigest.getInstance("SHA-256");  
@@ -15,7 +25,11 @@ public class crypto {
         // and return array of byte 
         return md.digest(input.getBytes(StandardCharsets.UTF_8));  
     } 
-    
+    /**
+     * Convierte un string a hexadecimal
+     * @param hash
+     * @return String
+     */
     public static String toHexString(byte[] hash) { 
         // Convert byte array into signum representation  
         BigInteger number = new BigInteger(1, hash);  
@@ -31,6 +45,10 @@ public class crypto {
   
         return hexString.toString();  
     }
+    /**
+     * Este metodo hace el trabajo de convertir un string a SHA generando una ventana de error si falla la ejecucion
+     * @return String
+     */
     public String StringToCrypto(String strToCrypt){
         try {
             return toHexString(getSHA(strToCrypt));

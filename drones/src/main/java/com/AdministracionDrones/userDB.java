@@ -9,6 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @author Aitor Ruiz
+ */
 public class userDB {
   private Connection connGlobal;
 
