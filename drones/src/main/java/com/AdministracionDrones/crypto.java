@@ -12,9 +12,9 @@ import java.security.NoSuchAlgorithmException;
 public class crypto {
     /**
      * getSHA es un metodo en el que te devuelve el Strign que le has pasado convertido en SHA  
-     * @param input
-     * @return byte[]
-     * @throws NoSuchAlgorithmException
+     * @param input entrada de textp
+     * @return byte[] salida de bytes
+     * @throws NoSuchAlgorithmException Salida de error si no encuentra el algoritmo
      */
     public static byte[] getSHA(String input) throws NoSuchAlgorithmException {  
         // Static getInstance method is called with hashing SHA  
@@ -27,8 +27,8 @@ public class crypto {
     } 
     /**
      * Convierte un string a hexadecimal
-     * @param hash
-     * @return String
+     * @param hash estrada de bytes hash
+     * @return String devuelve el texto encriptado
      */
     public static String toHexString(byte[] hash) { 
         // Convert byte array into signum representation  
@@ -47,7 +47,8 @@ public class crypto {
     }
     /**
      * Este metodo hace el trabajo de convertir un string a SHA generando una ventana de error si falla la ejecucion
-     * @return String
+     * @param strToCrypt texto a encriptar automaticamente
+     * @return String devuelve el texto encriptado
      */
     public String StringToCrypto(String strToCrypt){
         try {

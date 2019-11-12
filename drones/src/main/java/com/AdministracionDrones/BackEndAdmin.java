@@ -60,10 +60,9 @@ public class BackEndAdmin {
     /**
 	 * <h1>Lectura de archivo de importacion</h1> Este metodo privado lee un archivo que le utiliza para importar
 	 * 
-	 * @param NumeroEntrada
-	 * @return HashMap<String, String>
+	 * @param NumeroEntrada numero de lectura 
+	 * @return {@literal (HashMap<String, String>)}
      * @exception IOException y hace @{@code return null} si falla
-	 * @throws null
 	 */
     private HashMap<String, String> leerArchivo(int NumeroEntrada) {
         Properties props = new Properties();
@@ -113,11 +112,8 @@ public class BackEndAdmin {
     /**
 	 * <h1>Lector</h1> lee el archivo
 	 * 
-	 * @param null
-	 * @return ArrayList<HashMap<String, String>> con un array de mapas de todos los
+	 * @return {@literal (ArrayList<HashMap<String, String>>)} con un array de mapas de todos los
 	 *         datos del archivo
-	 * @exception SQLException y hace @{@code return null} si falla
-	 * @throws null
 	 */
     public ArrayList<HashMap<String, String>> cargarArchivoParaBaseDeDatos() {
         ArrayList<HashMap<String, String>> ListaParaDB = new ArrayList<HashMap<String, String>>();

@@ -20,3 +20,6 @@ dron.sql
 drones/dronesDataBase.sqlite
 drones/target/drones-0.2-SNAPSHOT.jar
 drones/target/drones-0.2-SNAPSHOT-jar-with-dependencies.jar
+drones/target/Administracion.exe
+drones/target/dronesDataBase.sqlite
+drones/target/exe.xml

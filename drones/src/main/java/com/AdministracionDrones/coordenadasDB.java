@@ -40,9 +40,6 @@ public class coordenadasDB {
 	 * <h1>Creador de tabla si no existe</h1> Este metodo privado crea la tabla en
 	 * la base de datos si no existe
 	 * 
-	 * @param null
-	 * @return null
-	 * @throws null
 	 */
 	private void crearTabla() {
 		String sql = "CREATE TABLE IF NOT EXISTS ciudades(\n" + "id INTEGER PRIMARY KEY NOT NULL,\n"
@@ -61,11 +58,8 @@ public class coordenadasDB {
 	/**
 	 * <h1>Lector</h1> lee la base de datos
 	 * 
-	 * @param null
-	 * @return ArrayList<HashMap<String, String>> con un array de mapas de todos los
-	 *         datos en la bd
-	 * @exception SQLException y hace @{@code return null} si falla
-	 * @throws null
+	 * @return {@literal (ArrayList<HashMap<String, String>>)} con un array de mapas de todos los
+	 *         datos en la bd, si da excepcion devuelve null
 	 */
 	public ArrayList<HashMap<String, String>> leerBD() {
 		String sql = "SELECT id, ciudad, coordenadasX, coordenadasY FROM ciudades";
