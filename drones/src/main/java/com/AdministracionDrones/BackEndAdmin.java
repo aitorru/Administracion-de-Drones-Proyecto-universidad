@@ -20,7 +20,10 @@ import org.python.util.PythonInterpreter;
 import org.json.JSONObject;
 
 /**
+ * Clase mayor con conexion con la base de datos de los datos de todos los drones del sistema
+ * 
  * @author Aitor Ruiz
+ * @version 0.2
  */
 
 public class BackEndAdmin {
@@ -34,6 +37,9 @@ public class BackEndAdmin {
         
     }
 
+    /**
+	 * <h1>Constructor</h1> Constructor que hace la conexión con la base de datos
+	 */
     public BackEndAdmin() {
         String url = "jdbc:sqlite:dronesDataBase.sqlite";
         try {
@@ -51,7 +57,14 @@ public class BackEndAdmin {
         //cargarDatosAutomatico();
         // ejecutarBD();
     }
-
+    /**
+	 * <h1>Lectura de archivo de importacion</h1> Este metodo privado lee un archivo que le utiliza para importar
+	 * 
+	 * @param NumeroEntrada
+	 * @return HashMap<String, String>
+     * @exception IOException y hace @{@code return null} si falla
+	 * @throws null
+	 */
     private HashMap<String, String> leerArchivo(int NumeroEntrada) {
         Properties props = new Properties();
         props.put("python.console.encoding", "UTF-8");
@@ -97,7 +110,15 @@ public class BackEndAdmin {
         }
         return null;
     }
-
+    /**
+	 * <h1>Lector</h1> lee el archivo
+	 * 
+	 * @param null
+	 * @return ArrayList<HashMap<String, String>> con un array de mapas de todos los
+	 *         datos del archivo
+	 * @exception SQLException y hace @{@code return null} si falla
+	 * @throws null
+	 */
     public ArrayList<HashMap<String, String>> cargarArchivoParaBaseDeDatos() {
         ArrayList<HashMap<String, String>> ListaParaDB = new ArrayList<HashMap<String, String>>();
         for (int i = 1; leerArchivo(i) != null; i++) {
