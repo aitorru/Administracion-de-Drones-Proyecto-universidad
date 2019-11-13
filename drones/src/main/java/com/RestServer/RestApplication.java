@@ -1,8 +1,27 @@
 package com.RestServer;
 
-import javax.ws.rs.ApplicationPath; 
-import javax.ws.rs.core.Application; 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
 
-@ApplicationPath("/api") 
-public class RestApplication extends Application { 
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+
+
+public class RestApplication {
+
+    public RestApplication(){
+        HttpServer server;
+        try {
+            server = HttpServer.create(new InetSocketAddress(8008), 0);
+            server.createContext("/api", new Handler());
+            server.setExecutor(null); // creates a default executor
+            server.start();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+    }
 }

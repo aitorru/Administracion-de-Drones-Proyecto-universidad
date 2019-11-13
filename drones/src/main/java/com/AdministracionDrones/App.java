@@ -1,6 +1,7 @@
 package com.AdministracionDrones;
 
 import javax.swing.SwingUtilities;
+import com.RestServer.*;
 
 /**
  * Creacion de ventana
@@ -16,5 +17,11 @@ public class App{
                 // GUI Launcher
             }
         });
+        new Runnable(){
+            @Override
+            public void run() {
+                RestApplication server = new RestApplication();
+            }
+        }.run();;
     }
 }
