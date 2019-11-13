@@ -107,6 +107,19 @@
       <artifactId>json</artifactId>
       <version>20190722</version>
     </dependency>
+    <dependency> 
+      <groupId>javax</groupId> 
+      <artifactId>javaee-api</artifactId> 
+      <version>7.0</version> 
+      <scope>provided</scope> 
+      <type>jar</type> 
+    </dependency> 
+    <dependency> 
+        <groupId>org.wildfly.core</groupId> 
+        <artifactId>wildfly-server</artifactId> 
+        <version>2.2.0.Final</version> 
+        <scope>provided</scope> 
+    </dependency>
   </dependencies>
   <repositories>
     <repository>
