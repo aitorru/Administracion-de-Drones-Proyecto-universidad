@@ -6,11 +6,9 @@ import java.io.OutputStream;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import com.AdministracionDrones.*;
+
 public class Handler implements HttpHandler {
-    public Handler() {
-
-    }
-
     @Override
     public void handle(HttpExchange t) throws IOException {
         String response = "This is the response";
