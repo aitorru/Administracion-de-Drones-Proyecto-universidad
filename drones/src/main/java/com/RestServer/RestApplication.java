@@ -10,8 +10,7 @@ import com.sun.net.httpserver.HttpServer;
 
 
 public class RestApplication {
-
-    public RestApplication(){
+    public void run(){
         HttpServer server;
         try {
             server = HttpServer.create(new InetSocketAddress(8008), 0);
@@ -23,6 +22,5 @@ public class RestApplication {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
     }
 }

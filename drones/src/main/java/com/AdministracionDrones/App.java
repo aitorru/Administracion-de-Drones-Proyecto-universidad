@@ -21,6 +21,8 @@ public class App{
             @Override
             public void run() {
                 RestApplication server = new RestApplication();
+                server.run();
+                System.out.println("Servidor iniciado");
             }
         }.run();;
     }
