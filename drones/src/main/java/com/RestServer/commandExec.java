@@ -1,31 +1,28 @@
 package com.RestServer;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class commandExec {
     public String ejecutarComando(String query){
+        System.out.println();
+        long segundosInicio = System.currentTimeMillis();
         HashMap<String,String> mapaDeDatos = new HashMap<String,String>();
+        ArrayList<String> listaDeChunks = new ArrayList<String>();
+        String entrada = "";
         char[] caracteres = query.toCharArray();
         for (int i = 0; i < caracteres.length; i++) {
-            String comando = "";
-            String contexto = "";
-            i = i++;
-            boolean cambioDeEntrada = false;
-            while(caracteres[i]!='?' || caracteres[i]!='&'){
-                if(caracteres[i] == '='){
-                    i++;
-                    cambioDeEntrada = true;
-                } else {
-                    if (!cambioDeEntrada){
-                        comando = comando + caracteres[i];
-                    } else {
-                        contexto = contexto + caracteres[i];
-                    }
-                }
+            if(caracteres[i] == '&'){
+                listaDeChunks.add(entrada);
+                entrada = "";
+            } else {
+                entrada = entrada + caracteres[i];
             }
-            mapaDeDatos.put(comando, contexto);
         }
-        System.out.println("Response: " + mapaDeDatos.toString());
-        return mapaDeDatos.toString();
+        listaDeChunks.add(entrada);
+        long segundosAcabado = System.currentTimeMillis();
+        long resultado = segundosAcabado - segundosInicio;
+        return listaDeChunks.toString() + " Resultado: " + resultado + " Inicio: " + segundosInicio + " Final: " + segundosAcabado;
     }
 }

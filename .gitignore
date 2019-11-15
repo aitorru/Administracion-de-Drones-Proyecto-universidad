@@ -24,3 +24,5 @@ drones/target/Administracion.exe
 drones/target/dronesDataBase.sqlite
 drones/target/exe.xml
 drones/target/site
+drones/target/javadoc-bundle-options/element-list
+drones/target/javadoc-bundle-options/javadoc-options-javadoc-resources.xml
