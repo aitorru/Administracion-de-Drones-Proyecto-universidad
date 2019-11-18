@@ -1,16 +1,37 @@
 package com.AdministracionDrones;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class panel_control extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = -6832354065185389329L;
 
+	private JLabel labelDesc;
+	private JTextField textoDesc;
+	private JLabel labelAnyo;
+	private JTextField textoAnyo;
+	private JLabel labelPegi;
+	private JRadioButton radioPegi3;
+	private JRadioButton radioPegi7;
+	private JRadioButton radioPegi12;
+	private JRadioButton radioPegi16;
+	private JRadioButton radioPegi18;
+	private JLabel labelGenero;
+	private JComboBox comboGenero;
+	private JButton botonAnyadir;
+	
+	
 	public panel_control() {
 		initComponents();
 	}
 
 	private void initComponents() {
 
-		jPanel1 = new javax.swing.JPanel();
+		
+		
+		
+		/*jPanel1 = new javax.swing.JPanel();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -34,6 +55,7 @@ public class panel_control extends javax.swing.JFrame {
 				jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
 		pack();
+		*/
 	}
 
 	public static void main(String args[]) {
