@@ -35,9 +35,9 @@ public class panel_control extends javax.swing.JFrame {
 		Container cp = this.getContentPane();
 		cp.setLayout(new GridLayout(8,2));
 		
-		labelDesc = new JLabel("DESCRIPCIÓN");
+		labelDesc = new JLabel("DESCRIPCIï¿½N");
 		textoDesc = new JTextField(20);
-		labelAnyo = new JLabel("AÑO:");
+		labelAnyo = new JLabel("Aï¿½O:");
 		textoAnyo = new JTextField(20);
 		labelCiudad = new JLabel("CIUDAD:");
 		JPanel panelCiudad = new JPanel();
@@ -58,9 +58,9 @@ public class panel_control extends javax.swing.JFrame {
 		textoCoordY = new JTextField(20);
 		//LabelGenero y comboGenero missing
 		
-		botonAnyadir = new JButton ("AÑADIR : ");
+		botonAnyadir = new JButton ("Aï¿½ADIR : ");
 		
-		//Panel estético
+		//Panel estï¿½tico
 		panelCiudad.add(radioCiudadBil);
 		panelCiudad.add(radioCiudadMad);
 		panelCiudad.add(radioCiudadBcn);
@@ -75,6 +75,11 @@ public class panel_control extends javax.swing.JFrame {
 		cp.add(labelCiudad);
 		cp.add(panelCiudad);
 		cp.add(botonAnyadir);
+
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setTitle("Panel");
+		this.setSize(700, 300);	// o this.pack();
+		this.setVisible(true);
 		
 
 
@@ -103,12 +108,7 @@ public class panel_control extends javax.swing.JFrame {
 
 		pack();
 		*/
-		});
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setTitle("Panel");
-		this.setSize(700, 300);	// o this.pack();
-		this.setVisible(true);
-	}
+		}
 
 	public static void main(String args[]) {
 

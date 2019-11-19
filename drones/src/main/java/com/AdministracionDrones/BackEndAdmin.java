@@ -134,6 +134,12 @@ public class BackEndAdmin {
         return ListaParaDB;
     }
 
+    /**
+	 * <h1>Carga de Datos</h1> Carga los archivos en la BD de manera automatica
+	 * 
+	 * @return {@literal (ArrayList<HashMap<String, String>>)} con un array de mapas de todos los
+	 *         datos
+	 */
     public ArrayList<HashMap<String, String>> cargarDatosAutomatico() {
         ArrayList<HashMap<String, String>> paraGuardar = cargarArchivoParaBaseDeDatos();
         String coordenadaX = "";
@@ -159,7 +165,10 @@ public class BackEndAdmin {
         }
         return paraGuardar;
     }
-
+    /**
+	 * <h1>Ejecutar BD</h1> Si no ha nada dentro de la BD hay que ejecutarla porque puede ser que no exista.
+	 * 
+	 */
     public boolean ejecutarBD() {
         String url = "jdbc:sqlite:dronesDataBase.sqlite";
         try {
