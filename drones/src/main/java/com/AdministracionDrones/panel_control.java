@@ -57,6 +57,7 @@ public class panel_control extends javax.swing.JFrame {
 		labelCoordY = new JLabel("COORDENADA Y");
 		textoCoordY = new JTextField(20);
 		//LabelGenero y comboGenero missing
+		
 		botonAnyadir = new JButton ("AÑADIR : ");
 		
 		//Panel estético
