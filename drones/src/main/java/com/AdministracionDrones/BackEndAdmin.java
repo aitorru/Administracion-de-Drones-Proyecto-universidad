@@ -42,7 +42,6 @@ public class BackEndAdmin {
 	 * <h1>Constructor</h1> Constructor que hace la conexión con la base de datos
      * Crea el archivo en caso de que no exista
      * 
-     * @exception SQLException y crea ventana de error
 	 */
     public BackEndAdmin() {
         Properties props = new Properties();
