@@ -82,6 +82,10 @@ public class panel_control extends javax.swing.JFrame {
 		cp.add(panelCiudad);
 		cp.add(labelDron);
 		cp.add(comboDron);
+		cp.add(labelCoordX);
+		cp.add(textoCoordX);
+		cp.add(labelCoordY);
+		cp.add(textoCoordY);
 		cp.add(botonAnyadir);
 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
