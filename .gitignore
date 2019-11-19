@@ -22,3 +22,4 @@ drones/target/dronesDataBase.sqlite
 drones/target/site
 drones/target/drones-0.3-SNAPSHOT-jar-with-dependencies.jar
 drones/target/drones-0.3-SNAPSHOT.jar
+/bin/
