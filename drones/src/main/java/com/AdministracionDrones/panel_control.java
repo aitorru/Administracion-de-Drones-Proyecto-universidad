@@ -58,7 +58,7 @@ public class panel_control extends javax.swing.JFrame {
 		textoCoordY = new JTextField(20);
 		//LabelGenero y comboGenero missing
 		labelDron = new JLabel("DRONE");
-		comboDron = new JCombobox();
+		comboDron = new JComboBox();
 		comboDron.addItem("Dron 1");
 		comboDron.addItem("Dron 2");
 		comboDron.addItem("Dron 3");
