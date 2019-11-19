@@ -11,14 +11,18 @@ public class panel_control extends javax.swing.JFrame {
 	private JTextField textoDesc;
 	private JLabel labelAnyo;
 	private JTextField textoAnyo;
-	private JLabel labelPegi;
-	private JRadioButton radioPegi3;
-	private JRadioButton radioPegi7;
-	private JRadioButton radioPegi12;
-	private JRadioButton radioPegi16;
-	private JRadioButton radioPegi18;
-	private JLabel labelGenero;
-	private JComboBox comboGenero;
+	private JLabel labelCiudad;
+	private JRadioButton radioCiudadBil;
+	private JRadioButton radioCiudadMad;
+	private JRadioButton radioCiudadBcn;
+	private JRadioButton radioCiudadVal;
+	private JRadioButton radioCiudadSev;
+	private JLabel labelCoordX;
+	private JTextField textoCoordX;
+	private JLabel labelCoordY;
+	private JTextField textoCoordY;
+	private JLabel labelDron;
+	private JComboBox comboDron;
 	private JButton botonAnyadir;
 	
 	
@@ -28,9 +32,52 @@ public class panel_control extends javax.swing.JFrame {
 
 	private void initComponents() {
 
+		Container cp = this.getContentPane();
+		cp.setLayout(new GridLayout(8,2));
+		
+		labelDesc = new JLabel("DESCRIPCIÓN");
+		textoDesc = new JTextField(20);
+		labelAnyo = new JLabel("AÑO:");
+		textoAnyo = new JTextField(20);
+		labelCiudad = new JLabel("CIUDAD:");
+		JPanel panelCiudad = new JPanel();
+		radioCiudadBil = new JRadioButton("Bilbao");
+		radioCiudadMad = new JRadioButton("Madrid");
+		radioCiudadBcn = new JRadioButton("Barcelona");
+		radioCiudadVal = new JRadioButton("Valencia");
+		radioCiudadSev = new JRadioButton("Sevilla");
+		ButtonGroup radioCiudad = new ButtonGroup(); // Para que cuando pulse 1, se despulsen los demas
+		radioCiudad.add(radioCiudadBil);
+		radioCiudad.add(radioCiudadMad);
+		radioCiudad.add(radioCiudadBcn);
+		radioCiudad.add(radioCiudadVal);
+		radioCiudad.add(radioCiudadSev);
+		labelCoordX = new JLabel("COORDENADA X");
+		textoCoordX = new JTextField(20);
+		labelCoordY = new JLabel("COORDENADA Y");
+		textoCoordY = new JTextField(20);
+		//LabelGenero y comboGenero missing
+		
+		botonAnyadir = new JButton ("AÑADIR : ");
+		
+		//Panel estético
+		panelCiudad.add(radioCiudadBil);
+		panelCiudad.add(radioCiudadMad);
+		panelCiudad.add(radioCiudadBcn);
+		panelCiudad.add(radioCiudadVal);
+		panelCiudad.add(radioCiudadSev);
 		
 		
+		cp.add(labelDesc);
+		cp.add(textoDesc);
+		cp.add(labelAnyo);
+		cp.add(textoAnyo);
+		cp.add(labelCiudad);
+		cp.add(panelCiudad);
+		cp.add(botonAnyadir);
 		
+
+
 		/*jPanel1 = new javax.swing.JPanel();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,6 +103,11 @@ public class panel_control extends javax.swing.JFrame {
 
 		pack();
 		*/
+		});
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setTitle("Panel");
+		this.setSize(700, 300);	// o this.pack();
+		this.setVisible(true);
 	}
 
 	public static void main(String args[]) {
