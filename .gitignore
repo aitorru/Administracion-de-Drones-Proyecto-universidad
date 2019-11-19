@@ -5,8 +5,6 @@ drones/target/maven-archiver/pom.properties
 drones/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 drones/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 drones/.settings/org.eclipse.core.resources.prefs
-drones/target/configEXE.xml
-drones/target/Administrador.exe
 drones/.classpath
 drones/.settings/org.eclipse.core.resources.prefs
 drones/target/cachedir
@@ -20,7 +18,7 @@ dron.sql
 drones/dronesDataBase.sqlite
 drones/target/drones-0.2-SNAPSHOT.jar
 drones/target/drones-0.2-SNAPSHOT-jar-with-dependencies.jar
-drones/target/Administracion.exe
 drones/target/dronesDataBase.sqlite
-drones/target/exe.xml
 drones/target/site
+drones/target/drones-0.3-SNAPSHOT-jar-with-dependencies.jar
+drones/target/drones-0.3-SNAPSHOT.jar
