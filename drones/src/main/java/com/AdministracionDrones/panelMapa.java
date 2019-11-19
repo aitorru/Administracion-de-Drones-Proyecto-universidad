@@ -9,19 +9,22 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import java.io.InputStream;
+import java.security.NoSuchAlgorithmException;
 
 /**
- * Clase que carga el mapa en el panel principal
+ * Clase que crea un panel con el mapa
  * 
  * @author Sergio Salgado
  * @version 0.3
  */
 
-
 public class panelMapa extends JPanel{
 	
 	private BufferedImage image;
-
+	
+	/**
+     * panelMapa() es una clase que devuelve un panel con la imagen que tiene dentro
+     */
 	
 	public panelMapa() {              
 			InputStream image = this.getClass().getClassLoader().getResourceAsStream("mapa.png");;
@@ -31,7 +34,11 @@ public class panelMapa extends JPanel{
 	        super.paintComponent(g);
 	        g.drawImage(image, 0, 0, this);            
 	    }
-	
+		
+	/**
+	 ** La clase principal me crea un nuevo panelMapa()
+	 */
+	 
 	public static void main(String[] args) {
 		new panelMapa();
 	}
