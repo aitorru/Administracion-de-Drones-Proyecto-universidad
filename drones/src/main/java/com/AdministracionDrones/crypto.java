@@ -6,7 +6,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
+ * Clase que se encarga de la criptografia del login del programa
+ * 
  * @author Aitor Ruiz
+ * @version 0.2
  */
 
 public class crypto {
