@@ -33,14 +33,28 @@ public class BackEndAdmin {
 
     public static void main(String[] args) {
         BackEndAdmin b = new BackEndAdmin();
-        b.exportarASql();
+        System.out.println(b.leerArchivo(1).toString());
+        System.out.println(b.leerArchivo(2).toString());
         
     }
 
     /**
 	 * <h1>Constructor</h1> Constructor que hace la conexión con la base de datos
+     * Crea el archivo en caso de que no exista
+     * 
+     * @exception SQLException y crea ventana de error
 	 */
     public BackEndAdmin() {
+        Properties props = new Properties();
+        props.put("python.console.encoding", "UTF-8");
+        props.put("python.security.respectJavaAccessibility", "false");
+        props.put("python.import.site", "false");
+        Properties preprops = System.getProperties();
+        PythonInterpreter.initialize(preprops, props, new String[0]);
+        PythonInterpreter pyInterp = new PythonInterpreter();
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeArchivos.py");
+        pyInterp.execfile(is);
+        pyInterp.close();
         String url = "jdbc:sqlite:dronesDataBase.sqlite";
         try {
             connGlobal = DriverManager.getConnection(url);
@@ -53,9 +67,6 @@ public class BackEndAdmin {
         if (leerBD() == null){
             ejecutarBD();
         }
-        // KIND OF LAZY BUT EFFECTIVE
-        //cargarDatosAutomatico();
-        // ejecutarBD();
     }
     /**
 	 * <h1>Lectura de archivo de importacion</h1> Este metodo privado lee un archivo que le utiliza para importar
@@ -72,7 +83,7 @@ public class BackEndAdmin {
         Properties preprops = System.getProperties();
         PythonInterpreter.initialize(preprops, props, new String[0]);
         PythonInterpreter pyInterp = new PythonInterpreter();
-        InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeArchivos.py");
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeEntrada.py");
         pyInterp.execfile(is);
         pyInterp.close();
         try {
@@ -289,6 +300,7 @@ public class BackEndAdmin {
 
     public void exportarASql(){
         try {
+            System.out.println("\u001B31;1mNo hace nada!");
             //connGlobal.createStatement().executeUpdate("BACKUP DATABASE dron TO DISK = 'dronesDataBase_FallBack.bak'; ");
             connGlobal.createStatement().executeUpdate("backup");
         } catch (SQLException e) {
