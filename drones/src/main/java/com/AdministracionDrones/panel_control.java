@@ -57,7 +57,13 @@ public class panel_control extends javax.swing.JFrame {
 		labelCoordY = new JLabel("COORDENADA Y");
 		textoCoordY = new JTextField(20);
 		//LabelGenero y comboGenero missing
-		
+		labelDron = new JLabel("DRONE");
+		comboDron = new JCombobox();
+		comboDron.addItem("Dron 1");
+		comboDron.addItem("Dron 2");
+		comboDron.addItem("Dron 3");
+		comboDron.addItem("Dron 4");
+		comboDron.addItem("Dron 5");
 		botonAnyadir = new JButton ("A�ADIR : ");
 		
 		//Panel est�tico
@@ -74,14 +80,16 @@ public class panel_control extends javax.swing.JFrame {
 		cp.add(textoAnyo);
 		cp.add(labelCiudad);
 		cp.add(panelCiudad);
+		cp.add(labelDron);
+		cp.add(comboDron);
 		cp.add(botonAnyadir);
 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setTitle("Panel");
+		this.setTitle("Panel de Control");
 		this.setSize(700, 300);	// o this.pack();
 		this.setVisible(true);
 		
-
+	}
 
 		/*jPanel1 = new javax.swing.JPanel();
 
@@ -108,7 +116,7 @@ public class panel_control extends javax.swing.JFrame {
 
 		pack();
 		*/
-		}
+		
 
 	public static void main(String args[]) {
 
