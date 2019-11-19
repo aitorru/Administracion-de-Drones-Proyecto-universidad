@@ -88,6 +88,12 @@ public class panel_control extends javax.swing.JFrame {
 		cp.add(textoCoordY);
 		cp.add(botonAnyadir);
 
+		/*botonAnyadir.addActionListener(new ActionListener() {
+			
+		});
+		
+		*/
+		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Panel de Control");
 		this.setSize(700, 300);	// o this.pack();
