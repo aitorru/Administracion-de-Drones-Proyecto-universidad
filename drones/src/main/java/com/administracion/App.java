@@ -1,7 +1,8 @@
-package com.AdministracionDrones;
+package com.administracion;
 
 import javax.swing.SwingUtilities;
-import com.RestServer.*;
+
+import com.rest.RestApplication;
 
 /**
  * Creacion de ventana
@@ -13,17 +14,15 @@ public class App{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new login().setVisible(true);
+                new Login().setVisible(true);
                 // GUI Launcher
             }
         });
         new Runnable(){
             @Override
             public void run() {
-                RestApplication server = new RestApplication();
-                server.run();
-                System.out.println("Servidor iniciado");
+                new RestApplication().run();
             }
-        }.run();;
+        };
     }
 }

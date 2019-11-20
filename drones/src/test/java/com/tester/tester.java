@@ -1,4 +1,4 @@
-package com.AdministracionDronesTester;
+package com.tester;
 
 import org.junit.*;
 
@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
-import com.AdministracionDrones.*;
+import com.administracion.*;
 
 public class tester {
 
@@ -23,11 +23,11 @@ public class tester {
     @Test
     public void assertDB(){
         String expected;
-        coordenadasDB c = new coordenadasDB();
+        CoordenadasDB c = new CoordenadasDB();
         System.out.println(c.leerBD().toString());
         expected = "[{coordenadasY=100, ciudad=Bilbao, coordenadasX=100, id=1}, {coordenadasY=200, ciudad=Madrid, coordenadasX=200, id=2}]";
         assertEquals(expected, c.leerBD().toString());
-        userDB d = new userDB();
+        UserDB d = new UserDB();
         System.out.println(d.leerBD().toString());
         expected = "[{password=4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2, idUsuario=1111, id=1, user=root}]";
         assertEquals(expected, d.leerBD().toString());
@@ -37,7 +37,7 @@ public class tester {
     @Test
     public void assertCrypto(){
         String expected;
-        crypto c = new crypto();
+        Crypto c = new Crypto();
         System.out.println(c.StringToCrypto("root"));
         expected = "4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2";
         assertEquals(expected, c.StringToCrypto("root"));

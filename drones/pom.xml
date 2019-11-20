@@ -3,9 +3,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.AdministracionDrones</groupId>
+  <groupId>com.administracion</groupId>
   <artifactId>drones</artifactId>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.3-SNAPSHOT</version>
   <build>
     <plugins>
       <plugin>
@@ -15,7 +15,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.AdministracionDrones.App</mainClass>
+              <mainClass>com.administracion.App</mainClass>
               <addClasspath>true</addClasspath>
             </manifest>
           </archive>
@@ -41,7 +41,7 @@
           <configuration>
             <archive>
                 <manifest>
-                    <mainClass>com.AdministracionDrones.App</mainClass>
+                    <mainClass>com.administracion.App</mainClass>
                     <addClasspath>true</addClasspath>
                   </manifest>
             </archive>
@@ -106,19 +106,6 @@
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
       <version>20190722</version>
-    </dependency>
-    <dependency> 
-      <groupId>javax</groupId> 
-      <artifactId>javaee-api</artifactId> 
-      <version>7.0</version> 
-      <scope>provided</scope> 
-      <type>jar</type> 
-    </dependency> 
-    <dependency> 
-        <groupId>org.wildfly.core</groupId> 
-        <artifactId>wildfly-server</artifactId> 
-        <version>2.2.0.Final</version> 
-        <scope>provided</scope> 
     </dependency>
   </dependencies>
   <repositories>

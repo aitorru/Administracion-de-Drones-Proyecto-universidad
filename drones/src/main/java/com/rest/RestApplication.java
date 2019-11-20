@@ -1,4 +1,4 @@
-package com.RestServer;
+package com.rest;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -12,7 +12,7 @@ public class RestApplication {
         try {
             server = HttpServer.create(new InetSocketAddress(8008), 0);
             server.createContext("/api", new Handler());
-            server.createContext("/api/query", new commandHandler());
+            server.createContext("/api/query", new CommandHandler());
             server.setExecutor(null); // creates a default executor
             server.start();
         } catch (IOException e) {

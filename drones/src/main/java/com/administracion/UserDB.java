@@ -1,4 +1,4 @@
-package com.AdministracionDrones;
+package com.administracion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,13 +15,13 @@ import java.util.HashMap;
  * @author Aitor Ruiz
  * @version 0.2
  */
-public class userDB {
+public class UserDB {
   private Connection connGlobal;
 
   /**
    * <h1>Constructor</h1> Constructor que hace la conexión con la base de datos
    */
-  public userDB() {
+  public UserDB() {
     String url = "jdbc:sqlite::resource:userDB.sqlite";
     try {
       connGlobal = DriverManager.getConnection(url);

@@ -1,4 +1,4 @@
-package com.AdministracionDrones;
+package com.administracion;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -6,10 +6,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
+ * Clase que se encarga de la criptografia del login del programa
+ * 
  * @author Aitor Ruiz
+ * @version 0.2
  */
 
-public class crypto {
+public class Crypto {
     /**
      * getSHA es un metodo en el que te devuelve el Strign que le has pasado convertido en SHA  
      * @param input entrada de textp

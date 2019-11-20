@@ -1,4 +1,4 @@
-package com.AdministracionDrones;
+package com.administracion;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,14 +33,27 @@ public class BackEndAdmin {
 
     public static void main(String[] args) {
         BackEndAdmin b = new BackEndAdmin();
-        b.exportarASql();
+        System.out.println(b.leerArchivo(1).toString());
+        System.out.println(b.leerArchivo(2).toString());
         
     }
 
     /**
 	 * <h1>Constructor</h1> Constructor que hace la conexión con la base de datos
+     * Crea el archivo en caso de que no exista
+     * 
 	 */
     public BackEndAdmin() {
+        Properties props = new Properties();
+        props.put("python.console.encoding", "UTF-8");
+        props.put("python.security.respectJavaAccessibility", "false");
+        props.put("python.import.site", "false");
+        Properties preprops = System.getProperties();
+        PythonInterpreter.initialize(preprops, props, new String[0]);
+        PythonInterpreter pyInterp = new PythonInterpreter();
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeArchivos.py");
+        pyInterp.execfile(is);
+        pyInterp.close();
         String url = "jdbc:sqlite:dronesDataBase.sqlite";
         try {
             connGlobal = DriverManager.getConnection(url);
@@ -53,9 +66,6 @@ public class BackEndAdmin {
         if (leerBD() == null){
             ejecutarBD();
         }
-        // KIND OF LAZY BUT EFFECTIVE
-        //cargarDatosAutomatico();
-        // ejecutarBD();
     }
     /**
 	 * <h1>Lectura de archivo de importacion</h1> Este metodo privado lee un archivo que le utiliza para importar
@@ -72,7 +82,7 @@ public class BackEndAdmin {
         Properties preprops = System.getProperties();
         PythonInterpreter.initialize(preprops, props, new String[0]);
         PythonInterpreter pyInterp = new PythonInterpreter();
-        InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeArchivos.py");
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeEntrada.py");
         pyInterp.execfile(is);
         pyInterp.close();
         try {
@@ -124,13 +134,19 @@ public class BackEndAdmin {
         return ListaParaDB;
     }
 
+    /**
+	 * <h1>Carga de Datos</h1> Carga los archivos en la BD de manera automatica
+	 * 
+	 * @return {@literal (ArrayList<HashMap<String, String>>)} con un array de mapas de todos los
+	 *         datos
+	 */
     public ArrayList<HashMap<String, String>> cargarDatosAutomatico() {
         ArrayList<HashMap<String, String>> paraGuardar = cargarArchivoParaBaseDeDatos();
         String coordenadaX = "";
         String coordenadaY = "";
         for (int i = 0; i < paraGuardar.size();) {
             HashMap<String, String> hashMapJson = paraGuardar.get(i);
-            coordenadasDB c = new coordenadasDB();
+            CoordenadasDB c = new CoordenadasDB();
             for (int ii = 0; i < c.leerBD().size(); i++) {
                 HashMap<String, String> hashMapCoordenadas = c.leerBD().get(ii);
                 String ciudad1 = hashMapCoordenadas.get("ciudad");
@@ -149,7 +165,10 @@ public class BackEndAdmin {
         }
         return paraGuardar;
     }
-
+    /**
+	 * <h1>Ejecutar BD</h1> Si no ha nada dentro de la BD hay que ejecutarla porque puede ser que no exista.
+	 * 
+	 */
     public boolean ejecutarBD() {
         String url = "jdbc:sqlite:dronesDataBase.sqlite";
         try {
@@ -289,6 +308,7 @@ public class BackEndAdmin {
 
     public void exportarASql(){
         try {
+            System.out.println("\u001B31;1mNo hace nada!");
             //connGlobal.createStatement().executeUpdate("BACKUP DATABASE dron TO DISK = 'dronesDataBase_FallBack.bak'; ");
             connGlobal.createStatement().executeUpdate("backup");
         } catch (SQLException e) {

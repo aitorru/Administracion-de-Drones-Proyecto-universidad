@@ -1,12 +1,10 @@
-package com.RestServer;
+package com.rest;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-
-import com.AdministracionDrones.*;
 
 public class Handler implements HttpHandler {
     @Override

@@ -1,4 +1,4 @@
-package com.RestServer;
+package com.rest;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -7,15 +7,15 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
 
-import com.AdministracionDrones.*;
+import com.administracion.*;
 
-public class commandHandler implements HttpHandler{
+public class CommandHandler implements HttpHandler{
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         URI requestURI = exchange.getRequestURI();
         String query = requestURI.getQuery();
-        commandExec c = new commandExec();
+        CommandExec c = new CommandExec();
         String response = c.ejecutarComando(query);
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();

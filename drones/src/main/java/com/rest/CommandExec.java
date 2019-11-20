@@ -1,10 +1,9 @@
-package com.RestServer;
+package com.rest;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 
-public class commandExec {
+public class CommandExec {
     public String ejecutarComando(String query){
         System.out.println();
         long segundosInicio = System.currentTimeMillis();
