@@ -1,4 +1,4 @@
-package com.AdministracionDrones;
+package com.administracion;
 
 import javax.swing.SwingUtilities;
 
@@ -12,7 +12,7 @@ public class App{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new login().setVisible(true);
+                new Login().setVisible(true);
                 // GUI Launcher
             }
         });

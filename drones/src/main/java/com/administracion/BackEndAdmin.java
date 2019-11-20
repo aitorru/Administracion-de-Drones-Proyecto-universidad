@@ -1,4 +1,4 @@
-package com.AdministracionDrones;
+package com.administracion;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -146,7 +146,7 @@ public class BackEndAdmin {
         String coordenadaY = "";
         for (int i = 0; i < paraGuardar.size();) {
             HashMap<String, String> hashMapJson = paraGuardar.get(i);
-            coordenadasDB c = new coordenadasDB();
+            CoordenadasDB c = new CoordenadasDB();
             for (int ii = 0; i < c.leerBD().size(); i++) {
                 HashMap<String, String> hashMapCoordenadas = c.leerBD().get(ii);
                 String ciudad1 = hashMapCoordenadas.get("ciudad");
