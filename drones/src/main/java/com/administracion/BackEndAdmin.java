@@ -169,7 +169,7 @@ public class BackEndAdmin {
 	 * <h1>Ejecutar BD</h1> Si no ha nada dentro de la BD hay que ejecutarla porque puede ser que no exista.
 	 * 
 	 */
-    public boolean ejecutarBD() {
+    public void ejecutarBD() {
         String url = "jdbc:sqlite:dronesDataBase.sqlite";
         try {
             connGlobal = DriverManager.getConnection(url);
@@ -186,13 +186,11 @@ public class BackEndAdmin {
                 stmtGlobal.execute(datosEntrada);
                 stmtGlobal.close();
                 System.out.println("Created");
-                return true;
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return false;
     }
 
     public void guardarBD(HashMap<String, String> DatosEntrada) {
