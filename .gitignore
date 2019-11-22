@@ -19,7 +19,10 @@ drones/dronesDataBase.sqlite
 drones/target/drones-0.2-SNAPSHOT.jar
 drones/target/drones-0.2-SNAPSHOT-jar-with-dependencies.jar
 drones/target/dronesDataBase.sqlite
+drones/target/exe.xml
 drones/target/site
+drones/target/javadoc-bundle-options/element-list
+drones/target/javadoc-bundle-options/javadoc-options-javadoc-resources.xml
 drones/target/drones-0.3-SNAPSHOT-jar-with-dependencies.jar
 drones/target/drones-0.3-SNAPSHOT.jar
-/bin/
+drones/target/site

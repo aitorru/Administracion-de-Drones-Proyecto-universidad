@@ -2,6 +2,8 @@ package com.administracion;
 
 import javax.swing.SwingUtilities;
 
+import com.rest.RestApplication;
+
 /**
  * Creacion de ventana
  *
@@ -16,5 +18,11 @@ public class App{
                 // GUI Launcher
             }
         });
+        new Runnable(){
+            @Override
+            public void run() {
+                new RestApplication().run();
+            }
+        }.run();;
     }
 }
