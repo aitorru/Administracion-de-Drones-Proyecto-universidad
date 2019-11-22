@@ -2,7 +2,7 @@ package com.rest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import com.administracion.BackEndAdmin;
 public class CommandExec {
     public String ejecutarComando(String query){
         System.out.println();
@@ -20,8 +20,49 @@ public class CommandExec {
             }
         }
         listaDeChunks.add(entrada);
+        ArrayList<Character> comando, contexto;
+        comando = new ArrayList<Character>();
+        contexto = new ArrayList<Character>();
+        for (int i = 0; i < listaDeChunks.size(); i++) {
+            char[] entradaComandos = listaDeChunks.get(i).toCharArray();
+            System.out.println(listaDeChunks.get(i));
+            boolean cambioDeLinea = false;
+            for (int j = 0; j < entradaComandos.length; j++) {
+                if(caracteres[j] == '='){
+                    cambioDeLinea = true;
+                } else {
+                    if (cambioDeLinea){
+                        contexto.add(entradaComandos[j]);
+                    }else{
+                        comando.add(entradaComandos[j]);
+                    }
+                }
+            }
+            String comandoS = charToString(comando);
+            String contextoS = charToString(contexto);
+            mapaDeDatos.put(comandoS, contextoS);
+            comando.clear();
+            contexto.clear();
+        }
+        BackEndAdmin b = new BackEndAdmin();
+        ArrayList<HashMap<String, String>> lecturaDeBase = b.leerBD();
+        ArrayList<HashMap<String, String>> salida = new ArrayList<HashMap<String, String>>();
+        for (int i = 0; i < lecturaDeBase.size(); i++) {
+            HashMap<String, String> temp = lecturaDeBase.get(i);
+            if(temp.get("id").equals(mapaDeDatos.get("id"))){
+                salida.add(temp);
+            }
+            
+        }
         long segundosAcabado = System.currentTimeMillis();
         long resultado = segundosAcabado - segundosInicio;
-        return listaDeChunks.toString() + " Resultado: " + resultado + " Inicio: " + segundosInicio + " Final: " + segundosAcabado;
+        return salida.toString() + " Resultado: " + resultado + " Inicio: " + segundosInicio + " Final: " + segundosAcabado;
+    }
+    public String charToString(ArrayList<Character> entrada){
+        String salida = "";
+        for (int i = 0; i < entrada.size(); i++) {
+            salida = salida + entrada.get(i);
+        }
+        return salida;
     }
 }

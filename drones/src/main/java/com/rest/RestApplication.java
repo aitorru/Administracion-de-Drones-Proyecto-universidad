@@ -12,9 +12,10 @@ public class RestApplication {
         try {
             server = HttpServer.create(new InetSocketAddress(8008), 0);
             server.createContext("/api", new Handler());
-            server.createContext("/api/query", new CommandHandler());
+            server.createContext("/api/query/getDrones", new CommandHandler());
             server.setExecutor(null); // creates a default executor
             server.start();
+            System.out.println("Server running");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
