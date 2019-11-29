@@ -15,9 +15,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import org.python.util.PythonInterpreter;
 import org.json.JSONObject;
+
+import com.logger.*;
 
 /**
  * Clase mayor con conexion con la base de datos de los datos de todos los drones del sistema
@@ -31,12 +34,8 @@ public class BackEndAdmin {
     private static DatabaseMetaData metaGlobal;
     private static Statement stmtGlobal;
 
-    public static void main(String[] args) {
-        BackEndAdmin b = new BackEndAdmin();
-        System.out.println(b.leerArchivo(1).toString());
-        System.out.println(b.leerArchivo(2).toString());
-        
-    }
+    private static final Logger LOGGE = Logger.getLogger(BackEndAdmin.class.getName());
+    private Logger LOGGER = new AdminLogger(LOGGE,"backend.log").getLOGGER();
 
     /**
 	 * <h1>Constructor</h1> Constructor que hace la conexión con la base de datos
@@ -53,6 +52,7 @@ public class BackEndAdmin {
         PythonInterpreter pyInterp = new PythonInterpreter();
         InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeArchivos.py");
         pyInterp.execfile(is);
+        LOGGER.info("Creados archivos necesarios en backend.");
         pyInterp.close();
         String url = "jdbc:sqlite:dronesDataBase.sqlite";
         try {
@@ -66,6 +66,7 @@ public class BackEndAdmin {
         if (leerBD() == null){
             ejecutarBD();
         }
+        LOGGER.info("Conexion establecida con backend.");
     }
     /**
 	 * <h1>Lectura de archivo de importacion</h1> Este metodo privado lee un archivo que le utiliza para importar
@@ -84,6 +85,7 @@ public class BackEndAdmin {
         PythonInterpreter pyInterp = new PythonInterpreter();
         InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeEntrada.py");
         pyInterp.execfile(is);
+        LOGGER.info("Creados archvido de entrada de datos.");
         pyInterp.close();
         try {
             File f = new File("dronLoader.json");
@@ -110,12 +112,13 @@ public class BackEndAdmin {
                         obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("cargaDescripcion"));
             } catch (Exception e) {
                 // Si no existe el numero debe dar error, lo cual no significa que falle.
+                LOGGER.warning("Llegado al final del array: " + e.getMessage());
                 return null;
             }
             return MapaSalida;
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            LOGGER.warning("El archvo no existe: " + e.getMessage());
         }
         return null;
     }
@@ -185,7 +188,7 @@ public class BackEndAdmin {
                         + "ciudadLlegada text NOT NULL, \n" + "cargaDescripcion text\n" + ");";
                 stmtGlobal.execute(datosEntrada);
                 stmtGlobal.close();
-                System.out.println("Created");
+                LOGGER.info("Creada tabla");
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -307,11 +310,12 @@ public class BackEndAdmin {
     public void exportarASql(){
         try {
             System.out.println("\u001B31;1mNo hace nada!");
+            LOGGER.info("La funcion exportar no tiene funcionalidad");
             //connGlobal.createStatement().executeUpdate("BACKUP DATABASE dron TO DISK = 'dronesDataBase_FallBack.bak'; ");
             connGlobal.createStatement().executeUpdate("backup");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            LOGGER.warning("Error por falta de export en sqlite: " + e.getMessage());
         }
     }
 }

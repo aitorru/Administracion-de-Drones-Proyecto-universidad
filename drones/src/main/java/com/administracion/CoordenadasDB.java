@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Logger;
+
+import com.logger.AdminLogger;
 
 /**
  * Clase de conexión con base de datos de coordenadas en el sistema
@@ -17,6 +20,9 @@ import java.util.HashMap;
  */
 public class CoordenadasDB {
 	private Connection connGlobal;
+
+	private static final Logger LOGGE = Logger.getLogger(CoordenadasDB.class.getName());
+    private Logger LOGGER = new AdminLogger(LOGGE).getLOGGER();
 
 	/**
 	 * <h1>Constructor</h1> Constructor que hace la conexión con la base de datos
@@ -28,7 +34,7 @@ public class CoordenadasDB {
 			System.out.println("Connexion establecida");
 			if (leerBD() == null) {
 				crearTabla();
-				System.out.println("Programa corriendo sin coordenadas, la funcionalidad es limitada");
+				LOGGER.warning("Programa corriendo sin coordenadas, la funcionalidad es limitada");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -48,7 +54,7 @@ public class CoordenadasDB {
 			PreparedStatement pstmt = connGlobal.prepareStatement(sql);
 			pstmt.executeUpdate();
 			pstmt.close();
-			System.out.println("Tabla de coordenadas creada.");
+			LOGGER.info("Tabla de coordenadas creada.");
 
 		} catch (Exception e) {
 			e.printStackTrace();

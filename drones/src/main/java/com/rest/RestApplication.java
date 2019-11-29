@@ -2,11 +2,15 @@ package com.rest;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.logging.Logger;
 
+import com.logger.AdminLogger;
 import com.sun.net.httpserver.HttpServer;
 
 
 public class RestApplication {
+    private static final Logger LOGGE = Logger.getLogger(RestApplication.class.getName());
+    private Logger LOGGER = new AdminLogger(LOGGE, "servidor.log").getLOGGER();
     public void run(){
         HttpServer server;
         try {
@@ -15,7 +19,7 @@ public class RestApplication {
             server.createContext("/api/query/getDrones", new CommandHandler());
             server.setExecutor(null); // creates a default executor
             server.start();
-            System.out.println("Server running");
+            LOGGER.info("Server running");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Logger;
+
+import com.logger.AdminLogger;
 
 /**
  * Clase para recoger las credenciales de la bd
@@ -18,6 +21,9 @@ import java.util.HashMap;
 public class UserDB {
   private Connection connGlobal;
 
+  private static final Logger LOGGE = Logger.getLogger(UserDB.class.getName());
+  private Logger LOGGER = new AdminLogger(LOGGE, "userdb.log").getLOGGER();
+
   /**
    * <h1>Constructor</h1> Constructor que hace la conexión con la base de datos
    */
@@ -25,7 +31,6 @@ public class UserDB {
     String url = "jdbc:sqlite::resource:userDB.sqlite";
     try {
       connGlobal = DriverManager.getConnection(url);
-      System.out.println("Connexion establecida");
       if (leerBD() == null) {
         crearTabla();
       }
@@ -33,6 +38,7 @@ public class UserDB {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+    LOGGER.info("Conectado a base de datos de usuarios.");
   }
 
   /**
@@ -47,7 +53,7 @@ public class UserDB {
       PreparedStatement pstmt = connGlobal.prepareStatement(sql);
       pstmt.executeUpdate();
       pstmt.close();
-      System.out.println("Tabla de usuario creada.");
+      LOGGER.info("Tabla de usuario creada.");
 
     } catch (Exception e) {
       e.printStackTrace();
