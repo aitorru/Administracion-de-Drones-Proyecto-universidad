@@ -1,0 +1,6 @@
+Nov 30, 2019 2:14:18 PM com.administracion.BackEndAdmin <init>
+INFO: Creados archivos necesarios en backend.
+Nov 30, 2019 2:14:18 PM com.administracion.BackEndAdmin ejecutarBD
+INFO: Creada tabla
+Nov 30, 2019 2:14:18 PM com.administracion.BackEndAdmin <init>
+INFO: Conexion establecida con backend.

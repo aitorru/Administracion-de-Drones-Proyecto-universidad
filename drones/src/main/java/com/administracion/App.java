@@ -26,6 +26,7 @@ public class App {
                 new Login().setVisible(true);
                 LOGGER.info("Iniciada ventana");
                 // GUI Launcher
+                new PruebaMapa();
             }
         });
         new Runnable(){
