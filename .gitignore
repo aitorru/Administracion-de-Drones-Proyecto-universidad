@@ -30,3 +30,8 @@ drones/administracion.log
 drones/pruebamapa.log
 drones/servidor.log
 drones/userbd.log
+administracion.log
+backend.log
+pruebamapa.log
+servidor.log
+userbd.log
