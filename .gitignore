@@ -26,3 +26,7 @@ drones/target/javadoc-bundle-options/javadoc-options-javadoc-resources.xml
 drones/target/drones-0.3-SNAPSHOT-jar-with-dependencies.jar
 drones/target/drones-0.3-SNAPSHOT.jar
 drones/target/site
+drones/administracion.log
+drones/pruebamapa.log
+drones/servidor.log
+drones/userbd.log
