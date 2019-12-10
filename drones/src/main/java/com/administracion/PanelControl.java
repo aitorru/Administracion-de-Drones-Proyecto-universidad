@@ -2,6 +2,7 @@ package com.administracion;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.event.*;
 
 public class PanelControl extends javax.swing.JFrame {
 
@@ -38,6 +39,43 @@ public class PanelControl extends javax.swing.JFrame {
 		Container cp = this.getContentPane();
 		// cp.setLayout(new GridLayout(8,2)); 
 		cp.setLayout(new BorderLayout());
+		
+		JMenuBar barra = new JMenuBar();
+		this.setJMenuBar(barra);
+		
+		JMenu menuProyecto = new JMenu("Proyecto");
+		JMenu menuAyuda = new JMenu("Ayuda");
+		
+		barra.add(menuProyecto);
+		barra.add(menuAyuda);
+		
+		JMenuItem itemDron = new JMenuItem("Drones");
+		
+		menuProyecto.add(itemDron);
+		
+		/*
+		itemDron.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+			}
+			
+		});
+		
+		*/
+		
+		JMenuItem itemAyuda = new JMenuItem("Acerca de...");
+		menuAyuda.add(itemAyuda);
+		
+		itemAyuda.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {		
+				JOptionPane.showMessageDialog(null, "Este programa fue creado por Aitor Ruiz, Sergio Salgado y Jon Ibarreche");		
+			}
+			
+		});
+		
 		
 		labelDesc = new JLabel("DESCRIPCI�N");
 		textoDesc = new JTextField(20);
@@ -104,6 +142,8 @@ public class PanelControl extends javax.swing.JFrame {
 		cp.add(arriba, BorderLayout.NORTH);
 		cp.add(abajo,BorderLayout.CENTER);
 
+		//Coger los parametros de la bd
+		/*
 		botonAnyadir.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -131,7 +171,7 @@ public class PanelControl extends javax.swing.JFrame {
 
 			}
 		});
-		
+		*/
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Panel de Control");
