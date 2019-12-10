@@ -24,6 +24,8 @@ public class PanelControl extends javax.swing.JFrame {
 	private JLabel labelDron;
 	private JComboBox comboDron;
 	private JButton botonAnyadir;
+	private DefaultListModel modelo;
+	private JList lista;
 	
 	
 	public PanelControl() {
