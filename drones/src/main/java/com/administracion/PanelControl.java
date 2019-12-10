@@ -96,7 +96,7 @@ public class PanelControl extends javax.swing.JFrame {
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Panel de Control");
-		this.setSize(700, 300);	// o this.pack();
+		this.setSize(700, 400);	// o this.pack();
 		this.setVisible(true);
 		
 	}
