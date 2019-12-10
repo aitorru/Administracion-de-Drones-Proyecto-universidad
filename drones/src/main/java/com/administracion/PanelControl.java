@@ -104,11 +104,21 @@ public class PanelControl extends javax.swing.JFrame {
 		cp.add(arriba, BorderLayout.NORTH);
 		cp.add(abajo,BorderLayout.CENTER);
 
-		/*botonAnyadir.addActionListener(new ActionListener() {
-			
+		botonAnyadir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				Dron nuevo = new Dron();
+				
+				nuevo.setlabelAnyo(textoAnyo.getText());
+				nuevo.setlabelCoordX(textoCoordX.getText());
+				nuevo.setlabelCoordY(textoCoordY.getText());
+				
+				modelo.addElement(nuevo);
+
+			}
 		});
 		
-		*/
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Panel de Control");
