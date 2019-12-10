@@ -33,7 +33,8 @@ public class PanelControl extends javax.swing.JFrame {
 	private void initComponents() {
 
 		Container cp = this.getContentPane();
-		cp.setLayout(new GridLayout(8,2));
+		// cp.setLayout(new GridLayout(8,2)); 
+		cp.setLayout(new BorderLayout());
 		
 		labelDesc = new JLabel("DESCRIPCI�N");
 		textoDesc = new JTextField(20);
@@ -65,6 +66,13 @@ public class PanelControl extends javax.swing.JFrame {
 		comboDron.addItem("Dron 4");
 		comboDron.addItem("Dron 5");
 		botonAnyadir = new JButton ("A�ADIR : ");
+		modelo = new DefaultListModel();
+		lista = new JList(modelo);
+		
+		JPanel arriba = new JPanel();
+		arriba.setLayout(new GridLayout(8,2));
+		
+		JScrollPane abajo = new JScrollPane(lista);
 		
 		//Panel est�tico
 		panelCiudad.add(radioCiudadBil);
@@ -74,19 +82,22 @@ public class PanelControl extends javax.swing.JFrame {
 		panelCiudad.add(radioCiudadSev);
 		
 		
-		cp.add(labelDesc);
-		cp.add(textoDesc);
-		cp.add(labelAnyo);
-		cp.add(textoAnyo);
-		cp.add(labelCiudad);
-		cp.add(panelCiudad);
-		cp.add(labelDron);
-		cp.add(comboDron);
-		cp.add(labelCoordX);
-		cp.add(textoCoordX);
-		cp.add(labelCoordY);
-		cp.add(textoCoordY);
-		cp.add(botonAnyadir);
+		arriba.add(labelDesc);
+		arriba.add(textoDesc);
+		arriba.add(labelAnyo);
+		arriba.add(textoAnyo);
+		arriba.add(labelCiudad);
+		arriba.add(panelCiudad);
+		arriba.add(labelDron);
+		arriba.add(comboDron);
+		arriba.add(labelCoordX);
+		arriba.add(textoCoordX);
+		arriba.add(labelCoordY);
+		arriba.add(textoCoordY);
+		arriba.add(botonAnyadir);
+		
+		cp.add(arriba, BorderLayout.NORTH);
+		cp.add(abajo,BorderLayout.CENTER);
 
 		/*botonAnyadir.addActionListener(new ActionListener() {
 			
