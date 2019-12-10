@@ -26,7 +26,8 @@ public class PanelControl extends javax.swing.JFrame {
 	private JButton botonAnyadir;
 	private DefaultListModel modelo;
 	private JList lista;
-	
+	private JButton botonEliminar;
+
 	
 	public PanelControl() {
 		initComponents();
@@ -68,6 +69,7 @@ public class PanelControl extends javax.swing.JFrame {
 		comboDron.addItem("Dron 4");
 		comboDron.addItem("Dron 5");
 		botonAnyadir = new JButton ("A�ADIR : ");
+		botonEliminar = new JButton ("Eliminar: ");
 		modelo = new DefaultListModel();
 		lista = new JList(modelo);
 		
@@ -97,6 +99,7 @@ public class PanelControl extends javax.swing.JFrame {
 		arriba.add(labelCoordY);
 		arriba.add(textoCoordY);
 		arriba.add(botonAnyadir);
+		arriba.add(botonEliminar);
 		
 		cp.add(arriba, BorderLayout.NORTH);
 		cp.add(abajo,BorderLayout.CENTER);
