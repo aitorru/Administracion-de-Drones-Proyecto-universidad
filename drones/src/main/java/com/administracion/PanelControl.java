@@ -108,13 +108,26 @@ public class PanelControl extends javax.swing.JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				Dron nuevo = new Dron();
+				Drone nuevo = new Drone();
 				
 				nuevo.setlabelAnyo(textoAnyo.getText());
 				nuevo.setlabelCoordX(textoCoordX.getText());
 				nuevo.setlabelCoordY(textoCoordY.getText());
 				
 				modelo.addElement(nuevo);
+
+			}
+		});
+		
+		botonEliminar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				Object[] seleccionados = lista.getSelectedValues();
+				
+				for (Object object : seleccionados) {
+					modelo.removeElement(object);
+				}
 
 			}
 		});
