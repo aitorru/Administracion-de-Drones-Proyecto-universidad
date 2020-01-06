@@ -40,6 +40,7 @@ public class PanelMapa extends JPanel{
 	 */
 	 
 	public static void main(String[] args) {
-		new PanelMapa();
+		new PanelMapa().setVisible(true);
+		new PruebaMapa();
 	}
 }

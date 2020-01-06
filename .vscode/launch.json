@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - PanelMapa",
+            "request": "launch",
+            "mainClass": "com.administracion.PanelMapa",
+            "projectName": "drones"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - App",
             "request": "launch",
             "mainClass": "com.administracion.App",
