@@ -18,13 +18,13 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class TestAnimation {
+public class Animation {
 
     public static void main(String[] args) {
-        new TestAnimation();
+        new Animation();
     }
 
-    public TestAnimation() {
+    public Animation() {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -35,7 +35,7 @@ public class TestAnimation {
                         ex.printStackTrace();
                     }
 
-                    JFrame frame = new JFrame("Testing");
+                    JFrame frame = new JFrame("Animating");
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frame.add(new TestPane());
                     frame.pack();

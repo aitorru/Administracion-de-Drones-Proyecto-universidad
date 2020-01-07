@@ -32,7 +32,7 @@ public class Drone {
 	    position.y += direction.y * speed;
 
 	    if (Vector.distance(start, position) >= distance) {
-	        // The ship has reached the target
+			
 	    }
 
 	    
