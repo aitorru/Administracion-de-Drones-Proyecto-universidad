@@ -2,6 +2,7 @@ package com.administracion;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.event.*;
 
 public class PanelControl extends javax.swing.JFrame {
 
@@ -24,7 +25,10 @@ public class PanelControl extends javax.swing.JFrame {
 	private JLabel labelDron;
 	private JComboBox comboDron;
 	private JButton botonAnyadir;
-	
+	private DefaultListModel modelo;
+	private JList lista;
+	private JButton botonEliminar;
+
 	
 	public PanelControl() {
 		initComponents();
@@ -33,7 +37,45 @@ public class PanelControl extends javax.swing.JFrame {
 	private void initComponents() {
 
 		Container cp = this.getContentPane();
-		cp.setLayout(new GridLayout(8,2));
+		// cp.setLayout(new GridLayout(8,2)); 
+		cp.setLayout(new BorderLayout());
+		
+		JMenuBar barra = new JMenuBar();
+		this.setJMenuBar(barra);
+		
+		JMenu menuProyecto = new JMenu("Proyecto");
+		JMenu menuAyuda = new JMenu("Ayuda");
+		
+		barra.add(menuProyecto);
+		barra.add(menuAyuda);
+		
+		JMenuItem itemDron = new JMenuItem("Drones");
+		
+		menuProyecto.add(itemDron);
+		
+		/*
+		itemDron.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+			}
+			
+		});
+		
+		*/
+		
+		JMenuItem itemAyuda = new JMenuItem("Acerca de...");
+		menuAyuda.add(itemAyuda);
+		
+		itemAyuda.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {		
+				JOptionPane.showMessageDialog(null, "Este programa fue creado por Aitor Ruiz, Sergio Salgado y Jon Ibarreche");		
+			}
+			
+		});
+		
 		
 		labelDesc = new JLabel("DESCRIPCI�N");
 		textoDesc = new JTextField(20);
@@ -65,6 +107,14 @@ public class PanelControl extends javax.swing.JFrame {
 		comboDron.addItem("Dron 4");
 		comboDron.addItem("Dron 5");
 		botonAnyadir = new JButton ("A�ADIR : ");
+		botonEliminar = new JButton ("Eliminar: ");
+		modelo = new DefaultListModel();
+		lista = new JList(modelo);
+		
+		JPanel arriba = new JPanel();
+		arriba.setLayout(new GridLayout(8,2));
+		
+		JScrollPane abajo = new JScrollPane(lista);
 		
 		//Panel est�tico
 		panelCiudad.add(radioCiudadBil);
@@ -74,29 +124,58 @@ public class PanelControl extends javax.swing.JFrame {
 		panelCiudad.add(radioCiudadSev);
 		
 		
-		cp.add(labelDesc);
-		cp.add(textoDesc);
-		cp.add(labelAnyo);
-		cp.add(textoAnyo);
-		cp.add(labelCiudad);
-		cp.add(panelCiudad);
-		cp.add(labelDron);
-		cp.add(comboDron);
-		cp.add(labelCoordX);
-		cp.add(textoCoordX);
-		cp.add(labelCoordY);
-		cp.add(textoCoordY);
-		cp.add(botonAnyadir);
+		arriba.add(labelDesc);
+		arriba.add(textoDesc);
+		arriba.add(labelAnyo);
+		arriba.add(textoAnyo);
+		arriba.add(labelCiudad);
+		arriba.add(panelCiudad);
+		arriba.add(labelDron);
+		arriba.add(comboDron);
+		arriba.add(labelCoordX);
+		arriba.add(textoCoordX);
+		arriba.add(labelCoordY);
+		arriba.add(textoCoordY);
+		arriba.add(botonAnyadir);
+		arriba.add(botonEliminar);
+		
+		cp.add(arriba, BorderLayout.NORTH);
+		cp.add(abajo,BorderLayout.CENTER);
 
-		/*botonAnyadir.addActionListener(new ActionListener() {
-			
+		//Coger los parametros de la bd
+		/*
+		botonAnyadir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				Drone nuevo = new Drone();
+				
+				nuevo.setlabelAnyo(textoAnyo.getText());
+				nuevo.setlabelCoordX(textoCoordX.getText());
+				nuevo.setlabelCoordY(textoCoordY.getText());
+				
+				modelo.addElement(nuevo);
+
+			}
 		});
 		
+		botonEliminar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				Object[] seleccionados = lista.getSelectedValues();
+				
+				for (Object object : seleccionados) {
+					modelo.removeElement(object);
+				}
+
+			}
+		});
 		*/
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Panel de Control");
-		this.setSize(700, 300);	// o this.pack();
+		this.setSize(700, 400);	// o this.pack();
 		this.setVisible(true);
 		
 	}

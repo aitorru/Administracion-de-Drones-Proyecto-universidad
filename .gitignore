@@ -35,3 +35,5 @@ backend.log
 pruebamapa.log
 servidor.log
 userbd.log
+drones/target/drones-0.4-SNAPSHOT-jar-with-dependencies.jar
+drones/target/drones-0.4-SNAPSHOT.jar
