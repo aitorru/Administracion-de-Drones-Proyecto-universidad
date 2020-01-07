@@ -35,7 +35,8 @@ public class Drone {
 			
 			// The drone has reached the target
 			position.x = direction.x ;
-	    	position.y = direction.y ;
+			position.y = direction.y ;
+			//key
 	    }
 
 	    
