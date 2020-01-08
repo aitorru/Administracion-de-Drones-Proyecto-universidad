@@ -5,6 +5,14 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import com.logger.AdminLogger;
+
 /**
  * Clase que se encarga de la criptografia del login del programa
  * 
@@ -13,6 +21,8 @@ import java.security.NoSuchAlgorithmException;
  */
 
 public class Crypto {
+    private static final Logger LOGGE = Logger.getLogger(CoordenadasDB.class.getName());
+    private Logger LOGGER = new AdminLogger(LOGGE).getLOGGER();
     /**
      * getSHA es un metodo en el que te devuelve el Strign que le has pasado convertido en SHA  
      * @param input entrada de textp
@@ -57,8 +67,8 @@ public class Crypto {
         try {
             return toHexString(getSHA(strToCrypt));
         } catch (NoSuchAlgorithmException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
         }
         return null;
     }

@@ -8,7 +8,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import com.logger.AdminLogger;
 
@@ -37,8 +41,8 @@ public class CoordenadasDB {
 				LOGGER.warning("Programa corriendo sin coordenadas, la funcionalidad es limitada");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
 		}
 	}
 
@@ -82,9 +86,8 @@ public class CoordenadasDB {
 				listaDeHashMaps.add(mapaTemporal);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+			JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
 		}
 		return listaDeHashMaps;
 	}

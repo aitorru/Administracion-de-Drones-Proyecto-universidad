@@ -7,6 +7,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class AdminLogger {
     private  Logger LOGGER;
     private FileHandler fileH;
@@ -20,8 +23,8 @@ public class AdminLogger {
             fileH.setLevel(Level.ALL);
             LOGGER.addHandler(fileH);
         } catch (SecurityException | IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
         }
     }
     public AdminLogger(Logger log, String path){
@@ -32,8 +35,8 @@ public class AdminLogger {
             fileH.setLevel(Level.ALL);
             LOGGER.addHandler(fileH);
         } catch (SecurityException | IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
         }
     }
     public Logger getLOGGER(){

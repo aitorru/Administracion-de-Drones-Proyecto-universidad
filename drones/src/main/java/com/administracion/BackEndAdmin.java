@@ -15,7 +15,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import org.python.util.PythonInterpreter;
 import org.json.JSONObject;
@@ -60,8 +64,8 @@ public class BackEndAdmin {
             metaGlobal = connGlobal.getMetaData();
             stmtGlobal = connGlobal.createStatement();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
         }
         if (leerBD() == null){
             ejecutarBD();
@@ -117,7 +121,7 @@ public class BackEndAdmin {
             }
             return MapaSalida;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            JOptionPane.showMessageDialog(new JFrame(),"El archvo no existe: " + e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
             LOGGER.warning("El archvo no existe: " + e.getMessage());
         }
         return null;
@@ -191,8 +195,8 @@ public class BackEndAdmin {
                 LOGGER.info("Creada tabla");
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
         }
     }
 
@@ -211,8 +215,8 @@ public class BackEndAdmin {
             pstmt.executeUpdate();
             pstmt.close();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
         }
     }
 
@@ -236,9 +240,8 @@ public class BackEndAdmin {
                 rs.close();
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            //e.printStackTrace();
-            return null;
+            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
         }
         return listaDeHashMaps;
     }
@@ -253,8 +256,8 @@ public class BackEndAdmin {
             psmt.close();
 
         } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
         }
     }
 
@@ -268,8 +271,8 @@ public class BackEndAdmin {
             psmt.close();
 
         } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
         }
     }
 
@@ -291,7 +294,8 @@ public class BackEndAdmin {
             psmt.close();
 
         } catch (Exception e) {
-            // TODO: handle exception
+            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
         }
     }
 
@@ -303,7 +307,8 @@ public class BackEndAdmin {
             psmt.executeQuery();
             psmt.close();
         } catch (Exception e) {
-            // TODO: handle exception
+            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            LOGGER.log(Level.SEVERE,e.toString());
         }
     }
 
@@ -314,7 +319,7 @@ public class BackEndAdmin {
             //connGlobal.createStatement().executeUpdate("BACKUP DATABASE dron TO DISK = 'dronesDataBase_FallBack.bak'; ");
             connGlobal.createStatement().executeUpdate("backup");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+            JOptionPane.showMessageDialog(new JFrame(),"Error por falta de export en sqlite: " + e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
             LOGGER.warning("Error por falta de export en sqlite: " + e.getMessage());
         }
     }
