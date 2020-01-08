@@ -23,8 +23,6 @@ public class AdminLogger {
             fileH.setLevel(Level.ALL);
             LOGGER.addHandler(fileH);
         } catch (SecurityException | IOException e) {
-            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
-            LOGGER.log(Level.SEVERE,e.toString());
         }
     }
     public AdminLogger(Logger log, String path){
@@ -35,8 +33,6 @@ public class AdminLogger {
             fileH.setLevel(Level.ALL);
             LOGGER.addHandler(fileH);
         } catch (SecurityException | IOException e) {
-            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
-            LOGGER.log(Level.SEVERE,e.toString());
         }
     }
     public Logger getLOGGER(){
