@@ -1,5 +1,6 @@
 package com.logger;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -26,7 +27,7 @@ public class AdminLogger {
     public AdminLogger(Logger log, String path){
         LOGGER = log;
         try {
-            fileH = new FileHandler(path);
+            fileH = new FileHandler("logs" + File.separator +  path);
             fileH.setFormatter(new SimpleFormatter());
             fileH.setLevel(Level.ALL);
             LOGGER.addHandler(fileH);
