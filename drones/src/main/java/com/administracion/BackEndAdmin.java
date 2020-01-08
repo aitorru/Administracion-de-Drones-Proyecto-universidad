@@ -240,7 +240,8 @@ public class BackEndAdmin {
                 rs.close();
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            // Explicacion: No se puede crear aqui una ventana porque se usa para que falle. Travis no puede hacer una ventana.
+            //JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
             LOGGER.log(Level.SEVERE,e.toString());
         }
         return listaDeHashMaps;
