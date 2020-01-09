@@ -22,7 +22,7 @@ import com.logger.AdminLogger;
 
 public class Crypto {
     private static final Logger LOGGE = Logger.getLogger(CoordenadasDB.class.getName());
-    private Logger LOGGER = new AdminLogger(LOGGE).getLOGGER();
+    private Logger LOGGER = new AdminLogger(LOGGE,"crypto.log").getLOGGER();
     /**
      * getSHA es un metodo en el que te devuelve el Strign que le has pasado convertido en SHA  
      * @param input entrada de textp

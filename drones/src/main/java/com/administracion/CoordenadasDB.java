@@ -26,7 +26,7 @@ public class CoordenadasDB {
 	private Connection connGlobal;
 
 	private static final Logger LOGGE = Logger.getLogger(CoordenadasDB.class.getName());
-    private Logger LOGGER = new AdminLogger(LOGGE).getLOGGER();
+    private Logger LOGGER = new AdminLogger(LOGGE, "coordenadas.log").getLOGGER();
 
 	/**
 	 * <h1>Constructor</h1> Constructor que hace la conexión con la base de datos
