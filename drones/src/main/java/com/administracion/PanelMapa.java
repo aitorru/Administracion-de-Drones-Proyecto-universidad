@@ -8,12 +8,12 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import com.logger.AdminLogger;
 
-public class PruebaMapa {
+public class PanelMapa {
 	
-	private static final Logger LOGGE = Logger.getLogger(PruebaMapa.class.getName());
-	private final Logger LOGGER = new AdminLogger(LOGGE, "pruebamapa.log").getLOGGER();
+	private static final Logger LOGGE = Logger.getLogger(PanelMapa.class.getName());
+	private final Logger LOGGER = new AdminLogger(LOGGE, "panelmapa.log").getLOGGER();
 
-	public PruebaMapa() {
+	public PanelMapa() {
 		try {
 			final InputStream is = this.getClass().getClassLoader().getResourceAsStream("mapa.png");
 			final BufferedImage image = ImageIO.read(is);
