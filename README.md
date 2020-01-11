@@ -1,13 +1,16 @@
-# Administracion-de-Drones-Proyecto-universidad ![alt text](https://travis-ci.com/aitorru/Administracion-de-Drones-Proyecto-universidad.svg?token=RrKbwC6VUpYoEbmNPvjQ&branch=master) ![GitHub All Releases](https://img.shields.io/github/downloads/aitorru/Administracion-de-Drones-Proyecto-universidad/total) ![GitHub last commit](https://img.shields.io/github/last-commit/aitorru/Administracion-de-Drones-Proyecto-universidad) ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/aitorru/Administracion-de-Drones-Proyecto-universidad) :fire:
+# Administracion-de-Drones-Proyecto-universidad
+___
+![alt text](https://travis-ci.com/aitorru/Administracion-de-Drones-Proyecto-universidad.svg?token=RrKbwC6VUpYoEbmNPvjQ&branch=master) ![GitHub All Releases](https://img.shields.io/github/downloads/aitorru/Administracion-de-Drones-Proyecto-universidad/total) ![GitHub last commit](https://img.shields.io/github/last-commit/aitorru/Administracion-de-Drones-Proyecto-universidad) ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/aitorru/Administracion-de-Drones-Proyecto-universidad)
+___
 
 Proyecto para administrar una red de drones de reparto a nivel de España.
 
 ## Mapa (Parte izquierda)
 
-![Alt text](mapa.PNG?raw=true "Title")
-Usando una imagen de OpenStreetMaps vamos a hacer una simulacion de donde estan los drones en este momento.
-![Alt text](14466.png?raw=true "Title")
+<img aling="right" src="./drones/src/main/resources/mapa.png" width="430px"/>
+<img aling="right" src="./drones/src/main/resources/fotodron.png" width="100px"/>
 
+Usando una imagen de OpenStreetMaps vamos a hacer una simulacion de donde estan los drones en este momento.
 Con un modelo de un dron basico lo moveremos por el mapa simulando el paso del tiempo
 
 ## Administracion (Parte derecha)
@@ -226,7 +229,7 @@ public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
     }
 ```
 
-- [X] Ejemplo para lectura de datos rapid
+- [X] Ejemplo para lectura de datos rapida
 
 ```java
         userDB u = new userDB();
@@ -254,11 +257,6 @@ public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
 
 - [ ] Investigación
 
-## Autores
-
-* **Aitor Ruiz** - *Trabajo inicial, bases de datos, criptografia y coordinacion* - [Aitor Ruiz](https://github.com/aitorru)
-* **Sergio Salgado** - *Creacion de mapa 2D* - [Sergio Salgado](https://github.com/ssc1999)
-* **Jon Ibarreche** - *Creacion de Login y apartado de usuario* - [Jon ibarreche](https://github.com/JonIbarreche)
 
 ## Javadoc
 
@@ -276,10 +274,10 @@ Puedes simplemente descargar el [exe](https://github.com/aitorru/Administracion-
 
 ### JAR
 
-Tambien puedes descargar el [jar](https://github.com/aitorru/Administracion-de-Drones-Proyecto-universidad/releases/download/0.2/drones-0.2-SNAPSHOT-jar-with-dependencies.jar) directamente y ejecutarlo con
+Tambien puedes descargar el [jar](https://github.com/aitorru/Administracion-de-Drones-Proyecto-universidad/releases/download/0.4/drones-0.4.jar) directamente y ejecutarlo con
 
 ```bash
-java -jar drones-*.*-SNAPSHOT-jar-with-dependencies.jar
+java -jar drones-*.*.jar
 ```
 
 ### Maven
@@ -312,7 +310,7 @@ cd target
 
 ### JAR
 
-Actualmente solo esta disponible en windows de instalador, por lo cual hay que usar el [Jar](https://github.com/aitorru/Administracion-de-Drones-Proyecto-universidad/releases/download/0.2/drones-0.2-SNAPSHOT-jar-with-dependencies.jar)
+Actualmente solo esta disponible en windows de instalador, por lo cual hay que usar el [Jar](https://github.com/aitorru/Administracion-de-Drones-Proyecto-universidad/releases/download/0.4/drones-0.4.jar)
 
 Ejecutalo con
 
@@ -345,6 +343,12 @@ Los Jar resultantes estan en Administracion-de-Drones-Proyecto-universidad/drone
 ```bash
 cd target
 ```
+
+## Autores
+
+* **Aitor Ruiz** - *Trabajo inicial, bases de datos, criptografia y coordinacion* - [Aitor Ruiz](https://github.com/aitorru)
+* **Sergio Salgado** - *Creacion de mapa 2D* - [Sergio Salgado](https://github.com/ssc1999)
+* **Jon Ibarreche** - *Creacion de Login y apartado de usuario* - [Jon ibarreche](https://github.com/JonIbarreche)
 
 ## Creado con // Dependencies
 
