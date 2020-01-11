@@ -30,6 +30,7 @@ public class App {
             @Override
             public void run() {
                 new Login().setVisible(true);
+                new PanelMapa();
                 // GUI Launcher
             }
         };

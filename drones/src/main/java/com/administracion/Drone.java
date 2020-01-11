@@ -25,12 +25,12 @@ public class Drone {
 		this.position = position;
 		droneImage = new JLabel();
 		
-		ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "foto_drone.png");
+		ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "redpoint.png");
 		Image img = icon.getImage();
 		icon = new ImageIcon(img.getScaledInstance(30, 30, Image.SCALE_SMOOTH));
 		droneImage.setIcon(icon);
-		droneImage.setLocation(50, 50);
-		droneImage.setSize(50,50);
+		droneImage.setLocation((int)position.x, (int)position.y);
+		droneImage.setSize(10,10);
 
 		
 	    // Initialize start as a new Vector with the same x and y coordinates as position
