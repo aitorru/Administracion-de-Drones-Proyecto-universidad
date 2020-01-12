@@ -33,29 +33,33 @@ public class PanelMapa {
 			JPanel locationPanel = new JPanel();
 			
 
-			Drone dron1 = new Drone(new Vector(25, 25), new Vector(30, 30), 2);
 			
-			droneImage = new JLabel();
-			ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "redpoint.png");
-			Image img = icon.getImage();
-			icon = new ImageIcon(img.getScaledInstance(30, 30, Image.SCALE_SMOOTH));	
 /*			
 			f.add(locationPanel, new Integer(0), 0);
 			final InputStream targetLocation = this.getClass().getClassLoader().getResourceAsStream("location.png");
 			final BufferedImage location = ImageIO.read(targetLocation);
 			final JLabel locationJLabel = new JLabel(new ImageIcon(location));
 */		
-			droneImage.setIcon(icon);
-			droneImage.setLocation((int) dron1.getPosition().x, (int)dron1.getPosition().y);
-			droneImage.setSize(10,10);
-			droneImage.setVisible(true);
-			
 			f.add(lpane, BorderLayout.CENTER);
-			dronPanel.add(droneImage);	
+				
 			lpane.add(mapaPanel, new Integer(0), 0);
 			lpane.add(dronPanel, new Integer(1), 0);
 			f.getContentPane().add(mapaPanel);
 
+			Drone dron1 = new Drone(new Vector(25, 25), new Vector(30, 30), 2);
+			
+			droneImage = new JLabel();
+			ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "redpoint.png");
+			Image img = icon.getImage();
+			icon = new ImageIcon(img.getScaledInstance(30, 30, Image.SCALE_SMOOTH));	
+			droneImage.setIcon(icon);
+			droneImage.setLocation((int) dron1.getPosition().x, (int)dron1.getPosition().y);
+			droneImage.setSize(10,10);
+			droneImage.setVisible(true);
+			dronPanel.add(droneImage);
+			dronPanel.setLocation((int) dron1.getPosition().x, (int)dron1.getPosition().y);
+			dronPanel.setSize(10,10);
+			dronPanel.setVisible(true);
 		} catch (final IOException ex) {
 			LOGGER.info("Cargando mapa");
 		}
