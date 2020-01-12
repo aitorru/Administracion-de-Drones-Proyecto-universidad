@@ -29,21 +29,22 @@ public class PanelMapa {
 			JPanel locationPanel = new JPanel();
 			Drone dron1 = new Drone(new Vector(25, 25), new Vector(30, 30), 2);
 			
-			lpane.add(mapaPanel, new Integer(0), 0);
-			lpane.add(dronPanel, new Integer(1), 0);
+		
 			f.pack();
 			f.setBounds(450, 0, 1057, 761);
 			f.setVisible(true);	
-			f.add(mapaPanel);	
-			f.add(dronPanel);
+			f.add(lpane);
+			
 			f.setPreferredSize(new Dimension(1057, 761));
 			f.setLayout(new BorderLayout());
 			f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			mapaPanel.add(label);
-			mapaPanel.setBounds(0,0,1057,761);
+			mapaPanel.setBounds(0, 0, 1057, 761);
 			mapaPanel.setVisible(true);
-
-						
+			lpane.setVisible(true);
+			lpane.setBounds(0, 0, 1057,761);
+			lpane.add(mapaPanel, new Integer(1), 0);
+			lpane.add(dronPanel, new Integer(0), 0);			
 			
 		
 			ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "redpoint.png");
@@ -51,10 +52,10 @@ public class PanelMapa {
 			icon = new ImageIcon(img.getScaledInstance(10, 10, Image.SCALE_SMOOTH));	
 			droneImage = new JLabel(icon);
 			droneImage.setIcon(icon);
-			droneImage.setBounds((int) dron1.getPosition().x, (int)dron1.getPosition().y, 10, 10);
+			droneImage.setLocation((int) dron1.getPosition().x, (int)dron1.getPosition().y);
 			droneImage.setVisible(true);
 			dronPanel.add(droneImage);
-			dronPanel.setBounds((int) dron1.getPosition().x, (int)dron1.getPosition().y, 20, 20);
+			dronPanel.setBounds((int) dron1.getPosition().x, (int)dron1.getPosition().y, 10, 10);
 			dronPanel.setVisible(true);
 			
 /*			
