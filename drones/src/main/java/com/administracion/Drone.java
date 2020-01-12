@@ -33,7 +33,6 @@ public class Drone {
 	    distance = Vector.distance(start, end);
 		direction = Vector.direction(end.x - start.x, end.y - start.y);
 		
-		
 	}
 
 	public Vector getPosition(){

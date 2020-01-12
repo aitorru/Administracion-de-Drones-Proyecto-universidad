@@ -10,21 +10,30 @@ import javax.swing.*;
 import com.logger.AdminLogger;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import javax.swing.Timer;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PanelMapa {
 	
 	private static final Logger LOGGE = Logger.getLogger(PanelMapa.class.getName());
 	private final Logger LOGGER = new AdminLogger(LOGGE, "panelmapa.log").getLOGGER();
+	private JLabel droneImage;
+	private JLayeredPane lpane;
+	private JPanel dronPanel;
 	
-	public PanelMapa() {
+
+	public PanelMapa(){
 		try {
-			JLabel droneImage;
-			JLayeredPane lpane = new JLayeredPane();
+			lpane = new JLayeredPane(); 
+			dronPanel = new JPanel();
 			InputStream is = this.getClass().getClassLoader().getResourceAsStream("mapa.png");
 			BufferedImage image = ImageIO.read(is);
 			JLabel label = new JLabel(new ImageIcon(image));
 			JFrame f = new JFrame();
-			JPanel dronPanel = new JPanel();
+			
 			JPanel mapaPanel = new JPanel();
 			JPanel locationPanel = new JPanel();
 			
@@ -38,7 +47,6 @@ public class PanelMapa {
 			f.setBounds(450, 0, 1057, 761);
 			f.setVisible(true);	
 			f.add(lpane);
-			
 			f.setPreferredSize(new Dimension(1057, 761));
 			f.setLayout(new BorderLayout());
 			f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,8 +71,16 @@ public class PanelMapa {
 			dronPanel.add(droneImage);
 			dronPanel.setBounds((int) dron1.getPosition().x, (int)dron1.getPosition().y, 10, 10);
 			dronPanel.setVisible(true);
-			dronPanel.repaint();
-			mapaPanel.repaint();
+			
+			new Runnable() {
+					@Override
+						public void run() {
+			
+							((Runnable) dronPanel).run();
+						}
+					}.run();;
+	
+
 
 
 			
@@ -78,5 +94,6 @@ public class PanelMapa {
 		} catch (final IOException ex) {
 			LOGGER.info("Cargando mapa");
 		}
-	}
+	
+	}	
 }
