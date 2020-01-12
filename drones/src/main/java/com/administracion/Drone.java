@@ -15,7 +15,7 @@ public class Drone {
 	private Vector target;
 	private Vector end;
 	private Vector direction;
-	private JLabel droneImage;
+
 
 	private float speed;
 
@@ -23,14 +23,8 @@ public class Drone {
 
 	public Drone(Vector position, Vector target, float speed) {
 		this.position = position;
-		droneImage = new JLabel();
-		
-		ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "redpoint.png");
-		Image img = icon.getImage();
-		icon = new ImageIcon(img.getScaledInstance(30, 30, Image.SCALE_SMOOTH));
-		droneImage.setIcon(icon);
-		droneImage.setLocation((int)position.x, (int)position.y);
-		droneImage.setSize(10,10);
+		this.target = target;
+		this.speed = speed;
 
 		
 	    // Initialize start as a new Vector with the same x and y coordinates as position
@@ -42,6 +36,10 @@ public class Drone {
 		direction = Vector.direction(end.x - start.x, end.y - start.y);
 		
 		
+	}
+
+	public Vector getPosition(){
+		return position;
 	}
 
 	public void tick() {
@@ -59,8 +57,6 @@ public class Drone {
 
 	   
 	}
-	public JLabel getImage() {
-		return this.droneImage;
-	}
+	
 }
 
