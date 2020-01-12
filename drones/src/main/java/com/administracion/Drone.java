@@ -26,6 +26,7 @@ public class Drone {
 
 	    // Initialize start as a new Vector with the same x and y coordinates as position
 	    this.start = new Vector(position.x, position.y);
+		this.end = new Vector(target.x, target.y);
 		this.target = target;
 		this.speed = speed;
 

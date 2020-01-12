@@ -41,7 +41,6 @@ public class PanelMapa {
 			icon = new ImageIcon(img.getScaledInstance(30, 30, Image.SCALE_SMOOTH));	
 /*			
 			f.add(locationPanel, new Integer(0), 0);
-		
 			final InputStream targetLocation = this.getClass().getClassLoader().getResourceAsStream("location.png");
 			final BufferedImage location = ImageIO.read(targetLocation);
 			final JLabel locationJLabel = new JLabel(new ImageIcon(location));
