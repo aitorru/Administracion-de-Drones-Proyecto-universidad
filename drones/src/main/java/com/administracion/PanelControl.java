@@ -1,251 +1,235 @@
 package com.administracion;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.event.*;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.FlowLayout;
+import javax.swing.JTextField;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JCheckBox;
+import javax.swing.JList;
+import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.JComboBox;
+import javax.swing.JMenuBar;
+import javax.swing.JButton;
+import javax.swing.JMenuItem;
+import java.awt.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.swing.JSeparator;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.JMarsDarkTheme;
 
-public class PanelControl extends javax.swing.JFrame {
+public class PanelControl extends JFrame {
 
-	private static final long serialVersionUID = -6832354065185389329L;
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private final JPanel panel = new JPanel();
 
-	private JLabel labelDesc;
-	private JTextField textoDesc;
-	private JLabel labelAnyo;
-	private JTextField textoAnyo;
-	private JLabel labelCiudad;
-	private JRadioButton radioCiudadBil;
-	private JRadioButton radioCiudadMad;
-	private JRadioButton radioCiudadBcn;
-	private JRadioButton radioCiudadVal;
-	private JRadioButton radioCiudadSev;
-	private JLabel labelCoordX;
-	private JTextField textoCoordX;
-	private JLabel labelCoordY;
-	private JTextField textoCoordY;
-	private JLabel labelDron;
-	private JComboBox comboDron;
-	private JButton botonAnyadir;
-	private DefaultListModel modelo;
-	private JList lista;
-	private JButton botonEliminar;
-
-	
+	/**
+	 * Create the frame.
+	 */
 	public PanelControl() {
 		try {
-			UIManager.setLookAndFeel (new MaterialLookAndFeel(new JMarsDarkTheme()));
+			UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
 		}
-		catch (UnsupportedLookAndFeelException e) {
-			e.printStackTrace ();
-		}
-		initComponents();
-	}
+		setTitle("Panel de administracion");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 449, 750);
 
-	private void initComponents() {
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
 
-		Container cp = this.getContentPane();
-		// cp.setLayout(new GridLayout(8,2)); 
-		cp.setLayout(new BorderLayout());
-		
-		JMenuBar barra = new JMenuBar();
-		this.setJMenuBar(barra);
-		
-		JMenu menuProyecto = new JMenu("Proyecto");
-		JMenu menuAyuda = new JMenu("Ayuda");
-		
-		barra.add(menuProyecto);
-		barra.add(menuAyuda);
-		
-		JMenuItem itemDron = new JMenuItem("Drones");
-		
-		menuProyecto.add(itemDron);
-		
-		/*
-		itemDron.addActionListener(new ActionListener() {
+		JButton cargarJsoButton = new JButton("Cargar Json");
+		menuBar.add(cargarJsoButton);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 
+		JPanel panel_1 = new JPanel();
+		contentPane.add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+		JLabel lblNewLabel = new JLabel("Descripcion");
+		panel_1.add(lblNewLabel);
+
+		Component horizontalGlue = Box.createHorizontalGlue();
+		panel_1.add(horizontalGlue);
+
+		textField = new JTextField();
+		panel_1.add(textField);
+		textField.setColumns(10);
+
+		Component horizontalStrut = Box.createHorizontalStrut(450);
+		panel_1.add(horizontalStrut);
+
+		Box horizontalBox = Box.createHorizontalBox();
+		panel_1.add(horizontalBox);
+
+		JLabel lblNewLabel_1 = new JLabel("A\u00F1o");
+		panel_1.add(lblNewLabel_1);
+
+		textField_1 = new JTextField();
+		panel_1.add(textField_1);
+		textField_1.setColumns(10);
+
+		Component horizontalStrut_1 = Box.createHorizontalStrut(800);
+		panel_1.add(horizontalStrut_1);
+
+		JLabel lblNewLabel_2 = new JLabel("Ciudad origen");
+		panel_1.add(lblNewLabel_2);
+
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Bilbao");
+		panel_1.add(chckbxNewCheckBox);
+
+		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Madrid");
+		panel_1.add(chckbxNewCheckBox_1);
+
+		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Barcelona");
+		panel_1.add(chckbxNewCheckBox_2);
+
+		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("Valencia");
+		panel_1.add(chckbxNewCheckBox_3);
+
+		Component horizontalStrut_5 = Box.createHorizontalStrut(800);
+		horizontalStrut_5.setBackground(Color.LIGHT_GRAY);
+		horizontalStrut_5.setForeground(Color.LIGHT_GRAY);
+		panel_1.add(horizontalStrut_5);
+
+		JLabel lblNewLabel_6 = new JLabel("Ciudad destino");
+		panel_1.add(lblNewLabel_6);
+
+		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("Bilbao");
+		panel_1.add(chckbxNewCheckBox_4);
+
+		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("Madrid");
+		panel_1.add(chckbxNewCheckBox_5);
+
+		JCheckBox chckbxNewCheckBox_6 = new JCheckBox("Barcelona");
+		panel_1.add(chckbxNewCheckBox_6);
+
+		JCheckBox chckbxNewCheckBox_7 = new JCheckBox("Valencia");
+		panel_1.add(chckbxNewCheckBox_7);
+
+		Component horizontalStrut_2 = Box.createHorizontalStrut(800);
+		panel_1.add(horizontalStrut_2);
+
+		JLabel lblNewLabel_3 = new JLabel("Dron");
+		panel_1.add(lblNewLabel_3);
+
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.addItem("Dron 1");
+		comboBox.addItem("Dron 2");
+		comboBox.addItem("Dron 3");
+		comboBox.addItem("Dron 4");
+		comboBox.addItem("Dron 5");
+		comboBox.addItem("Dron 6");
+
+		panel_1.add(comboBox);
+
+		Component horizontalStrut_3 = Box.createHorizontalStrut(800);
+		panel_1.add(horizontalStrut_3);
+
+		JLabel lblNewLabel_4 = new JLabel("Hora salida");
+		panel_1.add(lblNewLabel_4);
+
+		textField_2 = new JTextField();
+		panel_1.add(textField_2);
+		textField_2.setColumns(10);
+
+		Component horizontalStrut_4 = Box.createHorizontalStrut(800);
+		panel_1.add(horizontalStrut_4);
+
+		JLabel lblNewLabel_5 = new JLabel("Hora llegada");
+		panel_1.add(lblNewLabel_5);
+
+		textField_3 = new JTextField();
+		panel_1.add(textField_3);
+		textField_3.setColumns(10);
+
+		Component horizontalStrut_6 = Box.createHorizontalStrut(800);
+		panel_1.add(horizontalStrut_6);
+
+		JLabel lblNewLabel_7 = new JLabel(" Descripcion*");
+		panel_1.add(lblNewLabel_7);
+
+		textField_4 = new JTextField();
+		panel_1.add(textField_4);
+		textField_4.setColumns(10);
+
+		Component horizontalStrut_7 = Box.createHorizontalStrut(800);
+		panel_1.add(horizontalStrut_7);
+
+		JButton añadirButton = new JButton("Añadir");
+		panel_1.add(añadirButton);
+
+		Component horizontalStrut_8 = Box.createHorizontalStrut(100);
+		panel_1.add(horizontalStrut_8);
+
+		JButton btnNewButton_2 = new JButton("Eliminar");
+		panel_1.add(btnNewButton_2);
+
+		Component horizontalStrut_9 = Box.createHorizontalStrut(800);
+		panel_1.add(horizontalStrut_9);
+		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+		flowLayout.setVgap(105);
+		flowLayout.setHgap(150);
+		panel.setBorder(new LineBorder(Color.BLACK, 2, true));
+		panel.setForeground(Color.BLACK);
+		panel_1.add(panel);
+
+		JList list = new JList();
+		list.setVisibleRowCount(10);
+		panel.add(list);
+
+		cargarJsoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
-			}
-			
+				new Runnable(){
+					@Override
+					public void run() {
+						ArrayList<HashMap<String, String>> a = new BackEndAdmin().cargarDatosAutomatico();
+						for (int i = 0; i < a.size(); i++) {
+							HashMap<String, String> ii = a.get(i);
+							new BackEndAdmin().guardarBD(ii);
+						}
+						
+						
+					}
+				}.run();;
+			}		
 		});
-		
-		*/
-		
-		JMenuItem itemAyuda = new JMenuItem("Acerca de...");
-		menuAyuda.add(itemAyuda);
-		
-		itemAyuda.addActionListener(new ActionListener() {
+		añadirButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {		
-				JOptionPane.showMessageDialog(null, "Este programa fue creado por Aitor Ruiz, Sergio Salgado y Jon Ibarreche");		
-			}
-			
-		});
-		
-		
-		labelDesc = new JLabel("DESCRIPCI�N");
-		textoDesc = new JTextField(20);
-		labelAnyo = new JLabel("A�O:");
-		textoAnyo = new JTextField(20);
-		labelCiudad = new JLabel("CIUDAD:");
-		JPanel panelCiudad = new JPanel();
-		radioCiudadBil = new JRadioButton("Bilbao");
-		radioCiudadMad = new JRadioButton("Madrid");
-		radioCiudadBcn = new JRadioButton("Barcelona");
-		radioCiudadVal = new JRadioButton("Valencia");
-		radioCiudadSev = new JRadioButton("Sevilla");
-		ButtonGroup radioCiudad = new ButtonGroup(); // Para que cuando pulse 1, se despulsen los demas
-		radioCiudad.add(radioCiudadBil);
-		radioCiudad.add(radioCiudadMad);
-		radioCiudad.add(radioCiudadBcn);
-		radioCiudad.add(radioCiudadVal);
-		radioCiudad.add(radioCiudadSev);
-		labelCoordX = new JLabel("COORDENADA X");
-		textoCoordX = new JTextField(20);
-		labelCoordY = new JLabel("COORDENADA Y");
-		textoCoordY = new JTextField(20);
-		//LabelGenero y comboGenero missing
-		labelDron = new JLabel("DRONE");
-		comboDron = new JComboBox();
-		comboDron.addItem("Dron 1");
-		comboDron.addItem("Dron 2");
-		comboDron.addItem("Dron 3");
-		comboDron.addItem("Dron 4");
-		comboDron.addItem("Dron 5");
-		botonAnyadir = new JButton ("A�ADIR : ");
-		botonEliminar = new JButton ("Eliminar: ");
-		modelo = new DefaultListModel();
-		lista = new JList(modelo);
-		
-		JPanel arriba = new JPanel();
-		arriba.setLayout(new GridLayout(8,2));
-		
-		JScrollPane abajo = new JScrollPane(lista);
-		
-		//Panel est�tico
-		panelCiudad.add(radioCiudadBil);
-		panelCiudad.add(radioCiudadMad);
-		panelCiudad.add(radioCiudadBcn);
-		panelCiudad.add(radioCiudadVal);
-		panelCiudad.add(radioCiudadSev);
-		
-		
-		arriba.add(labelDesc);
-		arriba.add(textoDesc);
-		arriba.add(labelAnyo);
-		arriba.add(textoAnyo);
-		arriba.add(labelCiudad);
-		arriba.add(panelCiudad);
-		arriba.add(labelDron);
-		arriba.add(comboDron);
-		arriba.add(labelCoordX);
-		arriba.add(textoCoordX);
-		arriba.add(labelCoordY);
-		arriba.add(textoCoordY);
-		arriba.add(botonAnyadir);
-		arriba.add(botonEliminar);
-		
-		cp.add(arriba, BorderLayout.NORTH);
-		cp.add(abajo,BorderLayout.CENTER);
-
-		//Coger los parametros de la bd
-		/*
-		botonAnyadir.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				Drone nuevo = new Drone();
-				
-				nuevo.setlabelAnyo(textoAnyo.getText());
-				nuevo.setlabelCoordX(textoCoordX.getText());
-				nuevo.setlabelCoordY(textoCoordY.getText());
-				
-				modelo.addElement(nuevo);
-
-			}
-		});
-		
-		botonEliminar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				Object[] seleccionados = lista.getSelectedValues();
-				
-				for (Object object : seleccionados) {
-					modelo.removeElement(object);
-				}
-
-			}
-		});
-		*/
-		
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setTitle("Panel de Control");
-		this.setSize(700, 400);	// o this.pack();
-		this.setVisible(true);
-		
-	}
-
-		/*jPanel1 = new javax.swing.JPanel();
-
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-		jPanel1.setBackground(new java.awt.Color(102, 102, 102));
-		jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Panel de control",
-				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
-				new java.awt.Font("Arial Narrow", 0, 24), new java.awt.Color(0, 153, 204))); // NOI18N
-
-		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-		jPanel1.setLayout(jPanel1Layout);
-		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGap(0, 388, Short.MAX_VALUE));
-		jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGap(0, 262, Short.MAX_VALUE));
-
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
-				jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
-				jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-
-		pack();
-		*/
-		
-
-	public static void main(String args[]) {
-
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(PanelControl.class.getName()).log(java.util.logging.Level.SEVERE, null,
-					ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(PanelControl.class.getName()).log(java.util.logging.Level.SEVERE, null,
-					ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(PanelControl.class.getName()).log(java.util.logging.Level.SEVERE, null,
-					ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(PanelControl.class.getName()).log(java.util.logging.Level.SEVERE, null,
-					ex);
-		}
-
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new PanelControl().setVisible(true);
-			}
+			public void actionPerformed(ActionEvent e) {
+				new Runnable(){
+					@Override
+					public void run() {
+						
+					}
+				}.run();;
+			}		
 		});
 	}
 
-	private javax.swing.JPanel jPanel1;
 }

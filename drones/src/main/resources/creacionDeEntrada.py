@@ -9,14 +9,18 @@ def archivoDeDrones():
       "horaLlegada" : "1100",
       "ciudadSalida" : "Bilbao",
       "ciudadLlegada" : "Madrid",
+      "coordenadasX" : "0",
+      "coordenadasY" : "0",
       "cargaDescripcion" : "Baterias"
     },
     "2" :{
-      "idUsuario" : "1234",
+      "idUsuario" : "1235",
       "horaSalida" : "1000",
       "horaLlegada" : "1100",
       "ciudadSalida" : "Bilbao",
       "ciudadLlegada" : "Madrid",
+      "coordenadasX" : "0",
+      "coordenadasY" : "0",
       "cargaDescripcion" : "Baterias"
     }
     }
