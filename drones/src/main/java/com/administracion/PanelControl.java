@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.event.*;
 
 import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.JMarsDarkTheme;
 
 public class PanelControl extends javax.swing.JFrame {
 
@@ -35,7 +36,7 @@ public class PanelControl extends javax.swing.JFrame {
 	
 	public PanelControl() {
 		try {
-			UIManager.setLookAndFeel (new MaterialLookAndFeel ());
+			UIManager.setLookAndFeel (new MaterialLookAndFeel(new JMarsDarkTheme()));
 		}
 		catch (UnsupportedLookAndFeelException e) {
 			e.printStackTrace ();

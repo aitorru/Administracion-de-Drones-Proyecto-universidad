@@ -7,6 +7,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.JMarsDarkTheme;
 
 public class Login extends javax.swing.JFrame {
 
@@ -14,7 +15,7 @@ public class Login extends javax.swing.JFrame {
 
 	public Login() {
 		try {
-			UIManager.setLookAndFeel (new MaterialLookAndFeel ());
+			UIManager.setLookAndFeel (new MaterialLookAndFeel(new JMarsDarkTheme()));
 		}
 		catch (UnsupportedLookAndFeelException e) {
 			e.printStackTrace ();
