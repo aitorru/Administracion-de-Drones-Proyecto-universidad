@@ -316,7 +316,7 @@ public class PanelControl extends JFrame {
 							HashMap<String, String> m = aa.get(i);
 							dronCombo.addItem("dron " + m.get("id") + " " + m.get("cargaDescripcion"));
 						}
-						JOptionPane.showConfirmDialog(null, "Exito");
+						JOptionPane.showMessageDialog(null, "Exito");
 					}
 				}.run();
 				;
