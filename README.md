@@ -257,7 +257,7 @@ public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
 
 > Jon Ibarreche & Aitor Ruiz
 
-<img aling="center" src="./drones/src/main/resources/login.PNG" width="430px"/>
+<img aling="center" src="./drones/src/main/resources/contro.PNG" width="430px"/>
 
 ## Ventana de mapa
 
