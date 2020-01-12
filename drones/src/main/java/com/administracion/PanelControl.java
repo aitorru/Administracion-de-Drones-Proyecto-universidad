@@ -1,8 +1,11 @@
 package com.administracion;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.event.*;
+
+import mdlaf.MaterialLookAndFeel;
 
 public class PanelControl extends javax.swing.JFrame {
 
@@ -31,6 +34,12 @@ public class PanelControl extends javax.swing.JFrame {
 
 	
 	public PanelControl() {
+		try {
+			UIManager.setLookAndFeel (new MaterialLookAndFeel ());
+		}
+		catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace ();
+		}
 		initComponents();
 	}
 
