@@ -14,7 +14,7 @@ public class Vector {
 	    }
 
 	    public static float distance(Vector first, Vector second) {
-	        return length(second.x - first.x, second.y - first.y);
+	        return (float) length(second.x - first.x, second.y - first.y);
 	    }
 
 	    public static Vector direction(float x, float y) {

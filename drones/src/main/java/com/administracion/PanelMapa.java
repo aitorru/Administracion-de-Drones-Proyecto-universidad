@@ -33,7 +33,7 @@ public class PanelMapa {
 			JPanel locationPanel = new JPanel();
 			
 
-			Drone dron1 = new Drone(new Vector(0, 0), new Vector(30, 30), 2);
+			Drone dron1 = new Drone(new Vector(25, 25), new Vector(30, 30), 2);
 			
 			droneImage = new JLabel();
 			ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "redpoint.png");

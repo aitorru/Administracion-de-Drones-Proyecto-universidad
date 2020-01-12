@@ -23,10 +23,7 @@ public class Drone {
 
 	public Drone(Vector position, Vector target, float speed) {
 		this.position = position;
-		this.target = target;
-		this.speed = speed;
 
-		
 	    // Initialize start as a new Vector with the same x and y coordinates as position
 	    this.start = new Vector(position.x, position.y);
 		this.target = target;
