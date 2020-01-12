@@ -1,0 +1,22 @@
+-classpath
+'C:/Users/aitor/.m2/repository/org/python/jython/2.7.0/jython-2.7.0.jar;C:/Users/aitor/.m2/repository/org/yaml/snakeyaml/1.21/snakeyaml-1.21.jar;C:/Users/aitor/.m2/repository/org/xerial/sqlite-jdbc/3.28.0/sqlite-jdbc-3.28.0.jar;C:/Users/aitor/.m2/repository/org/json/json/20190722/json-20190722.jar;C:/Users/aitor/.m2/repository/io/github/vincenzopalazzo/material-ui-swing/1.1.1_beta/material-ui-swing-1.1.1_beta.jar;C:/Users/aitor/.m2/repository/org/swinglabs/swingx/1.6.1/swingx-1.6.1.jar;C:/Users/aitor/.m2/repository/com/jhlabs/filters/2.0.235/filters-2.0.235.jar;C:/Users/aitor/.m2/repository/org/swinglabs/swing-worker/1.1/swing-worker-1.1.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'G:/Administracion-de-Drones-Proyecto-universidad/drones/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2020. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'G:/Administracion-de-Drones-Proyecto-universidad/drones/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'drones 0.4-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'drones 0.4-SNAPSHOT API'
