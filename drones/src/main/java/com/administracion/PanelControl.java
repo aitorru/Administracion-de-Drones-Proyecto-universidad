@@ -22,6 +22,8 @@ import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -197,6 +199,15 @@ public class PanelControl extends JFrame {
 		JComboBox<String> dronCombo = new JComboBox<String>();
 		panel.add(dronCombo);
 
+		BackEndAdmin bd = new BackEndAdmin();
+		ArrayList<HashMap<String, String>> aa = bd.leerBD();
+		System.out.println(aa.toString());
+		dronCombo.removeAllItems();
+		for (int i = 0; i < aa.size(); i++) {
+			HashMap<String, String> m = aa.get(i);
+			dronCombo.addItem("dron " + m.get("id") + " " + m.get("cargaDescripcion"));
+		}
+
 		cargarJsoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -216,6 +227,7 @@ public class PanelControl extends JFrame {
 							HashMap<String, String> m = aa.get(i);
 							dronCombo.addItem("dron " + m.get("id") + " " + m.get("cargaDescripcion"));
 						}
+						JOptionPane.showMessageDialog(null, "Exito");
 					}
 				}.run();
 				;
@@ -260,7 +272,7 @@ public class PanelControl extends JFrame {
 							HashMap<String, String> mm = a.get(i);
 							dronCombo.addItem("dron " + mm.get("id") + " " + mm.get("cargaDescripcion"));
 						}
-						
+						JOptionPane.showMessageDialog(null, "Exito");
 					}
 				}.run();
 				;
@@ -284,6 +296,7 @@ public class PanelControl extends JFrame {
 							HashMap<String, String> m = aa.get(i);
 							dronCombo.addItem("dron " + m.get("id") + " " + m.get("cargaDescripcion"));
 						}
+						JOptionPane.showMessageDialog(null, "Exito");
 					}
 				}.run();
 				;
@@ -303,6 +316,7 @@ public class PanelControl extends JFrame {
 							HashMap<String, String> m = aa.get(i);
 							dronCombo.addItem("dron " + m.get("id") + " " + m.get("cargaDescripcion"));
 						}
+						JOptionPane.showConfirmDialog(null, "Exito");
 					}
 				}.run();
 				;

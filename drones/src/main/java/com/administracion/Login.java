@@ -101,13 +101,13 @@ public class Login extends javax.swing.JFrame {
 		JLabel lblNewLabel_4 = new JLabel("Administracion de drones");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_4.setForeground(new Color(255, 255, 255));
+		//lblNewLabel_4.setForeground(new Color(255, 255, 255));
 		lblNewLabel_4.setBounds(63, 295, 260, 16);
 		panel.add(lblNewLabel_4);
 		
 		JLabel lblnete = new JLabel("...A la vanguardia a través de la tecnología...");
 		lblnete.setHorizontalAlignment(SwingConstants.CENTER);
-		lblnete.setForeground(Color.WHITE);
+		//lblnete.setForeground(Color.WHITE);
 		lblnete.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblnete.setBounds(63, 337, 260, 16);
 		panel.add(lblnete);
@@ -174,11 +174,15 @@ public class Login extends javax.swing.JFrame {
 	}
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		String usuario = textField_1.getText();
+		String usuario = textField.getText();
 		char[] paswdCH = passwordField.getPassword();
+		char[] paswdCH2 = passwordField_1.getPassword();
 		String paswd = "";
 		for (int i = 0; i < paswdCH.length; i++){
 			paswd = paswd + paswdCH[i];
+		}String paswd2 = "";
+		for (int i = 0; i < paswdCH2.length; i++){
+			paswd2 = paswd2 + paswdCH2[i];
 		}
 		UserDB u = new UserDB();
 		Crypto c = new Crypto();
@@ -187,20 +191,24 @@ public class Login extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
 
 		} else {
-			ArrayList<HashMap<String, String>> listaUsuarios = u.leerBD();
-			for (int i = 0; i < listaUsuarios.size(); i++) {
-				HashMap<String, String> temp = listaUsuarios.get(i);
-				if (temp.get("user").equals(usuario)) {
-					//Creado Login con base de datos.
-					if (temp.get("password").equals(c.StringToCrypto(paswd))) {
-						// temp.get("idUsuario"); // Recogida de id de usuario para muestra especifia de drones
-						PanelControl.userOnBoard = temp.get("idUsuario");
-						JOptionPane.showMessageDialog(null, "Bienvenido");
-						PanelControl pc = new PanelControl();
-						pc.setVisible(true);
-						this.dispose();
-					} else {
-						JOptionPane.showConfirmDialog(null, "Su usuario o contraseña es incorrecta");
+			if(!paswd.equals(paswd2)){
+				JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+			}else{
+				ArrayList<HashMap<String, String>> listaUsuarios = u.leerBD();
+				for (int i = 0; i < listaUsuarios.size(); i++) {
+					HashMap<String, String> temp = listaUsuarios.get(i);
+					if (temp.get("user").equals(usuario)) {
+						//Creado Login con base de datos.
+						if (temp.get("password").equals(c.StringToCrypto(paswd))) {
+							// temp.get("idUsuario"); // Recogida de id de usuario para muestra especifia de drones
+							PanelControl.userOnBoard = temp.get("idUsuario");
+							JOptionPane.showMessageDialog(null, "Bienvenido");
+							PanelControl pc = new PanelControl();
+							pc.setVisible(true);
+							this.dispose();
+						} else {
+							JOptionPane.showConfirmDialog(null, "Su usuario o contraseña es incorrecta");
+						}
 					}
 				}
 			}
