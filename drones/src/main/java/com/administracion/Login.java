@@ -13,8 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import ejemploLogin.Home;
-
 import java.awt.Color;
 import java.awt.Button;
 import java.awt.SystemColor;
@@ -22,15 +20,19 @@ import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.JMarsDarkTheme;
+import mdlaf.themes.MaterialLiteTheme;
 
 public class Login extends javax.swing.JFrame {
 
@@ -40,20 +42,24 @@ public class Login extends javax.swing.JFrame {
 	private JTextField textField_1;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
-	
+
 	int xx, yy;
 
 	public Login() {
 		try {
-			UIManager.setLookAndFeel (new MaterialLookAndFeel(new JMarsDarkTheme()));
+			UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialLiteTheme()));
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
 		}
-		catch (UnsupportedLookAndFeelException e) {
-			e.printStackTrace ();
+		try {
+			initComponents();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		initComponents();
 	}
 
-	private void initComponents() {
+	private void initComponents() throws IOException {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 758, 438);
@@ -83,11 +89,13 @@ public class Login extends javax.swing.JFrame {
 			public void mouseDragged(MouseEvent e) {
 				int x = e.getXOnScreen();
 				int y = e.getYOnScreen();
-				Home.this.setLocation(x - xx, y - yy);
+				Login.this.setLocation(x - xx, y - yy);
 			}
 		});
 		label.setBounds(-135, 0, 517, 269);
-		label.setIcon(new ImageIcon(Home.class.getResource("/images/paisaje.jpg")));
+		InputStream is = this.getClass().getClassLoader().getResourceAsStream("paisaje.jpg");
+		BufferedImage image = ImageIO.read(is);
+		label.setIcon(new ImageIcon(image));
 		panel.add(label);
 		
 		JLabel lblNewLabel_4 = new JLabel("Administracion de drones");
@@ -97,7 +105,7 @@ public class Login extends javax.swing.JFrame {
 		lblNewLabel_4.setBounds(63, 295, 260, 16);
 		panel.add(lblNewLabel_4);
 		
-		JLabel lblnete = new JLabel("...A la vanguardia a trav\u00E9s de la tecnolog\u00EDa...");
+		JLabel lblnete = new JLabel("...A la vanguardia a través de la tecnología...");
 		lblnete.setHorizontalAlignment(SwingConstants.CENTER);
 		lblnete.setForeground(Color.WHITE);
 		lblnete.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -109,6 +117,7 @@ public class Login extends javax.swing.JFrame {
 		button.setBackground(new Color(220, 20, 60));
 		button.setBounds(413, 330, 300, 34);
 		contentPane.add(button);
+		//button.addActionListener(jButton1ActionPerformed(java.awt.event.ActionEvent));
 		
 		textField = new JTextField();
 		textField.setBounds(414, 47, 299, 34);
@@ -132,11 +141,11 @@ public class Login extends javax.swing.JFrame {
 		passwordField.setBounds(413, 193, 300, 34);
 		contentPane.add(passwordField);
 		
-		JLabel lblNewLabel_2 = new JLabel("CONTRASE\u00D1A");
+		JLabel lblNewLabel_2 = new JLabel("CONTRASÑA");
 		lblNewLabel_2.setBounds(413, 174, 90, 16);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("REPETIR CONTRASE\u00D1A");
+		JLabel lblNewLabel_3 = new JLabel("REPETIR CONTRASEÑA");
 		lblNewLabel_3.setBounds(413, 250, 145, 16);
 		contentPane.add(lblNewLabel_3);
 		
@@ -162,8 +171,8 @@ public class Login extends javax.swing.JFrame {
 	}
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		String usuario = jTextField.getText();
-		char[] paswdCH = jPasswordField.getPassword();
+		String usuario = textField_1.getText();
+		char[] paswdCH = passwordField.getPassword();
 		String paswd = "";
 		for (int i = 0; i < paswdCH.length; i++){
 			paswd = paswd + paswdCH[i];
