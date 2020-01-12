@@ -200,7 +200,11 @@ public void eliminarDatos(int id){
 
 > Jon Ibarreche
 
-- [ ] Investigación
+- [X] Investigación
+
+> Jon Ibarreche & Aitor Ruiz
+
+<img aling="center" src="./drones/src/main/resources/login.png" width="430px"/>
 
 > Aitor Ruiz
 
@@ -249,13 +253,19 @@ public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
 
 > Jon Ibarreche
 
-- [ ] Investigación
+- [X] Investigación
+
+> Jon Ibarreche & Aitor Ruiz
+
+<img aling="center" src="./drones/src/main/resources/login.png" width="430px"/>
 
 ## Ventana de mapa
 
 > Sergio Salgado
 
 - [ ] Investigación
+
+<img aling="center" src="./drones/src/main/resources/mapaGUI.png" width="430px"/>
 
 
 ## Javadoc
