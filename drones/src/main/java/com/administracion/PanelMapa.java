@@ -23,9 +23,14 @@ public class PanelMapa {
 			BufferedImage image = ImageIO.read(is);
 			JLabel label = new JLabel(new ImageIcon(image));
 			JFrame f = new JFrame();
+			f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			f.getContentPane().add(label);
+			f.pack();
+			f.setLocation(200, 200);
+			f.setVisible(true);
 			JPanel dronPanel = new JPanel();
 			JPanel mapaPanel = new JPanel();
-			//final JPanel locationPanel = new JPanel();
+			JPanel locationPanel = new JPanel();
 			
 
 			Drone dron1 = new Drone(new Vector(0, 0), new Vector(30, 30), 2);
@@ -45,11 +50,7 @@ public class PanelMapa {
 			droneImage.setLocation((int) dron1.getPosition().x, (int)dron1.getPosition().y);
 			droneImage.setSize(10,10);
 			droneImage.setVisible(true);
-			f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			f.getContentPane().add(label);
-			f.pack();
-			f.setLocation(200, 200);
-			f.setVisible(true);
+			
 			f.add(lpane, BorderLayout.CENTER);
 			dronPanel.add(droneImage);
 			mapaPanel.add(f);
