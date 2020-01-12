@@ -116,12 +116,13 @@ public class Login extends javax.swing.JFrame {
 					//Creado Login con base de datos.
 					if (temp.get("password").equals(c.StringToCrypto(paswd))) {
 						// temp.get("idUsuario"); // Recogida de id de usuario para muestra especifia de drones
+						PanelControl.userOnBoard = temp.get("idUsuario");
 						JOptionPane.showMessageDialog(null, "Bienvenido");
 						PanelControl pc = new PanelControl();
 						pc.setVisible(true);
 						this.dispose();
 					} else {
-						JOptionPane.showConfirmDialog(null, "Su usuario o contrase�a es incorrecto");
+						JOptionPane.showConfirmDialog(null, "Su usuario o contraseña es incorrecta");
 					}
 				}
 			}

@@ -11,6 +11,8 @@ import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import java.awt.Component;
 import javax.swing.Box;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
@@ -36,12 +38,11 @@ import mdlaf.themes.JMarsDarkTheme;
 public class PanelControl extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private final JPanel panel = new JPanel();
+	public static String userOnBoard;
 
 	/**
 	 * Create the frame.
@@ -70,15 +71,8 @@ public class PanelControl extends JFrame {
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JLabel lblNewLabel = new JLabel("Descripcion");
-		panel_1.add(lblNewLabel);
-
 		Component horizontalGlue = Box.createHorizontalGlue();
 		panel_1.add(horizontalGlue);
-
-		textField = new JTextField();
-		panel_1.add(textField);
-		textField.setColumns(10);
 
 		Component horizontalStrut = Box.createHorizontalStrut(450);
 		panel_1.add(horizontalStrut);
@@ -86,66 +80,65 @@ public class PanelControl extends JFrame {
 		Box horizontalBox = Box.createHorizontalBox();
 		panel_1.add(horizontalBox);
 
-		JLabel lblNewLabel_1 = new JLabel("A\u00F1o");
-		panel_1.add(lblNewLabel_1);
-
-		textField_1 = new JTextField();
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
-
 		Component horizontalStrut_1 = Box.createHorizontalStrut(800);
 		panel_1.add(horizontalStrut_1);
 
-		JLabel lblNewLabel_2 = new JLabel("Ciudad origen");
-		panel_1.add(lblNewLabel_2);
+		JLabel ciudadOrignJLabel = new JLabel("Ciudad origen");
+		panel_1.add(ciudadOrignJLabel);
 
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Bilbao");
-		panel_1.add(chckbxNewCheckBox);
+		JCheckBox bilbaoBox = new JCheckBox("Bilbao");
+		panel_1.add(bilbaoBox);
 
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Madrid");
-		panel_1.add(chckbxNewCheckBox_1);
+		JCheckBox madridBox = new JCheckBox("Madrid");
+		panel_1.add(madridBox);
 
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Barcelona");
-		panel_1.add(chckbxNewCheckBox_2);
+		JCheckBox barcelonaBox = new JCheckBox("Barcelona");
+		panel_1.add(barcelonaBox);
 
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("Valencia");
-		panel_1.add(chckbxNewCheckBox_3);
+		JCheckBox valenciaBox = new JCheckBox("Valencia");
+		panel_1.add(valenciaBox);
+
+		ButtonGroup origen = new ButtonGroup();
+		origen.add(bilbaoBox);
+		bilbaoBox.setActionCommand("bilbao");
+		origen.add(madridBox);
+		madridBox.setActionCommand("madrid");
+		origen.add(barcelonaBox);
+		barcelonaBox.setActionCommand("barcelona");
+		origen.add(valenciaBox);
+		valenciaBox.setActionCommand("valencia");
 
 		Component horizontalStrut_5 = Box.createHorizontalStrut(800);
 		horizontalStrut_5.setBackground(Color.LIGHT_GRAY);
 		horizontalStrut_5.setForeground(Color.LIGHT_GRAY);
 		panel_1.add(horizontalStrut_5);
 
-		JLabel lblNewLabel_6 = new JLabel("Ciudad destino");
-		panel_1.add(lblNewLabel_6);
+		JLabel destionoLabel = new JLabel("Ciudad destino");
+		panel_1.add(destionoLabel);
 
-		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("Bilbao");
-		panel_1.add(chckbxNewCheckBox_4);
+		JCheckBox bilbaoBox2 = new JCheckBox("Bilbao");
+		panel_1.add(bilbaoBox2);
 
-		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("Madrid");
-		panel_1.add(chckbxNewCheckBox_5);
+		JCheckBox madridBox2 = new JCheckBox("Madrid");
+		panel_1.add(madridBox2);
 
-		JCheckBox chckbxNewCheckBox_6 = new JCheckBox("Barcelona");
-		panel_1.add(chckbxNewCheckBox_6);
+		JCheckBox barcelonaBox2 = new JCheckBox("Barcelona");
+		panel_1.add(barcelonaBox2);
 
-		JCheckBox chckbxNewCheckBox_7 = new JCheckBox("Valencia");
-		panel_1.add(chckbxNewCheckBox_7);
+		JCheckBox valenciaBox2 = new JCheckBox("Valencia");
+		panel_1.add(valenciaBox2);
+		ButtonGroup destino = new ButtonGroup();
+		destino.add(bilbaoBox2);
+		bilbaoBox2.setActionCommand("bilbao");
+		destino.add(madridBox2);
+		madridBox2.setActionCommand("madrid");
+		destino.add(barcelonaBox2);
+		barcelonaBox2.setActionCommand("barcelona");
+		destino.add(valenciaBox2);
+		valenciaBox2.setActionCommand("valencia");
 
 		Component horizontalStrut_2 = Box.createHorizontalStrut(800);
 		panel_1.add(horizontalStrut_2);
-
-		JLabel lblNewLabel_3 = new JLabel("Dron");
-		panel_1.add(lblNewLabel_3);
-
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.addItem("Dron 1");
-		comboBox.addItem("Dron 2");
-		comboBox.addItem("Dron 3");
-		comboBox.addItem("Dron 4");
-		comboBox.addItem("Dron 5");
-		comboBox.addItem("Dron 6");
-
-		panel_1.add(comboBox);
 
 		Component horizontalStrut_3 = Box.createHorizontalStrut(800);
 		panel_1.add(horizontalStrut_3);
@@ -198,14 +191,13 @@ public class PanelControl extends JFrame {
 		panel.setForeground(Color.BLACK);
 		panel_1.add(panel);
 
-		JList list = new JList();
-		list.setVisibleRowCount(10);
-		panel.add(list);
+		JComboBox<String> dronCombo = new JComboBox<String>();
+		panel.add(dronCombo);
 
 		cargarJsoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Runnable(){
+				new Runnable() {
 					@Override
 					public void run() {
 						ArrayList<HashMap<String, String>> a = new BackEndAdmin().cargarDatosAutomatico();
@@ -213,23 +205,77 @@ public class PanelControl extends JFrame {
 							HashMap<String, String> ii = a.get(i);
 							new BackEndAdmin().guardarBD(ii);
 						}
-						
-						
+						BackEndAdmin bd = new BackEndAdmin();
+						ArrayList<HashMap<String, String>> aa = bd.leerBD();
+						dronCombo.removeAllItems();
+						for (int i = 0; i < aa.size(); i++) {
+							HashMap<String, String> m = aa.get(i);
+							dronCombo.addItem("dron " + m.get("id"));
+						}
 					}
-				}.run();;
-			}		
+				}.run();
+				;
+			}
 		});
 		añadirButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Runnable(){
+				new Runnable() {
 					@Override
 					public void run() {
+						HashMap<String, String> m = new HashMap<String, String>();
+						m.put("idUsuario", userOnBoard);
+						m.put("coordenadasX", "0");
+						m.put("coordenadasY", "0");
+						CoordenadasDB c = new CoordenadasDB();
+						for (int i = 0; i < c.leerBD().size(); i++) {
+							HashMap<String, String> hashMapCoordenadas = c.leerBD().get(i);
+							String ciudad1 = hashMapCoordenadas.get("ciudad");
+							String ciudad2 = origen.getSelection().toString();
+							// hashMapCoordenadas.get("ciudadSalida").equals(hashMapJson.get("ciudad"))
+							if (ciudad1.equals(ciudad2)) {
+								String coordenadaX, coordenadaY;
+								coordenadaX = hashMapCoordenadas.get("coordenadasX");
+								coordenadaY = hashMapCoordenadas.get("coordenadasY");
+								m.remove("coordenadasX");
+								m.remove("coordenadasY");
+								m.put("coordenadasX", coordenadaX);
+								m.put("coordenadasY", coordenadaY);
+							}
+						}
+						m.put("ciudadSalida", origen.getSelection().getActionCommand());
+						m.put("ciudadLlegada", destino.getSelection().getActionCommand());
+						m.put("horaSalida", textField_2.getText());
+						m.put("horaLlegada", textField_3.getText());
+						m.put("cargaDescripcion", textField_4.getText());
+						new BackEndAdmin().guardarBD(m);
+						BackEndAdmin bd = new BackEndAdmin();
+						ArrayList<HashMap<String, String>> a = bd.leerBD();
+						dronCombo.removeAllItems();
+						for (int i = 0; i < a.size(); i++) {
+							HashMap<String, String> mm = a.get(i);
+							dronCombo.addItem("dron " + mm.get("id"));
+						}
 						
 					}
-				}.run();;
-			}		
+				}.run();
+				;
+			}
 		});
+/*
+		new Thread() {
+			@Override
+			public void run() {
+				BackEndAdmin bd = new BackEndAdmin();
+				ArrayList<HashMap<String, String>> a = bd.leerBD();
+				dronCombo.removeAllItems();
+				for (int i = 0; i < a.size(); i++) {
+					HashMap<String, String> m = a.get(i);
+					dronCombo.addItem("dron " + m.get("id"))
+				}
+			}
+		};
+*/
 	}
 
 }

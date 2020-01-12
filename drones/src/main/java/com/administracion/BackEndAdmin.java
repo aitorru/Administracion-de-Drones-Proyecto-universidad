@@ -47,17 +47,19 @@ public class BackEndAdmin {
      * 
 	 */
     public BackEndAdmin() {
-        Properties props = new Properties();
-        props.put("python.console.encoding", "UTF-8");
-        props.put("python.security.respectJavaAccessibility", "false");
-        props.put("python.import.site", "false");
-        Properties preprops = System.getProperties();
-        PythonInterpreter.initialize(preprops, props, new String[0]);
-        PythonInterpreter pyInterp = new PythonInterpreter();
-        InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeArchivos.py");
-        pyInterp.execfile(is);
-        LOGGER.info("Creados archivos necesarios en backend.");
-        pyInterp.close();
+        if(!new File("dronesDataBase.sqlite").exists()){
+            Properties props = new Properties();
+            props.put("python.console.encoding", "UTF-8");
+            props.put("python.security.respectJavaAccessibility", "false");
+            props.put("python.import.site", "false");
+            Properties preprops = System.getProperties();
+            PythonInterpreter.initialize(preprops, props, new String[0]);
+            PythonInterpreter pyInterp = new PythonInterpreter();
+            InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeArchivos.py");
+            pyInterp.execfile(is);
+            LOGGER.info("Creados archivos necesarios en backend.");
+            pyInterp.close();
+        }
         ejecutarBD();
         String url = "jdbc:sqlite:dronesDataBase.sqlite";
         try {
@@ -81,7 +83,7 @@ public class BackEndAdmin {
      * @exception IOException y hace @{@code return null} si falla
 	 */
     private HashMap<String, String> leerArchivo(int NumeroEntrada) {
-        if (!new File("dron").exists()){
+        if (!new File("dronLoader.json").exists()){
             Properties props = new Properties();
             props.put("python.console.encoding", "UTF-8");
             props.put("python.security.respectJavaAccessibility", "false");
@@ -209,7 +211,10 @@ public class BackEndAdmin {
             LOGGER.log(Level.SEVERE,e.toString());
         }
     }
-
+    /**
+	 * <h1>Guardar BD</h1> Guarda los datos dentro de la BD.
+	 * @param DatosEntrada Mapa a guardar 
+	 */
     public void guardarBD(HashMap<String, String> DatosEntrada) {
         String sql = "INSERT INTO dron (idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
         try {
@@ -230,7 +235,11 @@ public class BackEndAdmin {
             LOGGER.log(Level.SEVERE,e.toString());
         }
     }
-
+    /**
+	 * <h1>Leer BD</h1> Guarda los datos dentro de la BD.
+     *  @return {@literal (ArrayList<HashMap<String, String>>)} con un array de mapas de todos los
+	 *         datos
+	 */
     public ArrayList<HashMap<String, String>> leerBD() {
         String sql = "SELECT id, idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion FROM dron";
         ArrayList<HashMap<String, String>> listaDeHashMaps = new ArrayList<HashMap<String, String>>();
@@ -257,7 +266,10 @@ public class BackEndAdmin {
         }
         return listaDeHashMaps;
     }
-
+    /**
+	 * <h1>Modificar BD</h1> Modifica las coordenadas
+	 * @param coordenadasX, id Mapa a guardar 
+	 */
     public void UpdateCoordenadasX(int coordenadasX, int id) {
         String sql = "UPDATE dron SET coordenadasX = ? WHERE id = ?";
         try {
@@ -272,7 +284,10 @@ public class BackEndAdmin {
             LOGGER.log(Level.SEVERE,e.toString());
         }
     }
-
+    /**
+	 * <h1>Modificar BD</h1> Modifica las coordenadas
+	 * @param coordenadasY, id Mapa a guardar 
+	 */
     public void UpdateCoordenadasY(int coordenadasY, int id) {
         String sql = "UPDATE dron SET coordenadasY = ? WHERE id = ?";
         try {
@@ -287,7 +302,14 @@ public class BackEndAdmin {
             LOGGER.log(Level.SEVERE,e.toString());
         }
     }
-
+    /**
+	 * <h1>Modificar BD</h1> Modifica todos los datos.
+     * En desuso por ineficiencia. Si se requiere modificar datos, es mejor eliminar
+     * @see #UpdateCoordenadasX(int, int)
+     * @see #UpdateCoordenadasY(int, int)
+     * @deprecated
+	 */
+    @Deprecated
     public void UpdateDatos(int id, int idUsuario, int coordenadasX, int coordenadasY, int horaSalida, int horaLlegada,
             String ciudadSalida, String ciudadLlegada, String cargaDescripcion) {
         String sql = "UPDATE dron SET idUsuario = ?, coordenadasX = ?, coordenadasY = ?, horaSalida = ?, horaLlegada = ?, ciudadSalida = ?, ciudadLlegada = ?, cargaDescripcion = ? WHERE id = ?";
@@ -311,6 +333,10 @@ public class BackEndAdmin {
         }
     }
 
+    /**
+	 * <h1>Eliminar un dron de la BD</h1> Eliminar un dron
+	 * @param id id del dron 
+	 */
     public void eliminarDatos(int id) {
         String sql = "DELETE FROM dron WHERE id = ?";
         try {
@@ -324,6 +350,12 @@ public class BackEndAdmin {
         }
     }
 
+
+    /**
+	 * <h1>Exporta la BD</h1> Exportar datos
+	 * @deprecated
+	 */
+    @Deprecated
     public void exportarASql(){
         try {
             System.out.println("\u001B31;1mNo hace nada!");
