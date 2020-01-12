@@ -11,6 +11,11 @@ public class AdminLogger {
     private  Logger LOGGER;
     private FileHandler fileH;
     //private static final Logger LOGGER = Logger.getLogger(App.class.getName());
+    /**
+     * <h1>Logger</h1>
+     * @param log Objeto log
+     * @param path Ruta del archivo
+     */
     public AdminLogger(Logger log, String path){
         LOGGER = log;
         try {
@@ -25,6 +30,10 @@ public class AdminLogger {
         } catch (SecurityException | IOException e) {
         }
     }
+    /**
+     * <h1>Get del log</h1> 
+     * @return Logger Objeto del get.
+     */
     public Logger getLOGGER(){
         return LOGGER;
     }

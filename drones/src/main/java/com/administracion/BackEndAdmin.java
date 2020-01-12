@@ -42,7 +42,7 @@ public class BackEndAdmin {
     private static final Logger LOGGER = new AdminLogger(LOGGE,"backend.log").getLOGGER();
 
     /**
-	 * <h1>Constructor</h1> Constructor que hace la conexión con la base de datos
+	 * <H1>Constructor</H1> Constructor que hace la conexión con la base de datos
      * Crea el archivo en caso de que no exista
      * 
 	 */
@@ -76,7 +76,7 @@ public class BackEndAdmin {
         LOGGER.info("Conexion establecida con backend.");
     }
     /**
-	 * <h1>Lectura de archivo de importacion</h1> Este metodo privado lee un archivo que le utiliza para importar
+	 * <H1>Lectura de archivo de importacion</H1> Este metodo privado lee un archivo que le utiliza para importar
 	 * 
 	 * @param NumeroEntrada numero de lectura 
 	 * @return {@literal (HashMap<String, String>)}
@@ -136,7 +136,7 @@ public class BackEndAdmin {
         return null;
     }
     /**
-	 * <h1>Lector</h1> lee el archivo
+	 * <H1>Lector</H1> lee el archivo
 	 * 
 	 * @return {@literal (ArrayList<HashMap<String, String>>)} con un array de mapas de todos los
 	 *         datos del archivo
@@ -151,7 +151,7 @@ public class BackEndAdmin {
     }
 
     /**
-	 * <h1>Carga de Datos</h1> Carga los archivos en la BD de manera automatica
+	 * <H1>Carga de Datos</H1> Carga los archivos en la BD de manera automatica
 	 * 
 	 * @return {@literal (ArrayList<HashMap<String, String>>)} con un array de mapas de todos los
 	 *         datos
@@ -185,7 +185,7 @@ public class BackEndAdmin {
         return paraGuardar;
     }
     /**
-	 * <h1>Ejecutar BD</h1> Si no ha nada dentro de la BD hay que ejecutarla porque puede ser que no exista.
+	 * <H1>Ejecutar BD</H1> Si no ha nada dentro de la BD hay que ejecutarla porque puede ser que no exista.
 	 * 
 	 */
     public void ejecutarBD() {
@@ -212,7 +212,7 @@ public class BackEndAdmin {
         }
     }
     /**
-	 * <h1>Guardar BD</h1> Guarda los datos dentro de la BD.
+	 * <H1>Guardar BD</H1> Guarda los datos dentro de la BD.
 	 * @param DatosEntrada Mapa a guardar 
 	 */
     public void guardarBD(HashMap<String, String> DatosEntrada) {
@@ -235,7 +235,7 @@ public class BackEndAdmin {
         }
     }
     /**
-	 * <h1>Leer BD</h1> Guarda los datos dentro de la BD.
+	 * <H1>Leer BD</H1> Guarda los datos dentro de la BD.
      *  @return {@literal (ArrayList<HashMap<String, String>>)} con un array de mapas de todos los
 	 *         datos
 	 */
@@ -266,7 +266,7 @@ public class BackEndAdmin {
         return listaDeHashMaps;
     }
     /**
-	 * <h1>Modificar BD</h1> Modifica las coordenadas
+	 * <H1>Modificar BD</H1> Modifica las coordenadas
 	 * @param coordenadasX, id Mapa a guardar 
 	 */
     public void UpdateCoordenadasX(int coordenadasX, int id) {
@@ -284,7 +284,7 @@ public class BackEndAdmin {
         }
     }
     /**
-	 * <h1>Modificar BD</h1> Modifica las coordenadas
+	 * <H1>Modificar BD</H1> Modifica las coordenadas
 	 * @param coordenadasY, id Mapa a guardar 
 	 */
     public void UpdateCoordenadasY(int coordenadasY, int id) {
@@ -302,10 +302,11 @@ public class BackEndAdmin {
         }
     }
     /**
-	 * <h1>Modificar BD</h1> Modifica todos los datos.
+	 * <H1>Modificar BD</H1> Modifica todos los datos.
      * En desuso por ineficiencia. Si se requiere modificar datos, es mejor eliminar
      * @see #UpdateCoordenadasX(int, int)
      * @see #UpdateCoordenadasY(int, int)
+     * 
      * @deprecated
 	 */
     @Deprecated
@@ -333,7 +334,7 @@ public class BackEndAdmin {
     }
 
     /**
-	 * <h1>Eliminar un dron de la BD</h1> Eliminar un dron
+	 * <H1>Eliminar un dron de la BD</H1> Eliminar un dron
 	 * @param id id del dron 
 	 */
     public void eliminarDatos(int id) {
@@ -350,7 +351,7 @@ public class BackEndAdmin {
 
 
     /**
-	 * <h1>Exporta la BD</h1> Exportar datos
+	 * <H1>Exporta la BD</H1> Exportar datos
 	 * @deprecated
 	 */
     @Deprecated

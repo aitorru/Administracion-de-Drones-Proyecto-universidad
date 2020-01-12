@@ -10,7 +10,10 @@ import java.net.URI;
 import com.administracion.*;
 
 public class CommandHandler implements HttpHandler{
-
+    /**
+     * <h1>Handler</h1> Redirige los comandos
+     * @param exchange peticion de http
+     */
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         URI requestURI = exchange.getRequestURI();

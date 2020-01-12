@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import com.administracion.BackEndAdmin;
 public class CommandExec {
+    /**
+     * <h1>ejecutarComando</h1> Ejecuta el comando de entrada.
+     * @param query
+     * @return
+     */
     public String ejecutarComando(String query){
         System.out.println();
         long segundosInicio = System.currentTimeMillis();
@@ -58,6 +63,11 @@ public class CommandExec {
         long resultado = segundosAcabado - segundosInicio;
         return salida.toString() + " Resultado: " + resultado + " Inicio: " + segundosInicio + " Final: " + segundosAcabado;
     }
+    /**
+     * <h1>Convierte un chararray a </h1>
+     * @param entrada de array de char
+     * @return String de salida
+     */
     public String charToString(ArrayList<Character> entrada){
         String salida = "";
         for (int i = 0; i < entrada.size(); i++) {

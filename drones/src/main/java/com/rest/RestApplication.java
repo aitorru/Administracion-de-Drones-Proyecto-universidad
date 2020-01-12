@@ -15,6 +15,9 @@ import com.sun.net.httpserver.HttpServer;
 public class RestApplication {
     private static final Logger LOGGE = Logger.getLogger(RestApplication.class.getName());
     private Logger LOGGER = new AdminLogger(LOGGE, "servidor.log").getLOGGER();
+    /**
+     * <h1>Servidor</h1> Abre los puertos y rutas llamando a las funciones
+     */
     public void run(){
         HttpServer server;
         try {

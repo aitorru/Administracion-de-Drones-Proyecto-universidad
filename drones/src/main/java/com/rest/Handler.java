@@ -7,6 +7,10 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 public class Handler implements HttpHandler {
+    /**
+     * <h1>Handler</h1> Sample
+     * @param t peticion de http
+     */
     @Override
     public void handle(HttpExchange t) throws IOException {
         String response = "Server is running!";
