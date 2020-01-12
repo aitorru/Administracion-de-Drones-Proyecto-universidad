@@ -29,21 +29,21 @@ public class PanelMapa {
 			JPanel locationPanel = new JPanel();
 			Drone dron1 = new Drone(new Vector(25, 25), new Vector(30, 30), 2);
 			
-			//f.getContentPane().add(label);
+			lpane.add(mapaPanel, new Integer(0), 0);
+			lpane.add(dronPanel, new Integer(1), 0);
 			f.pack();
-			f.setLocation(200, 200);
+			f.setBounds(450, 0, 1057, 761);
 			f.setVisible(true);	
-			f.add(lpane, BorderLayout.CENTER);
-			f.getContentPane().add(lpane);
-			f.setPreferredSize(new Dimension(1507, 761));
+			f.add(mapaPanel);	
+			f.add(dronPanel);
+			f.setPreferredSize(new Dimension(1057, 761));
 			f.setLayout(new BorderLayout());
 			f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			mapaPanel.add(label);
-			mapaPanel.setBounds(0,0,600,400);
+			mapaPanel.setBounds(0,0,1057,761);
 			mapaPanel.setVisible(true);
 
-			lpane.add(mapaPanel, new Integer(0), 0);
-			lpane.add(dronPanel, new Integer(1), 0);			
+						
 			
 		
 			ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "redpoint.png");
