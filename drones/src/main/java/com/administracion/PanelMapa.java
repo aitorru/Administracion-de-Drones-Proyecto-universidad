@@ -25,7 +25,6 @@ public class PanelMapa {
 			JFrame f = new JFrame();
 			f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			f.getContentPane().add(label);
-		
 			f.pack();
 			f.setLocation(200, 200);
 			f.setVisible(true);
@@ -52,9 +51,8 @@ public class PanelMapa {
 			droneImage.setVisible(true);
 			
 			f.add(lpane, BorderLayout.CENTER);
-			dronPanel.add(droneImage);
-			mapaPanel.add(f);
-			lpane.add(f, new Integer(0), 0);
+			dronPanel.add(droneImage);	
+			lpane.add(mapaPanel, new Integer(0), 0);
 			lpane.add(dronPanel, new Integer(1), 0);
 			f.getContentPane().add(mapaPanel);
 
