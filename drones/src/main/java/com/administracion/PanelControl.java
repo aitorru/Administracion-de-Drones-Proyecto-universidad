@@ -179,8 +179,11 @@ public class PanelControl extends JFrame {
 		Component horizontalStrut_8 = Box.createHorizontalStrut(100);
 		panel_1.add(horizontalStrut_8);
 
-		JButton btnNewButton_2 = new JButton("Eliminar");
-		panel_1.add(btnNewButton_2);
+		JButton eliminarButton = new JButton("Eliminar");
+		panel_1.add(eliminarButton);
+
+		JButton f5Button = new JButton("Reload");
+		panel_1.add(f5Button);
 
 		Component horizontalStrut_9 = Box.createHorizontalStrut(800);
 		panel_1.add(horizontalStrut_9);
@@ -207,10 +210,11 @@ public class PanelControl extends JFrame {
 						}
 						BackEndAdmin bd = new BackEndAdmin();
 						ArrayList<HashMap<String, String>> aa = bd.leerBD();
+						System.out.println(aa.toString());
 						dronCombo.removeAllItems();
 						for (int i = 0; i < aa.size(); i++) {
 							HashMap<String, String> m = aa.get(i);
-							dronCombo.addItem("dron " + m.get("id"));
+							dronCombo.addItem("dron " + m.get("id") + " " + m.get("cargaDescripcion"));
 						}
 					}
 				}.run();
@@ -254,9 +258,51 @@ public class PanelControl extends JFrame {
 						dronCombo.removeAllItems();
 						for (int i = 0; i < a.size(); i++) {
 							HashMap<String, String> mm = a.get(i);
-							dronCombo.addItem("dron " + mm.get("id"));
+							dronCombo.addItem("dron " + mm.get("id") + " " + mm.get("cargaDescripcion"));
 						}
 						
+					}
+				}.run();
+				;
+			}
+		});
+		eliminarButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Runnable() {
+					@Override
+					public void run() {
+						String elegido = String.valueOf(dronCombo.getSelectedItem());
+						String[] slice = elegido.split(" ");
+						System.out.println( slice[1]);
+						new BackEndAdmin().eliminarDatos(Integer.valueOf(slice[1]));
+						BackEndAdmin bd = new BackEndAdmin();
+						ArrayList<HashMap<String, String>> aa = bd.leerBD();
+						System.out.println(aa.toString());
+						dronCombo.removeAllItems();
+						for (int i = 0; i < aa.size(); i++) {
+							HashMap<String, String> m = aa.get(i);
+							dronCombo.addItem("dron " + m.get("id") + " " + m.get("cargaDescripcion"));
+						}
+					}
+				}.run();
+				;
+			}
+		});
+		f5Button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Runnable() {
+					@Override
+					public void run() {
+						BackEndAdmin bd = new BackEndAdmin();
+						ArrayList<HashMap<String, String>> aa = bd.leerBD();
+						System.out.println(aa.toString());
+						dronCombo.removeAllItems();
+						for (int i = 0; i < aa.size(); i++) {
+							HashMap<String, String> m = aa.get(i);
+							dronCombo.addItem("dron " + m.get("id") + " " + m.get("cargaDescripcion"));
+						}
 					}
 				}.run();
 				;

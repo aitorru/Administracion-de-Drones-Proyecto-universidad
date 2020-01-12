@@ -219,7 +219,6 @@ public class BackEndAdmin {
         String sql = "INSERT INTO dron (idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement pstmt = connGlobal.prepareStatement(sql);
-            System.out.println(DatosEntrada.toString());
             pstmt.setInt(1, Integer.valueOf(DatosEntrada.get("idUsuario")));
             pstmt.setInt(2, Integer.valueOf(DatosEntrada.get("coordenadasX")));
             pstmt.setInt(3, Integer.valueOf(DatosEntrada.get("coordenadasY")));
@@ -257,11 +256,11 @@ public class BackEndAdmin {
                 mapaTemporal.put("ciudadLlegada", rs.getString("ciudadLlegada"));
                 mapaTemporal.put("cargaDescripcion", rs.getString("cargaDescripcion"));
                 listaDeHashMaps.add(mapaTemporal);
-                rs.close();
             }
+            rs.close();
         } catch (SQLException e) {
             // Explicacion: No se puede crear aqui una ventana porque se usa para que falle. Travis no puede hacer una ventana.
-            //JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
+            // JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
             LOGGER.log(Level.SEVERE,e.toString());
         }
         return listaDeHashMaps;
@@ -342,8 +341,7 @@ public class BackEndAdmin {
         try {
             PreparedStatement psmt = connGlobal.prepareStatement(sql);
             psmt.setInt(1, id);
-            psmt.executeQuery();
-            psmt.close();
+            psmt.executeUpdate();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(new JFrame(),e.toString(),"Warning",JOptionPane.WARNING_MESSAGE);
             LOGGER.log(Level.SEVERE,e.toString());
