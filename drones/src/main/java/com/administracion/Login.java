@@ -117,8 +117,11 @@ public class Login extends javax.swing.JFrame {
 		button.setBackground(new Color(220, 20, 60));
 		button.setBounds(413, 330, 300, 34);
 		contentPane.add(button);
-		//button.addActionListener(jButton1ActionPerformed(java.awt.event.ActionEvent));
-		
+		button.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jButton1ActionPerformed(evt);
+			}
+		});
 		textField = new JTextField();
 		textField.setBounds(414, 47, 299, 34);
 		contentPane.add(textField);
