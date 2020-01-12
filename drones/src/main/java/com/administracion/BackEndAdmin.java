@@ -39,7 +39,7 @@ public class BackEndAdmin {
     private static Statement stmtGlobal;
 
     private static final Logger LOGGE = Logger.getLogger(BackEndAdmin.class.getName());
-    private Logger LOGGER = new AdminLogger(LOGGE,"backend.log").getLOGGER();
+    private static final Logger LOGGER = new AdminLogger(LOGGE,"backend.log").getLOGGER();
 
     /**
 	 * <h1>Constructor</h1> Constructor que hace la conexión con la base de datos
@@ -58,6 +58,7 @@ public class BackEndAdmin {
         pyInterp.execfile(is);
         LOGGER.info("Creados archivos necesarios en backend.");
         pyInterp.close();
+        ejecutarBD();
         String url = "jdbc:sqlite:dronesDataBase.sqlite";
         try {
             connGlobal = DriverManager.getConnection(url);
@@ -80,17 +81,19 @@ public class BackEndAdmin {
      * @exception IOException y hace @{@code return null} si falla
 	 */
     private HashMap<String, String> leerArchivo(int NumeroEntrada) {
-        Properties props = new Properties();
-        props.put("python.console.encoding", "UTF-8");
-        props.put("python.security.respectJavaAccessibility", "false");
-        props.put("python.import.site", "false");
-        Properties preprops = System.getProperties();
-        PythonInterpreter.initialize(preprops, props, new String[0]);
-        PythonInterpreter pyInterp = new PythonInterpreter();
-        InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeEntrada.py");
-        pyInterp.execfile(is);
-        LOGGER.info("Creados archvido de entrada de datos.");
-        pyInterp.close();
+        if (!new File("dron").exists()){
+            Properties props = new Properties();
+            props.put("python.console.encoding", "UTF-8");
+            props.put("python.security.respectJavaAccessibility", "false");
+            props.put("python.import.site", "false");
+            Properties preprops = System.getProperties();
+            PythonInterpreter.initialize(preprops, props, new String[0]);
+            PythonInterpreter pyInterp = new PythonInterpreter();
+            InputStream is = this.getClass().getClassLoader().getResourceAsStream("creacionDeEntrada.py");
+            pyInterp.execfile(is);
+            LOGGER.info("Creados archivo de entrada de datos.");
+            pyInterp.close();
+        }
         try {
             File f = new File("dronLoader.json");
             BufferedReader br = new BufferedReader(new FileReader(f));
@@ -114,6 +117,10 @@ public class BackEndAdmin {
                         obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("ciudadLlegada"));
                 MapaSalida.put("cargaDescripcion",
                         obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("cargaDescripcion"));
+                MapaSalida.put("coordenadasX",
+                        obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("coordenadasX"));
+                MapaSalida.put("coordenadasY",
+                        obj.getJSONObject(Integer.toString(NumeroEntrada)).getString("coordenadasY"));
             } catch (Exception e) {
                 // Si no existe el numero debe dar error, lo cual no significa que falle.
                 LOGGER.warning("Llegado al final del array: " + e.getMessage());
@@ -162,10 +169,13 @@ public class BackEndAdmin {
                 if (ciudad1.equals(ciudad2)) {
                     coordenadaX = hashMapCoordenadas.get("coordenadasX");
                     coordenadaY = hashMapCoordenadas.get("coordenadasY");
+                    hashMapJson.remove("coordenadasX");
+                    hashMapJson.remove("coordenadasY");
+                    hashMapJson.put("coordenadasX", coordenadaX);
+                    hashMapJson.put("coordenadasY", coordenadaY);
                 }
             }
-            hashMapJson.put("coordenadasX", coordenadaX);
-            hashMapJson.put("coordenadasY", coordenadaY);
+            
             return paraGuardar;
             // TODO cambiar el nombre del objeto para hacerlo adecuado
             // guardarBD(hashMapJson);
@@ -204,6 +214,7 @@ public class BackEndAdmin {
         String sql = "INSERT INTO dron (idUsuario, coordenadasX, coordenadasY, horaSalida, horaLlegada, ciudadSalida, ciudadLlegada, cargaDescripcion) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement pstmt = connGlobal.prepareStatement(sql);
+            System.out.println(DatosEntrada.toString());
             pstmt.setInt(1, Integer.valueOf(DatosEntrada.get("idUsuario")));
             pstmt.setInt(2, Integer.valueOf(DatosEntrada.get("coordenadasX")));
             pstmt.setInt(3, Integer.valueOf(DatosEntrada.get("coordenadasY")));
