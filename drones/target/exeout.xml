@@ -2,7 +2,7 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>G:\Administracion-de-Drones-Proyecto-universidad\drones\target\drones-0.4-SNAPSHOT-jar-with-dependencies.jar</jar>
+  <jar>D:\Administracion-de-Drones-Proyecto-universidad\drones\target\drones-0.5.1-SNAPSHOT-jar-with-dependencies.jar</jar>
   <outfile>D:\Administracion-de-Drones-Proyecto-universidad\drones\target\administracion.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
@@ -13,7 +13,7 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>G:\Administracion-de-Drones-Proyecto-universidad\drones\target\redhat-icon-4.ico</icon>
+  <icon>D:\Administracion-de-Drones-Proyecto-universidad\drones\target\redhat-icon-4.ico</icon>
   <jre>
     <path>1.8.0</path>
     <bundledJre64Bit>false</bundledJre64Bit>
