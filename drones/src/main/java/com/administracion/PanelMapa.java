@@ -38,10 +38,10 @@ public class PanelMapa {
 			JPanel locationPanel = new JPanel();
 			
 			Drone dron1 = new Drone(new Vector(25, 25), new Vector(30, 30), 2);
-			Drone dron2 = new Drone(new Vector(25, 25), new Vector(30, 30), 2);
-			Drone dron3 = new Drone(new Vector(25, 25), new Vector(30, 30), 2);
-			Drone dron4 = new Drone(new Vector(25, 25), new Vector(30, 30), 2);
-			Drone dron5 = new Drone(new Vector(25, 25), new Vector(30, 30), 2);
+			Drone dron2 = new Drone(new Vector(25, 25), new Vector(25, 25), 3);
+			Drone dron3 = new Drone(new Vector(25, 25), new Vector(56, 90), 2);
+			Drone dron4 = new Drone(new Vector(25, 25), new Vector(78, 12), 2);
+			Drone dron5 = new Drone(new Vector(25, 25), new Vector(156, 41), 2);
 		
 			f.pack();
 			f.setBounds(450, 0, 1057, 761);
