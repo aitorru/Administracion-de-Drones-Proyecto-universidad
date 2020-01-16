@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.administracion</groupId>
   <artifactId>drones</artifactId>
-  <version>0.4-SNAPSHOT</version>
+  <version>0.5.1-SNAPSHOT</version>
   <build>
     <plugins>
       <plugin>
@@ -112,6 +112,12 @@
       <artifactId>material-ui-swing</artifactId>
       <version>1.1.1_beta</version>
      </dependency>
+     <!-- https://mvnrepository.com/artifact/com.formdev/flatlaf -->
+      <dependency>
+        <groupId>com.formdev</groupId>
+        <artifactId>flatlaf</artifactId>
+        <version>0.24</version>
+      </dependency>
   </dependencies>
   <repositories>
     <repository>

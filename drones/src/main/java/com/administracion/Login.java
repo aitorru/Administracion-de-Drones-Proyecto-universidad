@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 import java.awt.Color;
 import java.awt.Button;
 import java.awt.SystemColor;
@@ -47,7 +49,7 @@ public class Login extends javax.swing.JFrame {
 
 	public Login() {
 		try {
-			UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialLiteTheme()));
+			UIManager.setLookAndFeel( new FlatLightLaf() );
 		} catch (UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}

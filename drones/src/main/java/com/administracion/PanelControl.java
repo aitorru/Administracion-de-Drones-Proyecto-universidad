@@ -16,6 +16,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JComboBox;
@@ -36,6 +37,7 @@ import javax.swing.border.LineBorder;
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.JMarsDarkTheme;
+import com.formdev.flatlaf.*;
 
 public class PanelControl extends JFrame {
 
@@ -51,7 +53,7 @@ public class PanelControl extends JFrame {
 	 */
 	public PanelControl() {
 		try {
-			UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
+			UIManager.setLookAndFeel( new FlatLightLaf() );
 		} catch (UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
@@ -76,13 +78,13 @@ public class PanelControl extends JFrame {
 		Component horizontalGlue = Box.createHorizontalGlue();
 		panel_1.add(horizontalGlue);
 
-		Component horizontalStrut = Box.createHorizontalStrut(450);
+		Component horizontalStrut = Box.createHorizontalStrut(1450);
 		panel_1.add(horizontalStrut);
 
 		Box horizontalBox = Box.createHorizontalBox();
 		panel_1.add(horizontalBox);
 
-		Component horizontalStrut_1 = Box.createHorizontalStrut(800);
+		Component horizontalStrut_1 = Box.createHorizontalStrut(1800);
 		panel_1.add(horizontalStrut_1);
 
 		JLabel ciudadOrignJLabel = new JLabel("Ciudad origen");
@@ -110,7 +112,7 @@ public class PanelControl extends JFrame {
 		origen.add(valenciaBox);
 		valenciaBox.setActionCommand("valencia");
 
-		Component horizontalStrut_5 = Box.createHorizontalStrut(800);
+		Component horizontalStrut_5 = Box.createHorizontalStrut(1800);
 		horizontalStrut_5.setBackground(Color.LIGHT_GRAY);
 		horizontalStrut_5.setForeground(Color.LIGHT_GRAY);
 		panel_1.add(horizontalStrut_5);
@@ -139,10 +141,10 @@ public class PanelControl extends JFrame {
 		destino.add(valenciaBox2);
 		valenciaBox2.setActionCommand("valencia");
 
-		Component horizontalStrut_2 = Box.createHorizontalStrut(800);
+		Component horizontalStrut_2 = Box.createHorizontalStrut(1800);
 		panel_1.add(horizontalStrut_2);
 
-		Component horizontalStrut_3 = Box.createHorizontalStrut(800);
+		Component horizontalStrut_3 = Box.createHorizontalStrut(1800);
 		panel_1.add(horizontalStrut_3);
 
 		JLabel lblNewLabel_4 = new JLabel("Hora salida");
@@ -152,7 +154,7 @@ public class PanelControl extends JFrame {
 		panel_1.add(textField_2);
 		textField_2.setColumns(10);
 
-		Component horizontalStrut_4 = Box.createHorizontalStrut(800);
+		Component horizontalStrut_4 = Box.createHorizontalStrut(1800);
 		panel_1.add(horizontalStrut_4);
 
 		JLabel lblNewLabel_5 = new JLabel("Hora llegada");
@@ -162,7 +164,7 @@ public class PanelControl extends JFrame {
 		panel_1.add(textField_3);
 		textField_3.setColumns(10);
 
-		Component horizontalStrut_6 = Box.createHorizontalStrut(800);
+		Component horizontalStrut_6 = Box.createHorizontalStrut(1800);
 		panel_1.add(horizontalStrut_6);
 
 		JLabel lblNewLabel_7 = new JLabel(" Descripcion*");
@@ -172,13 +174,13 @@ public class PanelControl extends JFrame {
 		panel_1.add(textField_4);
 		textField_4.setColumns(10);
 
-		Component horizontalStrut_7 = Box.createHorizontalStrut(800);
+		Component horizontalStrut_7 = Box.createHorizontalStrut(1800);
 		panel_1.add(horizontalStrut_7);
 
 		JButton añadirButton = new JButton("Añadir");
 		panel_1.add(añadirButton);
 
-		Component horizontalStrut_8 = Box.createHorizontalStrut(100);
+		Component horizontalStrut_8 = Box.createHorizontalStrut(1100);
 		panel_1.add(horizontalStrut_8);
 
 		JButton eliminarButton = new JButton("Eliminar");
@@ -187,7 +189,7 @@ public class PanelControl extends JFrame {
 		JButton f5Button = new JButton("Reload");
 		panel_1.add(f5Button);
 
-		Component horizontalStrut_9 = Box.createHorizontalStrut(800);
+		Component horizontalStrut_9 = Box.createHorizontalStrut(1800);
 		panel_1.add(horizontalStrut_9);
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 		flowLayout.setVgap(105);
